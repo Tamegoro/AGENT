@@ -3,5 +3,5 @@ Because these files are temporary version. They are under construction still.
 
 Some functions will be moved to Agent.Contrib according to necessity.
 
-Regards,
+Thanks and Regards,
 
