@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Waxing and Waning")]
+[assembly: AssemblyTitle("Barber's Wall Clock")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Waxing and Waning")]
+[assembly: AssemblyProduct("Barber's Wall Clock")]
 [assembly: AssemblyCopyright("Copyright © 2013 Tamegoro")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
