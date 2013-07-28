@@ -42,6 +42,7 @@ namespace BarbersWallClock
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
+            IPAexGothicReverseNumber06 = 1700,
             _7barPBd24 = 31671,
         }
     }

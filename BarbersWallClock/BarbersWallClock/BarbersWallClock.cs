@@ -20,6 +20,7 @@ namespace BarbersWallClock
         static Bitmap _background;
 
         static Font font7barPBd24 = Resources.GetFont(Resources.FontResources._7barPBd24);
+        static Font fontIPAexGothicReverseNumber06 = Resources.GetFont(Resources.FontResources.IPAexGothicReverseNumber06);
 
         static AZMDrawing _azmdrawing;
         static AGENT.AZMutil.Point _point;
@@ -37,7 +38,9 @@ namespace BarbersWallClock
         static int screenCenterX = 0;
         static int screenCenterY = 0;
 
-        static int radius = 0;
+        static int dateRectY = 0;
+        
+        //static int radius = 0;
 
         static int displayMode = DISPLAY_MODE_BLACK;
 
@@ -48,6 +51,10 @@ namespace BarbersWallClock
         const int LENGTH_MINUTE_HAND_TAIL = 13;
         const int LENGTH_SECOND_HAND = 41;
         const int LENGTH_SECOND_HAND_TAIL = 13;
+
+        const int DATE_RECT_LEFT_MARGIN = 21;
+        const int DATE_RECT_WIDTH = 17;
+        const int DATE_RECT_HEIGHT = 14;
 
         const int DISPLAY_MODE_BLACK = 0;
         const int DISPLAY_MODE_WHITE = 1;
@@ -72,6 +79,9 @@ namespace BarbersWallClock
 
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
+
+            dateRectY = screenCenterY - (DATE_RECT_HEIGHT / 2) - 1;            
+
 
             displayMode = DISPLAY_MODE_BLACK;
             _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockBlack), Bitmap.BitmapImageType.Gif);
@@ -120,6 +130,9 @@ namespace BarbersWallClock
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 //_display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
+                _display.DrawRectangle(colorForeground, 1, DATE_RECT_LEFT_MARGIN, dateRectY, DATE_RECT_WIDTH, DATE_RECT_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                _display.DrawText((currentTime.Day % 10).ToString("D1") + (currentTime.Day / 10).ToString("D1"), fontIPAexGothicReverseNumber06, colorForeground, DATE_RECT_LEFT_MARGIN + 2, dateRectY + 1);
+                
             }
             else
             {
@@ -138,6 +151,7 @@ namespace BarbersWallClock
 
             if (direction == ButtonDirection.Up)
             {
+
                 if (button == Buttons.MiddleRight)
                 {
                     if (displayMode == DISPLAY_MODE_BLACK)
@@ -167,6 +181,38 @@ namespace BarbersWallClock
                     UpdateTime(null);
 
                 }
+
+
+/*
+                if (button == Buttons.TopRight)
+                {
+                    displayMode = DISPLAY_MODE_BLACK;
+                    _background.Dispose();
+                    _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockBlack), Bitmap.BitmapImageType.Gif);
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    UpdateTime(null);
+                }
+                
+                if (button == Buttons.MiddleRight)
+                {
+                    displayMode = DISPLAY_MODE_DIGITAL;
+                    _background.Dispose();
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    UpdateTime(null);
+                }
+
+                if (button == Buttons.BottomRight)
+                {
+                    displayMode = DISPLAY_MODE_WHITE;
+                    _background.Dispose();
+                    _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockWhite), Bitmap.BitmapImageType.Gif);
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    UpdateTime(null);
+                }
+*/
 
             }
 

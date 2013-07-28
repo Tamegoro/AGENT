@@ -124,6 +124,9 @@
   <data name="BarbersWallClockWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\BarbersWallClockWhite.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="IPAexGothicReverseNumber06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\IPAexGothicReverseNumber06.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
