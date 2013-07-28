@@ -40,8 +40,6 @@ namespace BarbersWallClock
 
         static int dateRectY = 0;
         
-        //static int radius = 0;
-
         static int displayMode = DISPLAY_MODE_BLACK;
 
 
