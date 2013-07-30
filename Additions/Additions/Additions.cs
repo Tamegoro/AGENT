@@ -145,20 +145,47 @@ namespace Additions
 
             if (oldH != currentH)
             {
-                lH = rnd.Next(currentH);
-                rH = currentH - lH;
-                oldH = currentH;
+                if (currentH != 0)
+                {
+                    lH = rnd.Next(currentH);
+                    rH = currentH - lH;
+                    oldH = currentH;
+                }
+                else
+                {
+                    lH = 0;
+                    rH = 0;
+                    oldH = currentH;
+                }
             }
 
             if (oldM != currentM)
             {
-                lM = rnd.Next(currentM);
-                rM = currentM - lM;
-                oldM = currentM;
+                if (currentM != 0)
+                {
+                    lM = rnd.Next(currentM);
+                    rM = currentM - lM;
+                    oldM = currentM;
+                }
+                else
+                {
+                    lM = 0;
+                    rM = 0;
+                    oldM = currentM;
+                }
             }
 
-            lS = rnd.Next(currentS);
-            rS = currentS - lS;
+            if (currentS != 0)
+            {
+                lS = rnd.Next(currentS);
+                rS = currentS - lS;
+            }
+            else
+            {
+                lS = 0;
+                rS = 0;
+            }
+ 
 
             _display.DrawText(lH.ToString("D2") + "+" + rH.ToString("D2") + "=", fontIPAexGothicNumberSymbol16, colorForeground, QUESTION_X_H, QUESTION_Y_H);
             _display.DrawText(lM.ToString("D2") + "+" + rM.ToString("D2") + "=", fontIPAexGothicNumberSymbol16, colorForeground, QUESTION_X_M, QUESTION_Y_M);
