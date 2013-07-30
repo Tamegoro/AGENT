@@ -33,7 +33,7 @@ namespace Shearing
         internal enum FontResources : short
         {
             small = 13070,
-            _7barPBd32 = 16571,
+            _7barPBd24 = 31671,
         }
     }
 }

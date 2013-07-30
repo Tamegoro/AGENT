@@ -13,7 +13,14 @@ namespace BarbersWallClock
     public class BarbersWallClock
     {
         static Bitmap _display;
+
         static Timer _updateClockTimer;
+        static TimeSpan dueTime;
+        static TimeSpan period;
+
+        static Timer _updateClockTimerDigital;
+        static TimeSpan dueTimeDigital;
+        static TimeSpan periodDigital;
 
         static DateTime currentTime;
 
@@ -39,9 +46,15 @@ namespace BarbersWallClock
         static int screenCenterY = 0;
 
         static int dateRectY = 0;
-        
-        static int displayMode = DISPLAY_MODE_BLACK;
 
+        static int displayMode = DISPLAY_MODE_BLACK;
+        static bool showDigital = false;
+        static int showDigitalCounter = 0;
+
+        static int backgroundBitmapColor = BACKGROUND_BITMAP_COLOR_BLACK;
+
+        const int BACKGROUND_BITMAP_COLOR_BLACK = 0;
+        const int BACKGROUND_BITMAP_COLOR_WHITE = 1;
 
         const int LENGTH_HOUR_HAND = 31;
         const int LENGTH_HOUR_HAND_TAIL = 13;
@@ -56,8 +69,10 @@ namespace BarbersWallClock
 
         const int DISPLAY_MODE_BLACK = 0;
         const int DISPLAY_MODE_WHITE = 1;
-        const int DISPLAY_MODE_DIGITAL = 2;
 
+        const int MAX_DISPLAY_MODE = 1;
+
+        const int SHOW_DIGITAL_SECOND = 10;
 
         public static void Main()
         {
@@ -83,19 +98,31 @@ namespace BarbersWallClock
 
             displayMode = DISPLAY_MODE_BLACK;
             _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockBlack), Bitmap.BitmapImageType.Gif);
+            backgroundBitmapColor = BACKGROUND_BITMAP_COLOR_BLACK;
             colorForeground = Color.White;
             colorBackground = Color.Black;
+
+            showDigital = false;
 
             UpdateTime(null);
 
             currentTime = DateTime.Now;
 
-            //TimeSpan dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond);
-            //TimeSpan period = new TimeSpan(0, 0, 1, 0, 0);
-            TimeSpan dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
-            TimeSpan period = new TimeSpan(0, 0, 0, 1, 0);
+            //dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond);
+            //period = new TimeSpan(0, 0, 1, 0, 0);
+            dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
+            period = new TimeSpan(0, 0, 0, 1, 0);
+
+            dueTimeDigital = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
+            periodDigital = new TimeSpan(0, 0, 0, 1, 0);
+            
             _updateClockTimer = new Timer(UpdateTime, null, dueTime, period);
 
+            ButtonHelper.ButtonSetup = new Buttons[]
+            {
+                Buttons.BottomRight, Buttons.MiddleRight, Buttons.TopRight
+            }; 
+            
             ButtonHelper.Current.OnButtonPress += Current_OnButtonPress;
 
             Thread.Sleep(Timeout.Infinite);
@@ -105,12 +132,13 @@ namespace BarbersWallClock
         static void UpdateTime(object state)
         {
 
-            currentTime = DateTime.Now;
 
-            _display.Clear();
-
-            if (displayMode == DISPLAY_MODE_BLACK || displayMode == DISPLAY_MODE_WHITE)
+            if (showDigital == false)
             {
+
+                currentTime = DateTime.Now;
+
+                _display.Clear();
 
                 degreeH = 360 - (_azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute));
                 degreeM = 360 - (_azmdrawing.MinuteToAngle(currentTime.Minute));
@@ -130,17 +158,10 @@ namespace BarbersWallClock
 
                 _display.DrawRectangle(colorForeground, 1, DATE_RECT_LEFT_MARGIN, dateRectY, DATE_RECT_WIDTH, DATE_RECT_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 0);
                 _display.DrawText((currentTime.Day % 10).ToString("D1") + (currentTime.Day / 10).ToString("D1"), fontIPAexGothicReverseNumber06, colorForeground, DATE_RECT_LEFT_MARGIN + 2, dateRectY + 1);
-                
-            }
-            else
-            {
 
-                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _azmdrawing.DrawStringAligned(_display, colorForeground, font7barPBd24, currentTime.Hour.ToString("D2") + ":" + currentTime.Minute.ToString("D2") + ":" + currentTime.Second.ToString("D2"), AZMDrawing.ALIGN_CENTER, 0, AZMDrawing.VALIGN_MIDDLE, 0);
+                _display.Flush();
 
             }
-
-            _display.Flush();
 
         }
 
@@ -149,72 +170,106 @@ namespace BarbersWallClock
 
             if (direction == ButtonDirection.Up)
             {
-
-                if (button == Buttons.MiddleRight)
+                if (button == Buttons.TopRight)
                 {
-                    if (displayMode == DISPLAY_MODE_BLACK)
+                    if (showDigital == false)
                     {
-                        displayMode = DISPLAY_MODE_WHITE;
-                        _background.Dispose();
-                        _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockWhite), Bitmap.BitmapImageType.Gif);
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                    }
-                    else if (displayMode == DISPLAY_MODE_WHITE)
-                    {
-                        displayMode = DISPLAY_MODE_DIGITAL;
-                        _background.Dispose();
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
+                        --displayMode;
+                        if (displayMode < 0)
+                        {
+                            displayMode = MAX_DISPLAY_MODE;
+                        }
                     }
                     else
                     {
-                        displayMode = DISPLAY_MODE_BLACK;
-                        _background.Dispose();
-                        _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockBlack), Bitmap.BitmapImageType.Gif);
+                        showDigital = false;
+                    }
+                }
+                else if (button == Buttons.MiddleRight)
+                {
+                    if (showDigital != true)
+                    {
+                        showDigital = true;
+                        showDigitalCounter = 0;
+                        UpdateTimeDigital(null);
+                        _updateClockTimerDigital = new Timer(UpdateTimeDigital, null, dueTimeDigital, periodDigital);
+                    }
+                    else
+                    {
+                        showDigital = false;
+                    }
+                }
+                else if (button == Buttons.BottomRight)
+                {
+                    if (showDigital == false)
+                    {
+                        ++displayMode;
+                        if (displayMode > MAX_DISPLAY_MODE)
+                        {
+                            displayMode = 0;
+                        }
+                    }
+                    else
+                    {
+                        showDigital = false;
+                    }
+                }
+
+                switch(displayMode)
+                {
+                    case DISPLAY_MODE_BLACK:
+
+                        if (backgroundBitmapColor == BACKGROUND_BITMAP_COLOR_WHITE)
+                        {
+                            _azmdrawing.DrawImageReverseBW(_background, 0, 0, _background, 0, 0, _background.Width, _background.Height);
+                            backgroundBitmapColor = BACKGROUND_BITMAP_COLOR_BLACK;
+                        }
                         colorForeground = Color.White;
                         colorBackground = Color.Black;
-                    }
+                        UpdateTime(null);
 
-                    UpdateTime(null);
+                        break;
 
-                }
+                    case DISPLAY_MODE_WHITE:
+                        if (backgroundBitmapColor == BACKGROUND_BITMAP_COLOR_BLACK)
+                        {
+                            _azmdrawing.DrawImageReverseBW(_background, 0, 0, _background, 0, 0, _background.Width, _background.Height);
+                            backgroundBitmapColor = BACKGROUND_BITMAP_COLOR_WHITE;
+                        }
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
 
-
-/*
-                if (button == Buttons.TopRight)
-                {
-                    displayMode = DISPLAY_MODE_BLACK;
-                    _background.Dispose();
-                    _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockBlack), Bitmap.BitmapImageType.Gif);
-                    colorForeground = Color.White;
-                    colorBackground = Color.Black;
-                    UpdateTime(null);
-                }
+                        break;
                 
-                if (button == Buttons.MiddleRight)
-                {
-                    displayMode = DISPLAY_MODE_DIGITAL;
-                    _background.Dispose();
-                    colorForeground = Color.White;
-                    colorBackground = Color.Black;
-                    UpdateTime(null);
                 }
-
-                if (button == Buttons.BottomRight)
-                {
-                    displayMode = DISPLAY_MODE_WHITE;
-                    _background.Dispose();
-                    _background = new Bitmap(Resources.GetBytes(Resources.BinaryResources.BarbersWallClockWhite), Bitmap.BitmapImageType.Gif);
-                    colorForeground = Color.Black;
-                    colorBackground = Color.White;
-                    UpdateTime(null);
-                }
-*/
 
             }
 
-        }        
+        }
+
+
+        static void UpdateTimeDigital(object state)
+        {
+
+            currentTime = DateTime.Now;
+
+
+            if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
+            {
+                showDigital = false;
+                UpdateTime(null);
+                _updateClockTimerDigital.Dispose();
+            }
+            else
+            {
+                _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
+                _display.Flush();
+                showDigitalCounter++;
+            }
+
+        
+        }
 
 
     }

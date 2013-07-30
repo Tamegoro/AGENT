@@ -41,7 +41,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil">
+    <Reference Include="AGENT.AZMutil, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
@@ -56,6 +57,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\7barPBd24.tinyfnt" />
     <None Include="Resources\7barPBd32.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>

@@ -121,7 +121,7 @@
   <data name="SpinningDiskBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\SpinningDiskBackground.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="_7barPBd32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\7barPBd32.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

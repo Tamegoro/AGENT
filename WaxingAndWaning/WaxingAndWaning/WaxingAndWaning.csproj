@@ -41,7 +41,8 @@
     <Compile Include="WaxingAndWaning.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil">
+    <Reference Include="AGENT.AZMutil, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
@@ -61,7 +62,8 @@
       <Name>Agent.Contrib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\7barPBd24.tinyfnt" />
   </ItemGroup>
 </Project>

@@ -13,12 +13,19 @@ namespace Shearing
     public class Shearing
     {
         static Bitmap _display;
+
         static Timer _updateClockTimer;
+        static TimeSpan dueTime;
+        static TimeSpan period;
+
+        static Timer _updateClockTimerDigital;
+        static TimeSpan dueTimeDigital;
+        static TimeSpan periodDigital;
 
         static DateTime currentTime;
 
         static Font fontsmall = Resources.GetFont(Resources.FontResources.small);
-        static Font font7barPBd32 = Resources.GetFont(Resources.FontResources._7barPBd32);
+        static Font font7barPBd24 = Resources.GetFont(Resources.FontResources._7barPBd24);
 
         static Color colorForeground;
         static Color colorBackground;
@@ -39,6 +46,12 @@ namespace Shearing
 
 
         static int displayMode = DISPLAY_MODE_SQUARED_BLACK;
+        static bool showDigital = false;
+        static int showDigitalCounter = 0;
+
+        const int MAX_DISPLAY_MODE = 3;
+
+        const int SHOW_DIGITAL_SECOND = 10;
 
 
         const int LENGTH_HOUR_HAND = 20;
@@ -52,7 +65,6 @@ namespace Shearing
         const int DISPLAY_MODE_SQUARED_WHITE = 1;
         const int DISPLAY_MODE_ROUNDED_BLACK = 2;
         const int DISPLAY_MODE_ROUNDED_WHITE = 3;
-        const int DISPLAY_MODE_DIGITAL = 4;
 
 
         public static void Main()
@@ -79,12 +91,19 @@ namespace Shearing
 
             currentTime = DateTime.Now;
 
-            TimeSpan dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond);
-            TimeSpan period = new TimeSpan(0, 0, 1, 0, 0);
-            //TimeSpan dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
-            //TimeSpan period = new TimeSpan(0, 0, 0, 1, 0);
+            dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
+            period = new TimeSpan(0, 0, 0, 1, 0);
+
+            dueTimeDigital = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
+            periodDigital = new TimeSpan(0, 0, 0, 1, 0);
+
             _updateClockTimer = new Timer(UpdateTime, null, dueTime, period);
 
+            ButtonHelper.ButtonSetup = new Buttons[]
+            {
+                Buttons.BottomRight, Buttons.MiddleRight, Buttons.TopRight
+            };
+            
             ButtonHelper.Current.OnButtonPress += Current_OnButtonPress;
 
             Thread.Sleep(Timeout.Infinite);
@@ -94,56 +113,56 @@ namespace Shearing
         static void UpdateTime(object state)
         {
 
-            currentTime = DateTime.Now;
-
-            degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
-            degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
-
-            _display.Clear();
-
-            _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-
-            if (displayMode == DISPLAY_MODE_SQUARED_BLACK || displayMode == DISPLAY_MODE_SQUARED_WHITE)
+            if (showDigital == false)
             {
-                
-                _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 1);
-
-                centerX = 78;
-                centerY = 78;
-
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
-
-                _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-           
-            }
-            else if (displayMode == DISPLAY_MODE_ROUNDED_BLACK || displayMode == DISPLAY_MODE_ROUNDED_WHITE)
-            {
-
-                _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 0);
-
-                centerX = 78;
-                centerY = 78;
-
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
-
-                _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
             
-            }
-            else if (displayMode == DISPLAY_MODE_DIGITAL)
-            {
-                _azmdrawing.DrawStringAligned(_display, colorForeground, font7barPBd32, currentTime.Hour.ToString("D2") + ":" + currentTime.Minute.ToString("D2"), AZMDrawing.ALIGN_CENTER, 0, AZMDrawing.VALIGN_MIDDLE, 0);
-            }
+                currentTime = DateTime.Now;
 
-            _display.Flush();
+                degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
+                degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
 
+                _display.Clear();
+
+                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                if (displayMode == DISPLAY_MODE_SQUARED_BLACK || displayMode == DISPLAY_MODE_SQUARED_WHITE)
+                {
+                
+                    _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 1);
+
+                    centerX = 78;
+                    centerY = 78;
+
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
+
+                    _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+           
+                }
+                else if (displayMode == DISPLAY_MODE_ROUNDED_BLACK || displayMode == DISPLAY_MODE_ROUNDED_WHITE)
+                {
+
+                    _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 0);
+
+                    centerX = 78;
+                    centerY = 78;
+
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
+
+                    _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+            
+                }
+
+                _display.Flush();
+
+            }
         }
 
         private static void Current_OnButtonPress(Buttons button, Microsoft.SPOT.Hardware.InterruptPort port, ButtonDirection direction, DateTime time)
@@ -151,61 +170,116 @@ namespace Shearing
 
             if (direction == ButtonDirection.Up)
             {
-
-                if (button == Buttons.MiddleRight)
+                if (button == Buttons.TopRight)
                 {
-                    switch (displayMode)
+                    if (showDigital == false)
                     {
-
-                        case DISPLAY_MODE_SQUARED_BLACK:
-
-                            displayMode = DISPLAY_MODE_SQUARED_WHITE;
-                            colorForeground = Color.Black;
-                            colorBackground = Color.White;
-
-                            break;
-
-                        case DISPLAY_MODE_SQUARED_WHITE:
-
-                            displayMode = DISPLAY_MODE_ROUNDED_BLACK;
-                            colorForeground = Color.White;
-                            colorBackground = Color.Black;
-
-                            break;
-
-                        case DISPLAY_MODE_ROUNDED_BLACK:
-
-                            displayMode = DISPLAY_MODE_ROUNDED_WHITE;
-                            colorForeground = Color.Black;
-                            colorBackground = Color.White;
-
-                            break;
-
-                        case DISPLAY_MODE_ROUNDED_WHITE:
-
-                            displayMode = DISPLAY_MODE_DIGITAL;
-                            colorForeground = Color.White;
-                            colorBackground = Color.Black;
-
-                            break;
-
-                        case DISPLAY_MODE_DIGITAL:
-
-                            displayMode = DISPLAY_MODE_SQUARED_BLACK;
-                            colorForeground = Color.White;
-                            colorBackground = Color.Black;
-
-                            break;
-                    
+                        --displayMode;
+                        if (displayMode < 0)
+                        {
+                            displayMode = MAX_DISPLAY_MODE;
+                        }
                     }
+                    else
+                    {
+                        showDigital = false;
+                    }
+                }
+                else if (button == Buttons.MiddleRight)
+                {
+                    if (showDigital != true)
+                    {
+                        showDigital = true;
+                        showDigitalCounter = 0;
+                        UpdateTimeDigital(null);
+                        _updateClockTimerDigital = new Timer(UpdateTimeDigital, null, dueTimeDigital, periodDigital);
+                    }
+                    else
+                    {
+                        showDigital = false;
+                    }
+                }
+                else if (button == Buttons.BottomRight)
+                {
+                    if (showDigital == false)
+                    {
+                        ++displayMode;
+                        if (displayMode > MAX_DISPLAY_MODE)
+                        {
+                            displayMode = 0;
+                        }
+                    }
+                    else
+                    {
+                        showDigital = false;
+                    }
+                }
 
-                    UpdateTime(null);
+                switch (displayMode)
+                {
+
+                    case DISPLAY_MODE_SQUARED_WHITE:
+
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_ROUNDED_BLACK:
+
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_ROUNDED_WHITE:
+
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+
+                    case DISPLAY_MODE_SQUARED_BLACK:
+
+                        displayMode = DISPLAY_MODE_SQUARED_BLACK;
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
+                        UpdateTime(null);
+
+                        break;
 
                 }
 
             }
 
-        }        
+        }
+
+
+        static void UpdateTimeDigital(object state)
+        {
+
+            currentTime = DateTime.Now;
+
+
+            if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
+            {
+                showDigital = false;
+                UpdateTime(null);
+                _updateClockTimerDigital.Dispose();
+            }
+            else
+            {
+                _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
+                _display.Flush();
+                showDigitalCounter++;
+            }
+
+
+        }
 
 
     }
