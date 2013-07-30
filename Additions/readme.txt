@@ -7,7 +7,7 @@ right-middle button:
 show answers.
  or
 delete answers and show new formulas.
-(delete answers and show new formulas automatically after 10 seconds.)
+(answers are deleted and new formulas are shown automatically after 10 seconds.)
 
 right-up button:
 next color.
