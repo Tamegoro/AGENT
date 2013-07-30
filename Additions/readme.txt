@@ -9,7 +9,7 @@ show answers.
 delete answers and show new formulas.
 (answers are deleted and new formulas are shown automatically after 10 seconds.)
 
-right-up button:
+right-bottom button:
 next color.
  or
 delete answers and show new formulas.
