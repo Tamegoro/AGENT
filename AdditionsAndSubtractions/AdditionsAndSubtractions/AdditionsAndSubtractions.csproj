@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AssemblyName>Additions</AssemblyName>
+    <AssemblyName>AdditionsAndSubtractions</AssemblyName>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Additions</RootNamespace>
+    <RootNamespace>AdditionsAndSubtractions</RootNamespace>
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DDFADB70-626F-4B83-8B02-87C51837516D}</ProjectGuid>
+    <ProjectGuid>{485DCCCA-661B-4168-8666-1E541C75334A}</ProjectGuid>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <DeployDevice>AGENT Emulator</DeployDevice>
@@ -33,7 +33,7 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Additions.cs" />
+    <Compile Include="AdditionsAndSubtractions.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,12 +56,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\IPAGothicFixedNumberSymbol16.tinyfnt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\AGENT.Contrib\Agent.Contrib\Agent.Contrib.csproj">
       <Project>{C13C6D79-545D-40EB-9F3C-8746C99C259C}</Project>
       <Name>Agent.Contrib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IPAGothicFixedNumberSymbol16.tinyfnt" />
   </ItemGroup>
 </Project>

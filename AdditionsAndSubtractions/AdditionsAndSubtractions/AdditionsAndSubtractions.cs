@@ -8,10 +8,11 @@ using AGENT.AZMutil.AZMDrawing;
 using Agent.Contrib.Hardware;
 
 
-namespace Additions
+namespace AdditionsAndSubtractions
 {
-    public class Additions
+    public class AdditionsAndSubtractions
     {
+
         static Bitmap _display;
 
         static Timer _updateClockTimer;
@@ -20,7 +21,7 @@ namespace Additions
 
         static DateTime currentTime;
 
-        static Font fontIPAexGothicNumberSymbol16 = Resources.GetFont(Resources.FontResources.IPAGothicFixedNumberSymbol16);
+        static Font fontIPAGothicFixedNumberSymbol16 = Resources.GetFont(Resources.FontResources.IPAGothicFixedNumberSymbol16);
 
         static AZMDrawing _azmdrawing;
 
@@ -33,6 +34,17 @@ namespace Additions
         static int screenCenterX = 0;
         static int screenCenterY = 0;
 
+        static int questionX = 0;
+        static int questionYH = 0;
+        static int questionYM = 0;
+        static int questionYS = 0;
+
+        static int answerX = 0;
+        static int answerY = 0;
+
+        static int fontWidth = 0;
+        static int fontHeight = 0;
+        
         static int currentH = 0;
         static int currentM = 0;
         static int currentS = 0;
@@ -42,27 +54,19 @@ namespace Additions
 
         static int lH = 0;
         static int rH = 0;
+        static string operatorH = "";
         static int lM = 0;
         static int rM = 0;
+        static string operatorM = "";
         static int lS = 0;
         static int rS = 0;
+        static string operatorS = "";
 
         static Random rnd;
+        static int rndMax = 0;
+        static int rndVal = 0;
 
-        const int QUESTION_X_H = 14;
-        const int QUESTION_Y_H = 15;
-        const int QUESTION_X_M = 14;
-        const int QUESTION_Y_M = 52;
-        const int QUESTION_X_S = 14;
-        const int QUESTION_Y_S = 90;
-
-        const int ANSWER_X_H = 102;
-        const int ANSWER_Y_H = 33;
-        const int ANSWER_X_M = 102;
-        const int ANSWER_Y_M = 72;
-        const int ANSWER_X_S = 102;
-        const int ANSWER_Y_S = 104;
-
+        const int MARGIN_Y = 11;
 
         static int displayMode = DISPLAY_MODE_BLACK;
 
@@ -76,7 +80,6 @@ namespace Additions
         const int DISPLAY_MODE_WHITE = 1;
 
         const int MAX_DISPLAY_MODE = 1;
-
 
 
         public static void Main()
@@ -97,6 +100,18 @@ namespace Additions
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
+            fontWidth = fontIPAGothicFixedNumberSymbol16.CharWidth('0');
+            fontHeight = fontIPAGothicFixedNumberSymbol16.Height;
+
+
+            questionX = ((screenWidth - ((fontWidth * 6) + fontHeight)) / 2) + 1;
+            questionYH = MARGIN_Y;
+            questionYM = MARGIN_Y + fontHeight + ((screenHeight - ((MARGIN_Y * 2) + (fontHeight * 3))) / 2);
+            questionYS = MARGIN_Y + (fontHeight * 2) + (screenHeight - ((MARGIN_Y * 2) + (fontHeight * 3)));
+
+            answerX = (questionX * 2) + (fontWidth * 6);
+            answerY = MARGIN_Y + (fontWidth * 4);
+
             displayMode = DISPLAY_MODE_BLACK;
             colorForeground = Color.White;
             colorBackground = Color.Black;
@@ -105,6 +120,7 @@ namespace Additions
             oldM = -1;
 
             showAnswer = false;
+            //showAnswer = true;
 
             currentTime = DateTime.Now;
 
@@ -145,57 +161,114 @@ namespace Additions
 
             if (oldH != currentH)
             {
-                if (currentH != 0)
+
+                if (currentH == 0 || (currentH * 2) + 1 > 99)
                 {
-                    lH = rnd.Next(currentH);
-                    rH = currentH - lH;
-                    oldH = currentH;
+                    rndMax = 99;
                 }
                 else
                 {
-                    lH = 0;
-                    rH = 0;
-                    oldH = currentH;
+                    rndMax = (currentH * 2) + 1;
                 }
+
+                rndVal = 0;
+
+                while (rndVal == 0 || rndVal == currentH)
+                {
+                    rndVal = rnd.Next(rndMax);
+                }
+
+                if (rndVal < currentH)
+                {
+                    lH = currentH - rndVal;
+                    rH = currentH - lH;
+                    operatorH = "+";
+                }
+                else
+                {
+                    lH = rndVal;
+                    rH = rndVal - currentH;
+                    operatorH = "-";
+                }
+
+                oldH = currentH;
+
             }
 
             if (oldM != currentM)
             {
-                if (currentM != 0)
+
+                if (currentM == 0 || (currentM * 2) + 1 > 99)
                 {
-                    lM = rnd.Next(currentM);
-                    rM = currentM - lM;
-                    oldM = currentM;
+                    rndMax = 99;
                 }
                 else
                 {
-                    lM = 0;
-                    rM = 0;
-                    oldM = currentM;
+                    rndMax = (currentM * 2) + 1;
                 }
+
+                rndVal = 0;
+
+                while (rndVal == 0 || rndVal == currentM)
+                {
+                    rndVal = rnd.Next(rndMax);
+                }
+
+                if (rndVal < currentM)
+                {
+                    lM = currentM - rndVal;
+                    rM = currentM - lM;
+                    operatorM = "+";
+                }
+                else
+                {
+                    lM = rndVal;
+                    rM = rndVal - currentM;
+                    operatorM = "-";
+                }
+
+                oldM = currentM;
+
             }
 
-            if (currentS != 0)
+
+            if (currentS == 0 || (currentS * 2) + 1 > 99)
             {
-                lS = rnd.Next(currentS);
-                rS = currentS - lS;
+                rndMax = 99;
             }
             else
             {
-                lS = 0;
-                rS = 0;
+                rndMax = (currentS * 2) + 1;
             }
- 
 
-            _display.DrawText(lH.ToString("D2") + "+" + rH.ToString("D2") + "=", fontIPAexGothicNumberSymbol16, colorForeground, QUESTION_X_H, QUESTION_Y_H);
-            _display.DrawText(lM.ToString("D2") + "+" + rM.ToString("D2") + "=", fontIPAexGothicNumberSymbol16, colorForeground, QUESTION_X_M, QUESTION_Y_M);
-            _display.DrawText(lS.ToString("D2") + "+" + rS.ToString("D2") + "=", fontIPAexGothicNumberSymbol16, colorForeground, QUESTION_X_S, QUESTION_Y_S);
+            rndVal = 0;
+
+            while (rndVal == 0 || rndVal == currentS)
+            {
+                rndVal = rnd.Next(rndMax);
+            }
+
+            if (rndVal < currentS)
+            {
+                lS = currentS - rndVal;
+                rS = currentS - lS;
+                operatorS = "+";
+            }
+            else
+            {
+                lS = rndVal;
+                rS = rndVal - currentS;
+                operatorS = "-";
+            }
+
+
+            _display.DrawText(lH.ToString("D2") + operatorH + rH.ToString("D2") + "=", fontIPAGothicFixedNumberSymbol16, colorForeground, questionX, questionYH);
+            _display.DrawText(lM.ToString("D2") + operatorM + rM.ToString("D2") + "=", fontIPAGothicFixedNumberSymbol16, colorForeground, questionX, questionYM);
+            _display.DrawText(lS.ToString("D2") + operatorS + rS.ToString("D2") + "=", fontIPAGothicFixedNumberSymbol16, colorForeground, questionX, questionYS);
 
             if (showAnswer == true)
             {
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontIPAexGothicNumberSymbol16, 90, ANSWER_X_H, ANSWER_Y_H, currentH.ToString("D2") + ":");
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontIPAexGothicNumberSymbol16, 90, ANSWER_X_M, ANSWER_Y_M, currentM.ToString("D2") + ":");
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontIPAexGothicNumberSymbol16, 90, ANSWER_X_S, ANSWER_Y_S, currentS.ToString("D2"));
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontIPAGothicFixedNumberSymbol16, 90, answerX, answerY, currentH.ToString("D2") + ":" + currentM.ToString("D2") + ":" + currentS.ToString("D2"));
 
                 ++showAnswerCounter;
 
@@ -294,4 +367,6 @@ namespace Additions
 
 
     }
+
 }
+
