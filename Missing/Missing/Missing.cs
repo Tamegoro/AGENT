@@ -46,6 +46,8 @@ namespace Missing
         static bool showHands = false;
         static int showHandsCounter = 0;
 
+        static int hourNum = 0;
+
         const int MAX_DISPLAY_MODE = 1;
 
         const int DISTANCE_HOUR = 51;
@@ -53,7 +55,7 @@ namespace Missing
 
         const int SHOW_HANDS_SECOND = 10;
         
-        const int LENGTH_HOUR_HAND = 32;
+        const int LENGTH_HOUR_HAND = 30;
         const int LENGTH_HOUR_HAND_TAIL = 13;
         const int THICKNESS_HOUR_HAND = 2;
         const int LENGTH_MINUTE_HAND = 42;
@@ -125,10 +127,28 @@ namespace Missing
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, DISTANCE_HOUR);
 
-                _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X - 1, _point.Y - 1, (currentTime.Hour % 12).ToString());
-                //_azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X - 1, _point.Y, (currentTime.Hour % 12).ToString());
-                //_azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X - 1, _point.Y - 1, (currentTime.Hour % 12).ToString());
-                _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X, _point.Y, (currentTime.Hour % 12).ToString());
+                hourNum = currentTime.Hour % 12;
+
+                if (hourNum == 0)
+                {
+                    hourNum = 12;
+                }
+
+                if (hourNum == 10)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR - (fontNinaB.CharWidth('1') / 2));
+                }
+                if (hourNum == 11)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR - (fontNinaB.CharWidth('1') / 3));
+                }
+                else if (hourNum != 10 && hourNum != 11)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, DISTANCE_HOUR);
+                }
+
+                _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X - 1, _point.Y - 1, hourNum.ToString());
+                _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X, _point.Y, hourNum.ToString());
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, DISTANCE_MINUTE);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
