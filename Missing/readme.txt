@@ -9,7 +9,7 @@ show hour/minute hand.
 remove hour/minute hand.
 (hands are removed automatically after 10 seconds.)
 
-right-up button:
+right-bottom button:
 next color.
  or
 remove hour/minute hand.

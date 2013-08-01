@@ -9,7 +9,7 @@ show current time in digital.
 back to watch face from digital mode.
 (back to watch face automatically after 10 seconds.)
 
-right-up button:
+right-bottom button:
 next watch face/color.
  or
 back to watch face from digital mode.
