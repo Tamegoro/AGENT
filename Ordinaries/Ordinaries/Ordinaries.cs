@@ -80,10 +80,10 @@ namespace Ordinaries
         const int DATE_WIDTH = 20;
         const int DATE_HEIGHT = 15;
         const int DATE_MARGIN_SQU = 24;
-        const int DATE_MARGIN_ROU = 20;
+        const int DATE_MARGIN_ROU = 21;
 
         const int FACE_TYPE_SQUARE = 1;
-        const int FACE_TYPE_ROUND = 3;
+        const int FACE_TYPE_ROUND = 4;
         const int HAND_TYPE_SQUARE = 0;
         const int HAND_TYPE_POINT = 1;
         const int DATE_TYPE_HIDE = 0;
