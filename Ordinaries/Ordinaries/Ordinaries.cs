@@ -77,8 +77,8 @@ namespace Ordinaries
         const int LENGTH_SECOND_HAND_TAIL_ROU = 13;
         const int THICKNESS_SECOND_HAND_ROU = 1;
 
-        const int DATE_WIDTH = 20;
-        const int DATE_HEIGHT = 15;
+        const int DATE_WIDTH = 19;
+        const int DATE_HEIGHT = 13;
         const int DATE_MARGIN_SQU = 24;
         const int DATE_MARGIN_ROU = 21;
 
@@ -200,14 +200,14 @@ namespace Ordinaries
 
                 if (dateType == DATE_TYPE_SQU)
                 {
-                    _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN_SQU - DATE_WIDTH, screenCenterY - (DATE_HEIGHT / 2), DATE_WIDTH, DATE_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                    _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, screenWidth - DATE_MARGIN_SQU - DATE_WIDTH + 5, screenCenterY - (DATE_HEIGHT / 2) + 1);
+                    _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN_SQU - DATE_WIDTH, screenCenterY - (DATE_HEIGHT / 2), DATE_WIDTH, DATE_HEIGHT, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                    _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, screenWidth - DATE_MARGIN_SQU - DATE_WIDTH + 4, screenCenterY - (DATE_HEIGHT / 2));
                 }
 
                 if (dateType == DATE_TYPE_ROU)
                 {
-                    _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN_ROU - DATE_WIDTH, screenCenterY - (DATE_HEIGHT / 2), DATE_WIDTH, DATE_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                    _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, screenWidth - DATE_MARGIN_ROU - DATE_WIDTH + 5, screenCenterY - (DATE_HEIGHT / 2) + 1);
+                    _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN_ROU - DATE_WIDTH, screenCenterY - (DATE_HEIGHT / 2), DATE_WIDTH, DATE_HEIGHT, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                    _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, screenWidth - DATE_MARGIN_ROU - DATE_WIDTH + 4, screenCenterY - (DATE_HEIGHT / 2));
                 }
 
 

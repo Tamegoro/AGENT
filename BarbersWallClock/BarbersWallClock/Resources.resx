@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BarbersWallClockBlack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\BarbersWallClockBlack.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="NinaBReverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NinaBReverse.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="IPAexGothicReverseNumber06" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\IPAexGothicReverseNumber06.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="smallReverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\smallReverse.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
