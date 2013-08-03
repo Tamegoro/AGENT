@@ -60,30 +60,30 @@ namespace BarbersWallClock
         const int MARGIN_HOUR_NUMBER_SQU = 16;
         const int MARGIN_HOUR_NUMBER_ROU = 15;
 
-        const int LENGTH_HOUR_HAND_SQU = 30;
-        const int LENGTH_HOUR_HAND_TAIL_SQU = 13;
+        const int LENGTH_HOUR_HAND_SQU = 29;
+        const int LENGTH_HOUR_HAND_TAIL_SQU = 10;
         const int THICKNESS_HOUR_HAND_SQU = 2;
-        const int LENGTH_MINUTE_HAND_SQU = 40;
-        const int LENGTH_MINUTE_HAND_TAIL_SQU = 13;
+        const int LENGTH_MINUTE_HAND_SQU = 39;
+        const int LENGTH_MINUTE_HAND_TAIL_SQU = 10;
         const int THICKNESS_MINUTE_HAND_SQU = 2;
         const int LENGTH_SECOND_HAND_SQU = 40;
-        const int LENGTH_SECOND_HAND_TAIL_SQU = 13;
+        const int LENGTH_SECOND_HAND_TAIL_SQU = 10;
         const int THICKNESS_SECOND_HAND_SQU = 1;
 
-        const int LENGTH_HOUR_HAND_ROU = 30;
-        const int LENGTH_HOUR_HAND_TAIL_ROU = 13;
+        const int LENGTH_HOUR_HAND_ROU = 29;
+        const int LENGTH_HOUR_HAND_TAIL_ROU = 10;
         const int THICKNESS_HOUR_HAND_ROU = 2;
-        const int LENGTH_MINUTE_HAND_ROU = 40;
-        const int LENGTH_MINUTE_HAND_TAIL_ROU = 13;
+        const int LENGTH_MINUTE_HAND_ROU = 39;
+        const int LENGTH_MINUTE_HAND_TAIL_ROU = 10;
         const int THICKNESS_MINUTE_HAND_ROU = 2;
         const int LENGTH_SECOND_HAND_ROU = 40;
-        const int LENGTH_SECOND_HAND_TAIL_ROU = 13;
+        const int LENGTH_SECOND_HAND_TAIL_ROU = 10;
         const int THICKNESS_SECOND_HAND_ROU = 1;
 
         const int DATE_WIDTH = 19;
         const int DATE_HEIGHT = 13;
-        const int DATE_MARGIN_SQU = 24;
-        const int DATE_MARGIN_ROU = 24;
+        const int DATE_MARGIN_SQU = 23;
+        const int DATE_MARGIN_ROU = 23;
 
         const int FACE_TYPE_SQUARE = 1;
         const int FACE_TYPE_ROUND = 4;
@@ -261,12 +261,13 @@ namespace BarbersWallClock
                 {                    
                     case HAND_TYPE_SQUARE:
 
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND_SQU, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND_SQU, handType);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND_SQU, degreeH - 180, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND_TAIL_SQU, handType);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND_SQU, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_SQU, handType);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND_SQU, degreeM - 180, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_TAIL_SQU, handType);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND_SQU, degreeS, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_SQU, handType);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND_SQU, degreeS - 180, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_TAIL_SQU, handType);
+                        _point = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL_SQU);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND_SQU, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND_SQU + LENGTH_HOUR_HAND_TAIL_SQU, handType);
+                        _point = _azmdrawing.FindPointDegreeDistance(degreeM + 180, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL_SQU);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND_SQU, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND_SQU + LENGTH_MINUTE_HAND_TAIL_SQU, handType);
+                        _point = _azmdrawing.FindPointDegreeDistance(degreeS + 180, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL_SQU);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND_SQU, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND_SQU + LENGTH_SECOND_HAND_TAIL_SQU, handType);
+
                         _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                         _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
@@ -280,6 +281,7 @@ namespace BarbersWallClock
                         _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND_ROU, degreeM - 180, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_TAIL_ROU, handType);
                         _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND_ROU, degreeS, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_ROU, handType);
                         _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND_ROU, degreeS - 180, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_TAIL_ROU, handType);
+                        
                         _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                         _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 

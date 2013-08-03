@@ -46,9 +46,6 @@ namespace SpinningDisk
         static int backgroundWidth = 0;
         static int backgroundHeight = 0;
 
-
-        static int displayMode = DISPLAY_MODE_ANALOG;
-
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
@@ -57,15 +54,14 @@ namespace SpinningDisk
         const int SHOW_DIGITAL_SECOND = 10;
 
         const int LENGTH_HOUR_HAND = 30;
-        const int LENGTH_HOUR_HAND_TAIL = 12;
-        const int LENGTH_MINUTE_HAND = 41;
-        const int LENGTH_MINUTE_HAND_TAIL = 12;
+        const int LENGTH_HOUR_HAND_TAIL = 10;
+        const int THICKNESS_HOUR_HAND = 2;
+        const int LENGTH_MINUTE_HAND = 40;
+        const int LENGTH_MINUTE_HAND_TAIL = 10;
+        const int THICKNESS_MINUTE_HAND = 2;
 
         const int DISK_RADIUS = 63;
         
-        const int DISPLAY_MODE_ANALOG = 0;
-        const int DISPLAY_MODE_DIGITAL = 1;
-
 
         public static void Main()
         {
@@ -91,7 +87,6 @@ namespace SpinningDisk
             backgroundWidth = _background.Width;
             backgroundHeight = _background.Height;
 
-            displayMode = DISPLAY_MODE_ANALOG;
             colorForeground = Color.Black;
             colorBackground = Color.White;
 
@@ -139,10 +134,10 @@ namespace SpinningDisk
                     _display.DrawEllipse(colorForeground, 2, screenCenterX, screenCenterY, DISK_RADIUS, DISK_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 0);
                 }
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH + 180, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 0, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 180, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND_TAIL);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeM + 180, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL);
                 
                 _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
