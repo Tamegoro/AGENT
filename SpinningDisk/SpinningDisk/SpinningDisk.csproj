@@ -41,7 +41,7 @@
     <Compile Include="SpinningDisk.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AGENT.AZMutil, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>

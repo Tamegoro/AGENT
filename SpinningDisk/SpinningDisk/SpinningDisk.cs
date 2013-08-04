@@ -56,7 +56,7 @@ namespace SpinningDisk
         const int LENGTH_HOUR_HAND = 30;
         const int LENGTH_HOUR_HAND_TAIL = 10;
         const int THICKNESS_HOUR_HAND = 2;
-        const int LENGTH_MINUTE_HAND = 40;
+        const int LENGTH_MINUTE_HAND = 43;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
         const int THICKNESS_MINUTE_HAND = 2;
 

@@ -60,20 +60,20 @@ namespace BarbersWallClock
         const int MARGIN_HOUR_NUMBER_SQU = 16;
         const int MARGIN_HOUR_NUMBER_ROU = 15;
 
-        const int LENGTH_HOUR_HAND_SQU = 29;
+        const int LENGTH_HOUR_HAND_SQU = 30;
         const int LENGTH_HOUR_HAND_TAIL_SQU = 10;
         const int THICKNESS_HOUR_HAND_SQU = 2;
-        const int LENGTH_MINUTE_HAND_SQU = 39;
+        const int LENGTH_MINUTE_HAND_SQU = 40;
         const int LENGTH_MINUTE_HAND_TAIL_SQU = 10;
         const int THICKNESS_MINUTE_HAND_SQU = 2;
         const int LENGTH_SECOND_HAND_SQU = 40;
         const int LENGTH_SECOND_HAND_TAIL_SQU = 10;
         const int THICKNESS_SECOND_HAND_SQU = 1;
 
-        const int LENGTH_HOUR_HAND_ROU = 29;
+        const int LENGTH_HOUR_HAND_ROU = 30;
         const int LENGTH_HOUR_HAND_TAIL_ROU = 10;
         const int THICKNESS_HOUR_HAND_ROU = 2;
-        const int LENGTH_MINUTE_HAND_ROU = 39;
+        const int LENGTH_MINUTE_HAND_ROU = 40;
         const int LENGTH_MINUTE_HAND_TAIL_ROU = 10;
         const int THICKNESS_MINUTE_HAND_ROU = 2;
         const int LENGTH_SECOND_HAND_ROU = 40;
