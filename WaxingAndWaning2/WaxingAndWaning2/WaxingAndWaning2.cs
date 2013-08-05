@@ -129,7 +129,7 @@ namespace WaxingAndWaning2
 
                 fillX = screenCenterX - 1;
 
-                if (currentTime.Hour == 0)
+                if (currentTime.Hour < 12 && degreeH == 0)
                 {
                     fillY = MARGIN_OUTER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
@@ -142,7 +142,7 @@ namespace WaxingAndWaning2
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
 
-                if (currentTime.Hour < 12 && currentTime.Minute == 0)
+                if (currentTime.Hour < 12 && degreeM == 0)
                 {
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
@@ -155,7 +155,7 @@ namespace WaxingAndWaning2
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
 
-                if (currentTime.Hour < 12 && currentTime.Second == 0)
+                if (currentTime.Hour < 12 && degreeS == 0)
                 {
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
