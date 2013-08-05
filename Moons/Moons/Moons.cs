@@ -7,11 +7,11 @@ using System.Threading;
 using AGENT.AZMutil.AZMDrawing;
 using Agent.Contrib.Hardware;
 
-namespace ZigZag
-{
-    public class ZigZag
-    {
 
+namespace Moons
+{
+    public class Moons
+    {
 
         static Bitmap _display;
 
@@ -49,9 +49,14 @@ namespace ZigZag
         const int SHOW_DIGITAL_SECOND = 10;
 
 
-        const int LENGTH_HOUR_HAND = 20;
-        const int LENGTH_MINUTE_HAND = 20;
-        const int LENGTH_SECOND_HAND = 20;
+        const int RADIUS_BASE = 30;
+        const int RADIUS_HOUR = 25;
+        const int RADIUS_MINUTE = 20;
+        const int RADIUS_SECOND = 1;
+        const int MARGIN_HOUR = 2;
+        const int MARGIN_MINUTE = 2;
+        const int MARGIN_SECOND = 2;
+
 
         const int DISPLAY_MODE_WHITE = 0;
         const int DISPLAY_MODE_BLACK = 1;
@@ -116,23 +121,20 @@ namespace ZigZag
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                 degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
-                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _display.DrawRectangle(colorForeground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
                 _point.X = screenCenterX;
                 _point.Y = screenCenterY;
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 0);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_BASE * 2, RADIUS_BASE * 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                _point = _azmdrawing.FindPointDegreeDistance(degreeH, _point.X, _point.Y, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND, 0);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeH, _point.X, _point.Y, (RADIUS_BASE - RADIUS_HOUR) * 2 - MARGIN_HOUR);
+                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADIUS_HOUR * 2, RADIUS_HOUR * 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                _point = _azmdrawing.FindPointDegreeDistance(degreeM, _point.X, _point.Y, LENGTH_MINUTE_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND, 1);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeM, _point.X, _point.Y, (RADIUS_HOUR - RADIUS_MINUTE) * 2 - MARGIN_MINUTE);
+                _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_MINUTE * 2, RADIUS_MINUTE * 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                _point = _azmdrawing.FindPointDegreeDistance(degreeS, _point.X, _point.Y, (RADIUS_MINUTE - RADIUS_SECOND) * 2 - MARGIN_SECOND);
+                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADIUS_SECOND * 2, RADIUS_SECOND * 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
             }
             else
@@ -141,16 +143,16 @@ namespace ZigZag
                 _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
                 ++showDigitalCounter;
 
-                if (showDigitalCounter > 10)
+                if (showDigitalCounter > SHOW_DIGITAL_SECOND)
                 {
                     showDigital = false;
                     showDigitalCounter = 0;
                 }
-            
+
             }
 
             _display.Flush();
-        
+
         }
 
         private static void Current_OnButtonPress(Buttons button, Microsoft.SPOT.Hardware.InterruptPort port, ButtonDirection direction, DateTime time)
