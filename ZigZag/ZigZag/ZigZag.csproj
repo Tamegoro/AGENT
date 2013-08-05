@@ -41,7 +41,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AGENT.AZMutil, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>

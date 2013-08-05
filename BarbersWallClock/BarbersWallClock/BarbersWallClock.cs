@@ -85,8 +85,8 @@ namespace BarbersWallClock
         const int DATE_MARGIN_SQU = 23;
         const int DATE_MARGIN_ROU = 23;
 
-        const int FACE_TYPE_SQUARE = 1;
-        const int FACE_TYPE_ROUND = 4;
+        const int FACE_TYPE_SQUARE = 5;
+        const int FACE_TYPE_ROUND = 6;
         const int HAND_TYPE_SQUARE = 0;
         const int HAND_TYPE_POINT = 1;
         const int DATE_TYPE_HIDE = 0;
@@ -176,86 +176,8 @@ namespace BarbersWallClock
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                switch (faceType)
-                {                    
+                _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontNinaBReverse, faceType);
 
-                    case FACE_TYPE_SQUARE:
-
-                        _azmdrawing.DrawDial(_display,colorForeground,colorBackground, 1, 0);
-
-                        _point.X = (screenWidth / 2) + (screenWidth / 4);
-                        _point.Y = MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X - (fontNinaBReverse.CharWidth('1') / 4), _point.Y, "11");
-
-                        _point.X = screenWidth - MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2) - (screenHeight / 4);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X - (fontNinaBReverse.CharWidth('1') / 2), _point.Y, "01");
-
-                        _point.X = screenWidth - MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X + 1, _point.Y, "9");
-
-                        _point.X = screenWidth - MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2) + (screenHeight / 4);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X + 1, _point.Y, "8");
-
-                        _point.X = (screenWidth / 2) + (screenWidth / 4);
-                        _point.Y = screenHeight - MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X, _point.Y, "7");
-
-                        _point.X = (screenWidth / 2);
-                        _point.Y = screenHeight - MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X, _point.Y + 1, "6");
-
-                        _point.X = (screenWidth / 2) - (screenWidth / 4);
-                        _point.Y = screenHeight - MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X, _point.Y, "5");
-
-                        _point.X = MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2) + (screenHeight / 4);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X , _point.Y, "4");
-
-                        _point.X = MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X - 1, _point.Y, "3");
-
-                        _point.X = MARGIN_HOUR_NUMBER_SQU;
-                        _point.Y = (screenHeight / 2) - (screenHeight / 4);
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X - 1, _point.Y, "2");
-
-                        _point.X = (screenWidth / 2) - (screenWidth / 4);
-                        _point.Y = MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X, _point.Y - 1, "1");
-
-                        _point.X = (screenWidth / 2);
-                        _point.Y = MARGIN_HOUR_NUMBER_SQU;
-                        _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaBReverse, _point.X, _point.Y - 1, "21");
-
-                        break;
-                
-                    case FACE_TYPE_ROUND:
-
-                        _azmdrawing.DrawDial(_display,colorForeground,colorBackground, 3, 3);
-
-                        for (int i = 1; i <= 9; i++)
-                        {
-
-                            _point = _azmdrawing.FindPointDegreeDistance(30 * (12 - i), screenCenterX, screenCenterY, screenCenterX - MARGIN_HOUR_NUMBER_ROU);
-                            _azmdrawing.DrawStringAngled(_display, colorForeground, fontNinaBReverse, 30 * (12 - i), _point.X, _point.Y, i.ToString());
-
-                        }
-
-                        for (int i = 10; i <= 12; i++)
-                        {
-
-                            _point = _azmdrawing.FindPointDegreeDistance(30 * (12 - i), screenCenterX, screenCenterY, screenCenterX - MARGIN_HOUR_NUMBER_ROU);
-                            _azmdrawing.DrawStringAngled(_display, colorForeground, fontNinaBReverse, 30 * (12 - i), _point.X, _point.Y, (i % 10).ToString() + "1");
-
-                        }
-
-                        break;
-               
-                }
 
                 switch (handType)
                 {                    
