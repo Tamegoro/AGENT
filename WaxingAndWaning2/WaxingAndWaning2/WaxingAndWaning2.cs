@@ -134,7 +134,7 @@ namespace WaxingAndWaning2
                     fillY = MARGIN_OUTER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Hour % 12 != 0))
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeH != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - 1, WIDTH_HOUR + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeH, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - 1, WIDTH_HOUR + 1);
@@ -147,7 +147,7 @@ namespace WaxingAndWaning2
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Minute % 60 != 0))
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeM != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY,  (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 1, WIDTH_MINUTE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeM, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 1, WIDTH_MINUTE + 1);
@@ -160,7 +160,7 @@ namespace WaxingAndWaning2
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Second % 60 != 0))
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeS != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeS, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 1);
