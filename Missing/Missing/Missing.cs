@@ -134,6 +134,36 @@ namespace Missing
                     hourNum = 12;
                 }
 
+                if (1 <= hourNum && hourNum  <= 2)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX + 1, screenCenterY, DISTANCE_HOUR);
+                }
+                else if (3 <= hourNum && hourNum  <= 3)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX + 2, screenCenterY, DISTANCE_HOUR);
+                }
+                else if (4 <= hourNum && hourNum  <= 6)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX + 1, screenCenterY + 1, DISTANCE_HOUR);
+                }
+                else if (7 <= hourNum && hourNum  <= 9)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY + 1, DISTANCE_HOUR);
+                }
+                else if (hourNum == 10)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR);
+                }
+                else if (hourNum == 11)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR);
+                }
+                else if (hourNum  == 12)
+                {
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR);
+                }
+
+/*
                 if (hourNum == 10)
                 {
                     _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR - (fontNinaB.CharWidth('1') / 2));
@@ -146,6 +176,7 @@ namespace Missing
                 {
                     _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, DISTANCE_HOUR);
                 }
+*/
 
                 _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X - 1, _point.Y - 1, hourNum.ToString());
                 _azmdrawing.DrawStringCentered(_display, colorForeground, fontNinaB, _point.X, _point.Y, hourNum.ToString());
