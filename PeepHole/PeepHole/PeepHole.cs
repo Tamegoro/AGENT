@@ -158,10 +158,10 @@ namespace PeepHole
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL, 0);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
-                _azmdrawing.DarwCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+                _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
-                _azmdrawing.DarwCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+                _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
 
                 _display.DrawEllipse(colorForeground, 1, screenCenterX - 1, screenCenterY - 1, 4, 4, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, screenCenterX - 1, screenCenterY - 1, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
