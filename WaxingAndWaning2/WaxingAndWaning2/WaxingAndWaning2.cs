@@ -126,9 +126,15 @@ namespace WaxingAndWaning2
 
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterX, (screenHeight / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER, (screenHeight / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
+
                 fillX = screenCenterX - 1;
 
-                if (currentTime.Hour % 12 != 0)
+                if (currentTime.Hour == 0)
+                {
+                    fillY = MARGIN_OUTER + 1;
+                    _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
+                }
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Hour % 12 != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - 1, WIDTH_HOUR + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeH, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - 1, WIDTH_HOUR + 1);
@@ -136,7 +142,12 @@ namespace WaxingAndWaning2
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
 
-                if (currentTime.Minute % 60 != 0)
+                if (currentTime.Hour < 12 && currentTime.Minute == 0)
+                {
+                    fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + 1;
+                    _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
+                }
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Minute % 60 != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY,  (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 1, WIDTH_MINUTE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeM, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 1, WIDTH_MINUTE + 1);
@@ -144,17 +155,18 @@ namespace WaxingAndWaning2
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
 
-                if (currentTime.Second % 60 != 0)
+                if (currentTime.Hour < 12 && currentTime.Second == 0)
+                {
+                    fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
+                    _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
+                }
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && currentTime.Second % 60 != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeS, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 1);
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-
-
-
-
 
             }
             else
