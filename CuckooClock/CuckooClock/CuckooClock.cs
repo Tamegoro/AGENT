@@ -199,10 +199,12 @@ namespace CuckooClock
             _display.DrawEllipse(colorBackground, 1, diskCenterX, diskCenterY, diskRadius - MARGIN_DISK_RIM, diskRadius - MARGIN_DISK_RIM, colorBackground, 0, 0, colorBackground, 0, 0, 255);
             _display.DrawEllipse(colorForeground, 1, diskCenterX, diskCenterY, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
+/*
             for (int i = 1; i <= 12; i++)
             {
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (30 / 2) + (30 * i), diskCenterX, diskCenterY, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER, MARGIN_DISK_NUMBER + 2);
             }
+*/
 
             for (int i = 1; i < 3; i++)
             {
