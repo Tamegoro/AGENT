@@ -278,6 +278,7 @@ namespace CuckooClock
             currentTime = DateTime.Now;
 
             degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
+            //degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute) - (30 / 2);
             degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
 
             _display.DrawEllipse(colorForeground, 1, diskCenterX, diskCenterY, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER - MARGIN_DISK_RIM - 1, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER - MARGIN_DISK_RIM - 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
