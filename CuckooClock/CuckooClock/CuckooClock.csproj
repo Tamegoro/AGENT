@@ -62,7 +62,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CuckooFrame.gif" />
     <None Include="Resources\RomenNumerals06.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CuckooFrame.gif" />
   </ItemGroup>
 </Project>
