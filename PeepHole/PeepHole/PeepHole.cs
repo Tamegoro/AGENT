@@ -42,35 +42,40 @@ namespace PeepHole
 
         static int displayMode = DISPLAY_MODE_WHITE;
 
+        static bool isPeep = false;
         static bool showDate = false;
 
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
-        const int MAX_DISPLAY_MODE = 3;
+        const int MAX_DISPLAY_MODE = 7;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 28;
+        const int LENGTH_HOUR_HAND = 26;
         const int LENGTH_HOUR_HAND_TAIL = 10;
-        const int LENGTH_MINUTE_HAND = 39;
+        const int LENGTH_MINUTE_HAND = 37;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int LENGTH_SECOND_HAND = 42;
+        const int LENGTH_SECOND_HAND = 40;
         const int LENGTH_SECOND_HAND_TAIL = 10;
         const int RADIUS_HAND_CIRCLE = 10;
 
         const int NUMBER_MARGIN_EDGE = 3;
         const int NUMBER_MARGIN_HOUR = 12;
-        const int NUMBER_MARGIN_MINUTE = 12;
+        const int NUMBER_MARGIN_MINUTE = 15;
 
         const int DATE_WIDTH = 19;
         const int DATE_HEIGHT = 13;
-        const int DATE_MARGIN = 30;
+        const int DATE_MARGIN = 33;
 
         const int DISPLAY_MODE_WHITE = 0;
         const int DISPLAY_MODE_BLACK = 1;
         const int DISPLAY_MODE_WHITE_DATE = 2;
         const int DISPLAY_MODE_BLACK_DATE = 3;
+        const int DISPLAY_MODE_PEEP_WHITE = 4;
+        const int DISPLAY_MODE_PEEP_BLACK = 5;
+        const int DISPLAY_MODE_PEEP_WHITE_DATE = 6;
+        const int DISPLAY_MODE_PEEP_BLACK_DATE = 7;
 
 
         public static void Main()
@@ -88,6 +93,10 @@ namespace PeepHole
             screenCenterY = screenHeight / 2;
 
             displayMode = DISPLAY_MODE_WHITE;
+            isPeep = false;
+            //displayMode = DISPLAY_MODE_PEEP_WHITE;
+            //isPeep = true;
+            showDate = false;
             colorForeground = Color.Black;
             colorBackground = Color.White;
 
@@ -133,13 +142,59 @@ namespace PeepHole
 
                 _display.DrawRectangle(colorForeground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                //_azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, null, 7);
 
-                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - 3, screenCenterY - NUMBER_MARGIN_EDGE, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                if (isPeep == true)
+                {
 
-                _azmdrawing.DrawMinuteNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE, 0);
-                _azmdrawing.DrawHourNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE- NUMBER_MARGIN_HOUR, 0);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - NUMBER_MARGIN_EDGE, screenCenterY - NUMBER_MARGIN_EDGE, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE - 2, RADIUS_HAND_CIRCLE - 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE - 2, RADIUS_HAND_CIRCLE - 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                    _azmdrawing.DrawMinuteNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE, 0);
+                    _azmdrawing.DrawHourNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE - NUMBER_MARGIN_HOUR, 0);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE + 1, RADIUS_HAND_CIRCLE + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE + 1, RADIUS_HAND_CIRCLE + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+
+                    _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - NUMBER_MARGIN_EDGE, screenCenterY - NUMBER_MARGIN_EDGE, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+
+                    _azmdrawing.FillArea(_display, colorBackground, screenCenterX, screenCenterY);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
+                    _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
+                    _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+
+                }
+                else
+                {
+
+                    _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - 3, screenCenterY - NUMBER_MARGIN_EDGE, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
+                    _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE - 2, RADIUS_HAND_CIRCLE - 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                    _azmdrawing.DrawMinuteNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE, 0);
+                    _azmdrawing.DrawHourNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE - NUMBER_MARGIN_HOUR, 0);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
+                    _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
+                    _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
+
+
+
+                }
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point.X - 1, _point.Y - 1, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
@@ -156,12 +211,6 @@ namespace PeepHole
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeS + 180) % 360, screenCenterX - 1, screenCenterY - 1, LENGTH_SECOND_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL, 0);
-
-                _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
-                _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
-
-                _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
-                _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
 
                 _display.DrawEllipse(colorForeground, 1, screenCenterX - 1, screenCenterY - 1, 4, 4, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, screenCenterX - 1, screenCenterY - 1, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
@@ -247,6 +296,7 @@ namespace PeepHole
 
                     case DISPLAY_MODE_WHITE:
 
+                        isPeep = false;
                         showDate = false;
                         colorForeground = Color.Black;
                         colorBackground = Color.White;
@@ -256,6 +306,7 @@ namespace PeepHole
 
                     case DISPLAY_MODE_BLACK:
 
+                        isPeep = false;
                         showDate = false;
                         colorForeground = Color.White;
                         colorBackground = Color.Black;
@@ -265,6 +316,7 @@ namespace PeepHole
 
                     case DISPLAY_MODE_WHITE_DATE:
 
+                        isPeep = false;
                         showDate = true;
                         colorForeground = Color.Black;
                         colorBackground = Color.White;
@@ -274,6 +326,47 @@ namespace PeepHole
 
                     case DISPLAY_MODE_BLACK_DATE:
 
+                        isPeep = false;
+                        showDate = true;
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_PEEP_WHITE:
+
+                        isPeep = true;
+                        showDate = false;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_PEEP_BLACK:
+
+                        isPeep = true;
+                        showDate = false;
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_PEEP_WHITE_DATE:
+
+                        isPeep = true;
+                        showDate = true;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_PEEP_BLACK_DATE:
+
+                        isPeep = true;
                         showDate = true;
                         colorForeground = Color.White;
                         colorBackground = Color.Black;
