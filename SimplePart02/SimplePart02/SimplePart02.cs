@@ -51,7 +51,7 @@ namespace SimplePart02
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 16;
+        const int LENGTH_HOUR_HAND = 20;
         const int LENGTH_MINUTE_HAND = 26;
         const int LENGTH_SECOND_HAND = 26;
 
