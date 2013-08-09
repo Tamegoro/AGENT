@@ -52,10 +52,10 @@ namespace PeepHole
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 26;
+        const int LENGTH_HOUR_HAND = 27;
         const int LENGTH_HOUR_HAND_TAIL = 10;
         const int THIKNESS_HOUR_HAND = 2;
-        const int LENGTH_MINUTE_HAND = 37;
+        const int LENGTH_MINUTE_HAND = 38;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
         const int THIKNESS_MINUTE_HAND = 2;
         const int LENGTH_SECOND_HAND = 40;
@@ -65,7 +65,7 @@ namespace PeepHole
 
         const int NUMBER_MARGIN_EDGE = 3;
         const int NUMBER_MARGIN_HOUR = 12;
-        const int NUMBER_MARGIN_MINUTE = 15;
+        const int NUMBER_MARGIN_MINUTE = 14;
 
         const int DATE_WIDTH = 19;
         const int DATE_HEIGHT = 13;
@@ -161,10 +161,10 @@ namespace PeepHole
                     _azmdrawing.DrawHourNumbers(_display, colorForeground, fontsmall, screenCenterX - NUMBER_MARGIN_EDGE - NUMBER_MARGIN_MINUTE - NUMBER_MARGIN_HOUR, 0);
 
                     _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, LENGTH_HOUR_HAND + RADIUS_HAND_CIRCLE);
-                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE + 1, RADIUS_HAND_CIRCLE + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
                     _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND + RADIUS_HAND_CIRCLE);
-                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE + 1, RADIUS_HAND_CIRCLE + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                    _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
                     _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - NUMBER_MARGIN_EDGE, screenCenterY - NUMBER_MARGIN_EDGE, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
