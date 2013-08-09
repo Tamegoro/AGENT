@@ -147,54 +147,22 @@ namespace SimplePart02
                         _point0 = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL);
 
                         _point1 = _azmdrawing.FindPointDegreeDistance(30 * i - 90, _point0.X, _point0.Y, GAP_DIAL_QUARTER / 2);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X - 1, _point1.Y - 1, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X - 1, _point1.Y, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X, _point1.Y - 1, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X, _point1.Y, 0, LENGTH_DIAL);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 30 * i, _point1.X, _point1.Y, 0, LENGTH_DIAL);
 
                         _point1 = _azmdrawing.FindPointDegreeDistance(30 * i + 90, _point0.X, _point0.Y, GAP_DIAL_QUARTER / 2);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X - 1, _point1.Y - 1, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X - 1, _point1.Y, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X, _point1.Y - 1, 0, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, _point1.X, _point1.Y, 0, LENGTH_DIAL);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 30 * i, _point1.X, _point1.Y, 0, LENGTH_DIAL);
                     
                     }
                     else
                     {
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, screenCenterX - 1, screenCenterY - 1, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, screenCenterX - 1, screenCenterY, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, screenCenterX, screenCenterY - 1, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL, LENGTH_DIAL);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL, LENGTH_DIAL);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_DIAL_EDGE - LENGTH_DIAL, LENGTH_DIAL);
                     }
 
                     _azmdrawing.DrawCircle(_display, colorForeground, 2, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER, RADIUS_CIRCLE_CENTER);
 
-
-/*
-                    _point0 = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point0.X - 1, _point0.Y - 1, 0, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point0.X - 1, _point0.Y, 0, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point0.X, _point0.Y - 1, 0, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point0.X, _point0.Y, 0, LENGTH_HOUR_HAND);
-
-                    _azmdrawing.DrawCircle(_display, colorForeground, 2, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER, RADIUS_CIRCLE_CENTER);
-
-                    _point0 = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point0.X - 1, _point0.Y - 1, 0, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point0.X - 1, _point0.Y, 0, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point0.X, _point0.Y - 1, 0, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point0.X, _point0.Y, 0, LENGTH_MINUTE_HAND);
-*/
-
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, screenCenterX - 1, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, screenCenterX - 1, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, screenCenterX, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_HOUR_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_HOUR_HAND);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_HOUR_HAND);
                     
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, screenCenterX - 1, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, screenCenterX - 1, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, screenCenterX, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_MINUTE_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_MINUTE_HAND);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_MINUTE_HAND);
 
                 }
 
@@ -203,18 +171,7 @@ namespace SimplePart02
 
                     degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
-/*
-                    _point0 = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point0.X - 1, _point0.Y - 1, 0, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point0.X - 1, _point0.Y, 0, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point0.X, _point0.Y - 1, 0, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point0.X, _point0.Y, 0, LENGTH_SECOND_HAND);
-*/
-
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, screenCenterX - 1, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, screenCenterX - 1, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, screenCenterX, screenCenterY - 1, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_SECOND_HAND);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_SECOND_HAND);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeS, screenCenterX, screenCenterY, RADIUS_CIRCLE_CENTER + MARGIN_CIRCLE_CENTER_HAND, LENGTH_SECOND_HAND);
                
                 }
 
@@ -231,7 +188,7 @@ namespace SimplePart02
                 _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
                 ++showDigitalCounter;
 
-                if (showDigitalCounter > 10)
+                if (showDigitalCounter > SHOW_DIGITAL_SECOND)
                 {
                     showDigital = false;
                     showDigitalCounter = 0;

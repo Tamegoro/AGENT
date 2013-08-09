@@ -120,17 +120,17 @@ namespace ZigZag
 
                 _point.X = screenCenterX;
                 _point.Y = screenCenterY;
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 0);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 0);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, _point.X, _point.Y, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND, 0);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND, 0);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, _point.X, _point.Y, LENGTH_MINUTE_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND, 1);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND, 1);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
@@ -141,7 +141,7 @@ namespace ZigZag
                 _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
                 ++showDigitalCounter;
 
-                if (showDigitalCounter > 10)
+                if (showDigitalCounter > SHOW_DIGITAL_SECOND)
                 {
                     showDigital = false;
                     showDigitalCounter = 0;

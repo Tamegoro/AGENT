@@ -66,12 +66,12 @@ namespace CuckooClock
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 22;
+        const int LENGTH_HOUR_HAND = 20;
         const int LENGTH_HOUR_HAND_TAIL = 10;
-        const int THICKNESS_HOUR_HAND = 2;
-        const int LENGTH_MINUTE_HAND = 27;
+        const int THICKNESS_HOUR_HAND = 3;
+        const int LENGTH_MINUTE_HAND = 26;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int THICKNESS_MINUTE_HAND = 2;
+        const int THICKNESS_MINUTE_HAND = 3;
 
         const int DISK_RADIUS = 63;
 

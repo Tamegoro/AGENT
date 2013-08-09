@@ -55,10 +55,13 @@ namespace SimplePart01
 
         const int LENGTH_HOUR_HAND = 36;
         const int LENGTH_HOUR_HAND_TAIL = 10;
+        const int THIKNESS_HOUR_HAND = 2;
         const int LENGTH_MINUTE_HAND = 48;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
+        const int THIKNESS_MINUTE_HAND = 2;
         const int LENGTH_SECOND_HAND = 48;
         const int LENGTH_SECOND_HAND_TAIL = 10;
+        const int THIKNESS_SECOND_HAND = 1;
         const int DISTANCE_HAND_CIRCLE = 26;
         const int RADIUS_HAND_CIRCLE = 6;
 
@@ -140,22 +143,16 @@ namespace SimplePart01
 
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point.X - 1, _point.Y - 1, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point.X - 1, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point.X, _point.Y - 1, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 0);
 
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point.X - 1, _point.Y - 1, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point.X - 1, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point.X, _point.Y - 1, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 0);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 0);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 0);
 
                 _display.DrawEllipse(colorBackground, RADIUS_HAND_CIRCLE - 1, screenCenterX, screenCenterY, DISTANCE_HAND_CIRCLE, DISTANCE_HAND_CIRCLE, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeS + 180) % 360, screenCenterX - 1, screenCenterY - 1, LENGTH_SECOND_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL, 0);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL, 0);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, DISTANCE_HAND_CIRCLE);
                 _azmdrawing.DrawCircle(_display, colorForeground, 2, _point.X, _point.Y, RADIUS_HAND_CIRCLE, RADIUS_HAND_CIRCLE);
@@ -187,7 +184,7 @@ namespace SimplePart01
                 _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
                 ++showDigitalCounter;
 
-                if (showDigitalCounter > 10)
+                if (showDigitalCounter > SHOW_DIGITAL_SECOND)
                 {
                     showDigital = false;
                     showDigitalCounter = 0;

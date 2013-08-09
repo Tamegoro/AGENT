@@ -60,20 +60,20 @@ namespace Ordinaries
 
         const int LENGTH_HOUR_HAND_SQU = 30;
         const int LENGTH_HOUR_HAND_TAIL_SQU = 10;
-        const int THICKNESS_HOUR_HAND_SQU = 2;
+        const int THICKNESS_HOUR_HAND_SQU = 3;
         const int LENGTH_MINUTE_HAND_SQU = 40;
         const int LENGTH_MINUTE_HAND_TAIL_SQU = 10;
-        const int THICKNESS_MINUTE_HAND_SQU = 2;
+        const int THICKNESS_MINUTE_HAND_SQU = 3;
         const int LENGTH_SECOND_HAND_SQU = 40;
         const int LENGTH_SECOND_HAND_TAIL_SQU = 10;
         const int THICKNESS_SECOND_HAND_SQU = 1;
 
         const int LENGTH_HOUR_HAND_ROU = 30;
         const int LENGTH_HOUR_HAND_TAIL_ROU = 10;
-        const int THICKNESS_HOUR_HAND_ROU = 2;
+        const int THICKNESS_HOUR_HAND_ROU = 3;
         const int LENGTH_MINUTE_HAND_ROU = 40;
         const int LENGTH_MINUTE_HAND_TAIL_ROU = 10;
-        const int THICKNESS_MINUTE_HAND_ROU = 2;
+        const int THICKNESS_MINUTE_HAND_ROU = 3;
         const int LENGTH_SECOND_HAND_ROU = 40;
         const int LENGTH_SECOND_HAND_TAIL_ROU = 10;
         const int THICKNESS_SECOND_HAND_ROU = 1;
