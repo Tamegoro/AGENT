@@ -93,7 +93,24 @@ namespace BarbersWallClock
         const int DATE_TYPE_SQU = 1;
         const int DATE_TYPE_ROU = 2;
 
+        const int DISPLAY_MODE_SQUFACE_SQUHAND_BLACK = 0;
+        const int DISPLAY_MODE_SQUFACE_SQUHAND_DATE_BLACK = 1;
+        const int DISPLAY_MODE_SQUFACE_POIHAND_BLACK = 2;
+        const int DISPLAY_MODE_SQUFACE_POIHAND_DATE_BLACK = 3;
+        const int DISPLAY_MODE_ROUFACE_SQUHAND_BLACK = 4;
+        const int DISPLAY_MODE_ROUFACE_SQUHAND_DATE_BLACK = 5;
+        const int DISPLAY_MODE_ROUFACE_POIHAND_BLACK = 6;
+        const int DISPLAY_MODE_ROUFACE_POIHAND_DATE_BLACK = 7;
+        const int DISPLAY_MODE_SQUFACE_SQUHAND_WHITE = 8;
+        const int DISPLAY_MODE_SQUFACE_SQUHAND_DATE_WHITE = 9;
+        const int DISPLAY_MODE_SQUFACE_POIHAND_WHITE = 10;
+        const int DISPLAY_MODE_SQUFACE_POIHAND_DATE_WHITE = 11;
+        const int DISPLAY_MODE_ROUFACE_SQUHAND_WHITE = 12;
+        const int DISPLAY_MODE_ROUFACE_SQUHAND_DATE_WHITE = 13;
+        const int DISPLAY_MODE_ROUFACE_POIHAND_WHITE = 14;
+        const int DISPLAY_MODE_ROUFACE_POIHAND_DATE_WHITE = 15;
 
+/*
         const int DISPLAY_MODE_SQUFACE_SQUHAND_BLACK = 0;
         const int DISPLAY_MODE_SQUFACE_SQUHAND_WHITE = 1;
         const int DISPLAY_MODE_SQUFACE_SQUHAND_DATE_BLACK = 2;
@@ -110,7 +127,7 @@ namespace BarbersWallClock
         const int DISPLAY_MODE_ROUFACE_POIHAND_WHITE = 13;
         const int DISPLAY_MODE_ROUFACE_POIHAND_DATE_BLACK = 14;
         const int DISPLAY_MODE_ROUFACE_POIHAND_DATE_WHITE = 15;
-
+*/
 
 
         public static void Main()

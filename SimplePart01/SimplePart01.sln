@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePart1", "SimplePart1\SimplePart1.csproj", "{15D820F6-B45A-4A66-91F3-59B868F39EC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePart01", "SimplePart01\SimplePart01.csproj", "{F27C3D28-F656-420C-B630-D17352F559A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agent.Contrib", "..\AGENT.Contrib\Agent.Contrib\Agent.Contrib.csproj", "{C13C6D79-545D-40EB-9F3C-8746C99C259C}"
 EndProject
@@ -11,12 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{15D820F6-B45A-4A66-91F3-59B868F39EC1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27C3D28-F656-420C-B630-D17352F559A7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C13C6D79-545D-40EB-9F3C-8746C99C259C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C13C6D79-545D-40EB-9F3C-8746C99C259C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C13C6D79-545D-40EB-9F3C-8746C99C259C}.Release|Any CPU.ActiveCfg = Release|Any CPU

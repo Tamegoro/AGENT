@@ -69,12 +69,12 @@ namespace PeepHole
         const int DATE_MARGIN = 33;
 
         const int DISPLAY_MODE_WHITE = 0;
-        const int DISPLAY_MODE_BLACK = 1;
-        const int DISPLAY_MODE_WHITE_DATE = 2;
-        const int DISPLAY_MODE_BLACK_DATE = 3;
-        const int DISPLAY_MODE_PEEP_WHITE = 4;
-        const int DISPLAY_MODE_PEEP_BLACK = 5;
-        const int DISPLAY_MODE_PEEP_WHITE_DATE = 6;
+        const int DISPLAY_MODE_WHITE_DATE = 1;
+        const int DISPLAY_MODE_PEEP_WHITE = 2;
+        const int DISPLAY_MODE_PEEP_WHITE_DATE = 3;
+        const int DISPLAY_MODE_BLACK = 4;
+        const int DISPLAY_MODE_BLACK_DATE = 5;
+        const int DISPLAY_MODE_PEEP_BLACK = 6;
         const int DISPLAY_MODE_PEEP_BLACK_DATE = 7;
 
 

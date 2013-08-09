@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimplePart1
+namespace SimplePart01
 {
     
     internal partial class Resources
@@ -20,7 +20,7 @@ namespace SimplePart1
             {
                 if ((Resources.manager == null))
                 {
-                    Resources.manager = new System.Resources.ResourceManager("SimplePart1.Resources", typeof(Resources).Assembly);
+                    Resources.manager = new System.Resources.ResourceManager("SimplePart01.Resources", typeof(Resources).Assembly);
                 }
                 return Resources.manager;
             }

@@ -46,10 +46,12 @@ namespace Shearing
 
 
         static int displayMode = DISPLAY_MODE_SQUARED_BLACK;
+        static bool showDisk = false;
+
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
-        const int MAX_DISPLAY_MODE = 3;
+        const int MAX_DISPLAY_MODE = 5;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
@@ -62,9 +64,11 @@ namespace Shearing
         const int THICKNESS_MINUTE_HAND = 2;
 
         const int DISPLAY_MODE_SQUARED_BLACK = 0;
-        const int DISPLAY_MODE_SQUARED_WHITE = 1;
-        const int DISPLAY_MODE_ROUNDED_BLACK = 2;
-        const int DISPLAY_MODE_ROUNDED_WHITE = 3;
+        const int DISPLAY_MODE_ROUNDED_BLACK = 1;
+        const int DISPLAY_MODE_ROUNDED_BLACK_DISK = 2;
+        const int DISPLAY_MODE_SQUARED_WHITE = 3;
+        const int DISPLAY_MODE_ROUNDED_WHITE = 4;
+        const int DISPLAY_MODE_ROUNDED_WHITE_DISK = 5;
 
 
         public static void Main()
@@ -81,6 +85,7 @@ namespace Shearing
             screenCenterY = screenHeight / 2;
 
             displayMode = DISPLAY_MODE_SQUARED_BLACK;
+            showDisk = false;
             colorForeground = Color.White;
             colorBackground = Color.Black;
 
@@ -142,11 +147,19 @@ namespace Shearing
                     _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
            
                 }
-                else if (displayMode == DISPLAY_MODE_ROUNDED_BLACK || displayMode == DISPLAY_MODE_ROUNDED_WHITE)
+                else if (displayMode == DISPLAY_MODE_ROUNDED_BLACK || displayMode == DISPLAY_MODE_ROUNDED_WHITE || displayMode == DISPLAY_MODE_ROUNDED_BLACK_DISK || displayMode == DISPLAY_MODE_ROUNDED_WHITE_DISK)
                 {
 
-                    _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 0);
-
+                    if (showDisk == true)
+                    {
+                        _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 0);
+                    }
+                    else
+                    {
+                        _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 8);
+                    }
+                    
+                    
                     centerX = 78;
                     centerY = 78;
 
@@ -218,36 +231,57 @@ namespace Shearing
                 switch (displayMode)
                 {
 
-                    case DISPLAY_MODE_SQUARED_WHITE:
+                    case DISPLAY_MODE_SQUARED_BLACK:
 
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
+                        showDisk = false;
+                        displayMode = DISPLAY_MODE_SQUARED_BLACK;
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
                         UpdateTime(null);
 
                         break;
 
                     case DISPLAY_MODE_ROUNDED_BLACK:
 
+                        showDisk = false;
                         colorForeground = Color.White;
                         colorBackground = Color.Black;
                         UpdateTime(null);
 
                         break;
 
-                    case DISPLAY_MODE_ROUNDED_WHITE:
+                    case DISPLAY_MODE_ROUNDED_BLACK_DISK:
 
+                        showDisk = true;
+                        colorForeground = Color.White;
+                        colorBackground = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_SQUARED_WHITE:
+
+                        showDisk = false;
                         colorForeground = Color.Black;
                         colorBackground = Color.White;
                         UpdateTime(null);
 
                         break;
 
+                    case DISPLAY_MODE_ROUNDED_WHITE:
 
-                    case DISPLAY_MODE_SQUARED_BLACK:
+                        showDisk = false;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        UpdateTime(null);
 
-                        displayMode = DISPLAY_MODE_SQUARED_BLACK;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
+                        break;
+
+                    case DISPLAY_MODE_ROUNDED_WHITE_DISK:
+
+                        showDisk = true;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
                         UpdateTime(null);
 
                         break;
