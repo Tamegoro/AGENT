@@ -141,17 +141,9 @@ namespace Rings
                     _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * i) - THIKNESS_RING, screenCenterY - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * i) - THIKNESS_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 }
 
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 0) - THIKNESS_RING - 1);
-                _point1 = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 0) - THIKNESS_RING + THIKNESS_RING + 1);
-                _display.DrawLine(colorBackground, 4, _point0.X, _point0.Y, _point1.X, _point1.Y);
-
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 1) - THIKNESS_RING - 1);
-                _point1 = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 1) - THIKNESS_RING + THIKNESS_RING + 1);
-                _display.DrawLine(colorBackground, 4, _point0.X, _point0.Y, _point1.X, _point1.Y);
-
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 2) - THIKNESS_RING - 1);
-                _point1 = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * 2) - THIKNESS_RING + THIKNESS_RING + 1);
-                _display.DrawLine(colorBackground, 4, _point0.X, _point0.Y, _point1.X, _point1.Y);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - 2, THIKNESS_RING + 4);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
 
                 if (showNumber == true)
                 {
