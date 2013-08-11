@@ -28,8 +28,6 @@ namespace Rings
         static Color colorBackground;
 
         static AZMDrawing _azmdrawing;
-        static AGENT.AZMutil.Point _point0;
-        static AGENT.AZMutil.Point _point1;
 
         static int degreeH = 0;
         static int degreeM = 0;
@@ -78,8 +76,6 @@ namespace Rings
             _display = new Bitmap(Bitmap.MaxWidth, Bitmap.MaxHeight);
 
             _azmdrawing = new AZMDrawing();
-            _point0 = new AGENT.AZMutil.Point();
-            _point1 = new AGENT.AZMutil.Point();
 
             screenWidth = _display.Width;
             screenHeight = _display.Height;
@@ -88,6 +84,7 @@ namespace Rings
             screenCenterY = screenHeight / 2;
 
             displayMode = DISPLAY_MODE_BLACK;
+            showNumber = false;
             showDate = false;
             colorForeground = Color.White;
             colorBackground = Color.Black;
