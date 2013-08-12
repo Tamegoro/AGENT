@@ -92,6 +92,8 @@ namespace DiversWatch
             colorForeground = Color.White;
             colorBackground = Color.Black;
 
+            degreeBezel = 0;
+
             showDigital = false;
 
             currentTime = new DateTime();
@@ -134,6 +136,31 @@ namespace DiversWatch
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
+                if (degreeBezel == degreeM)
+                {
+                    bmpBezel.SetPixel(60, 4, colorForeground);
+                    bmpBezel.SetPixel(61, 4, colorForeground);
+                    bmpBezel.SetPixel(62, 4, colorForeground);
+                    bmpBezel.SetPixel(60, 5, colorForeground);
+                    bmpBezel.SetPixel(61, 5, colorForeground);
+                    bmpBezel.SetPixel(62, 5, colorForeground);
+                    bmpBezel.SetPixel(61, 6, colorForeground);
+                    bmpBezel.SetPixel(61, 7, colorForeground);
+                }
+                else
+                {
+                    bmpBezel.SetPixel(60, 4, colorBackground);
+                    bmpBezel.SetPixel(61, 4, colorBackground);
+                    bmpBezel.SetPixel(62, 4, colorBackground);
+                    bmpBezel.SetPixel(60, 5, colorBackground);
+                    bmpBezel.SetPixel(61, 5, colorBackground);
+                    bmpBezel.SetPixel(62, 5, colorBackground);
+                    bmpBezel.SetPixel(61, 6, colorBackground);
+                    bmpBezel.SetPixel(61, 7, colorBackground);
+                }
+
+
+
                 if (degreeBezel == 0)
                 {
                     _display.DrawImage((_display.Width - bmpBezel.Width) / 2 + 1, (_display.Height - bmpBezel.Height) / 2 + 1, bmpBezel, 0, 0, bmpBezel.Width, bmpBezel.Height);
@@ -147,7 +174,6 @@ namespace DiversWatch
                 {
                     _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 6 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_BEZEL - THIKNESS_BEZEL - MARGIN_OUTER_DIAL_BEZEL - LENGTH_OUTER_DIAL, LENGTH_OUTER_DIAL);
                 }
-
 
                 _point0 = _azmdrawing.FindPointDegreeDistance(0, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_BEZEL - THIKNESS_BEZEL - MARGIN_OUTER_DIAL_BEZEL - LENGTH_OUTER_DIAL - MARGIN_INNER_DIAL_OUTER_DIAL - LENGTH_INNER_DIAL_QUARTER - 1);
                 _point1 = _azmdrawing.FindPointDegreeDistance(0 - 90, _point0.X, _point0.Y, 3);
