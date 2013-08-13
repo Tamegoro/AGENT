@@ -48,15 +48,15 @@ namespace DiversWatch
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 25;
+        const int LENGTH_HOUR_HAND = 24;
         const int LENGTH_HOUR_HAND_TAIL = 8;
-        const int THICKNESS_HOUR_HAND = 2;
+        const int THICKNESS_HOUR_HAND = 4;
 
-        const int LENGTH_MINUTE_HAND = 30;
+        const int LENGTH_MINUTE_HAND = 29;
         const int LENGTH_MINUTE_HAND_TAIL = 8;
-        const int THICKNESS_MINUTE_HAND = 2;
+        const int THICKNESS_MINUTE_HAND = 4;
 
-        const int LENGTH_SECOND_HAND = 28;
+        const int LENGTH_SECOND_HAND = 29;
         const int LENGTH_SECOND_HAND_TAIL = 8;
         const int THICKNESS_SECOND_HAND = 1;
 
