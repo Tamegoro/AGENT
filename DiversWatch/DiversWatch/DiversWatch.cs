@@ -42,6 +42,7 @@ namespace DiversWatch
         static int screenCenterY = 0;
 
         static int degreeBezel = 0;
+        static bool muchDegree = false;
 
         static bool showDigital = false;
         static int showDigitalCounter = 0;
@@ -93,6 +94,7 @@ namespace DiversWatch
             colorBackground = Color.Black;
 
             degreeBezel = 0;
+            muchDegree = false;
 
             showDigital = false;
 
@@ -136,7 +138,7 @@ namespace DiversWatch
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                if (degreeBezel == degreeM)
+                if (muchDegree == true)
                 {
                     bmpBezel.SetPixel(60, 4, colorForeground);
                     bmpBezel.SetPixel(61, 4, colorForeground);
@@ -253,6 +255,15 @@ namespace DiversWatch
                     {
                         degreeBezel += 30;
                         degreeBezel = degreeBezel % 360;
+                        degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
+                        if (degreeBezel == degreeM)
+                        {
+                            muchDegree = true;
+                        }
+                        else
+                        {
+                            muchDegree = false;
+                        }
                         UpdateTime(null);
                     }
                     else
@@ -281,6 +292,15 @@ namespace DiversWatch
                     {
                         degreeBezel += 6;
                         degreeBezel = degreeBezel % 360;
+                        degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
+                        if (degreeBezel == degreeM)
+                        {
+                            muchDegree = true;
+                        }
+                        else
+                        {
+                            muchDegree = false;
+                        }
                         UpdateTime(null);
                     }
                     else
