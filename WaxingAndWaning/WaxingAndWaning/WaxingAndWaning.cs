@@ -143,10 +143,11 @@ namespace WaxingAndWaning
                 }
                 else
                 {
-                    _azmdrawing.DrawAngledLine(_display, Color.White, 3, degreeH, screenCenterX, screenCenterY, 0, radius / 5 * 3);
-                    _azmdrawing.DrawAngledLine(_display, Color.White, 3, degreeH + 180, screenCenterX, screenCenterY, 0, 10);
-                    _azmdrawing.DrawAngledLine(_display, Color.White, 3, degreeM, screenCenterX, screenCenterY, 0, radius / 10 * 9);
-                    _azmdrawing.DrawAngledLine(_display, Color.White, 3, degreeM + 180, screenCenterX, screenCenterY, 0,10);
+
+                    _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, 10);
+                    _azmdrawing.DrawAngledLine(_display, Color.White, 4, degreeH, _point.X, _point.Y, 0, radius / 5 * 3 + 10);
+                    _point = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, 10);
+                    _azmdrawing.DrawAngledLine(_display, Color.White, 4, degreeM, _point.X, _point.Y, 0, radius / 10 * 9 + 10);
                     _display.DrawEllipse(Color.Black, 1, screenCenterX, screenCenterY, 3, 3, Color.Black, 0, 0, Color.Black, 0, 0, 255);
                     _display.DrawEllipse(Color.White, 1, screenCenterX, screenCenterY, 1, 1, Color.White, 0, 0, Color.White, 0, 0, 255);
                     //_display.DrawEllipse(Color.Black, 1, screenCenterX, screenCenterY, 1, 1, Color.Black, 0, 0, Color.Black, 0, 0, 255);
