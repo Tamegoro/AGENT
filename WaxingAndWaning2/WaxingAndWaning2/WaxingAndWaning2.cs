@@ -102,13 +102,13 @@ namespace WaxingAndWaning2
 
                 if (currentTime.Hour - 12 < 0)
                 {
-                    degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
+                    degreeH = _azmdrawing.HourToAngle(currentTime.Hour, 0);
                     degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                     degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
                 }
                 else
                 {
-                    degreeH = (360 - _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute)) % 360;
+                    degreeH = (360 - _azmdrawing.HourToAngle(currentTime.Hour, 0)) % 360;
                     degreeM = (360 - _azmdrawing.MinuteToAngle(currentTime.Minute)) % 360;
                     degreeS = (360 - _azmdrawing.SecondToAngle(currentTime.Second)) % 360;
                 }
