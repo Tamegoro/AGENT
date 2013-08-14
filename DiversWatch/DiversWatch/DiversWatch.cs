@@ -49,11 +49,11 @@ namespace DiversWatch
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND = 24;
+        const int LENGTH_HOUR_HAND = 25;
         const int LENGTH_HOUR_HAND_TAIL = 8;
         const int THICKNESS_HOUR_HAND = 4;
 
-        const int LENGTH_MINUTE_HAND = 29;
+        const int LENGTH_MINUTE_HAND = 30;
         const int LENGTH_MINUTE_HAND_TAIL = 8;
         const int THICKNESS_MINUTE_HAND = 4;
 
@@ -213,17 +213,20 @@ namespace DiversWatch
                 
                 }
 
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point0.X, _point0.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 3);
+                //_point0 = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
+                //_azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point0.X, _point0.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 3);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND, 3);
 
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeM + 180, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point0.X, _point0.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 3);
+                //_point0 = _azmdrawing.FindPointDegreeDistance(degreeM + 180, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
+                //_azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point0.X, _point0.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 3);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND, 3);
 
-                _point0 = _azmdrawing.FindPointDegreeDistance(degreeS + 180, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point0.X, _point0.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL);
+                //_point0 = _azmdrawing.FindPointDegreeDistance(degreeS + 180, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL);
+                //_azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point0.X, _point0.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, 0, LENGTH_SECOND_HAND, 3);
 
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 4, 4, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
             }
             else
