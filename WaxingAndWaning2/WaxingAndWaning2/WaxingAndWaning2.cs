@@ -147,8 +147,7 @@ namespace WaxingAndWaning2
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-                //else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeM != 0))
-                else
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeM != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY,  (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 2, WIDTH_MINUTE + 4);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeM, screenCenterX, screenCenterY, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - 2, WIDTH_MINUTE + 4);
@@ -161,13 +160,13 @@ namespace WaxingAndWaning2
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
                 }
-                //else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeS != 0))
-                else
+                else if (currentTime.Hour < 12 || (12 <= currentTime.Hour && degreeS != 0))
                 {
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, 0, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 2);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, 1, degreeS, screenCenterX, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER + 2);
                     fillY = MARGIN_OUTER + WIDTH_HOUR + MARGIN_INNER + WIDTH_MINUTE + MARGIN_INNER + 1;
                     _azmdrawing.FillArea(_display, colorBackground, fillX, fillY);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 0, screenCenterX + 1, screenCenterY, 0, (screenWidth / 2) - MARGIN_OUTER - WIDTH_HOUR - MARGIN_INNER - WIDTH_MINUTE - MARGIN_INNER );
                 }
 
             }
