@@ -138,9 +138,9 @@ namespace Rings
                     _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * i) - THIKNESS_RING, screenCenterY - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - ((THIKNESS_RING + MARGIN_RING_RING) * i) - THIKNESS_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 }
 
-                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - 2, THIKNESS_RING + 4);
-                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
-                _azmdrawing.DrawAngledLine(_display, colorBackground, 4, degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 5, degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - 2, THIKNESS_RING + 4);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 5, degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, 5, degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - MARGIN_RING_NUMBER - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - MARGIN_RING_RING - THIKNESS_RING - 2, THIKNESS_RING + 4);
 
                 if (showNumber == true)
                 {

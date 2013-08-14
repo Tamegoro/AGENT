@@ -58,10 +58,10 @@ namespace Shearing
 
         const int LENGTH_HOUR_HAND = 20;
         const int LENGTH_HOUR_HAND_TAIL = 10;
-        const int THICKNESS_HOUR_HAND = 2;
+        const int THICKNESS_HOUR_HAND = 4;
         const int LENGTH_MINUTE_HAND = 30;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int THICKNESS_MINUTE_HAND = 2;
+        const int THICKNESS_MINUTE_HAND = 4;
 
         const int DISPLAY_MODE_SQUARED_BLACK = 0;
         const int DISPLAY_MODE_ROUNDED_BLACK = 1;
@@ -138,10 +138,10 @@ namespace Shearing
                     centerX = 78;
                     centerY = 78;
 
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
 
                     _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
@@ -163,10 +163,10 @@ namespace Shearing
                     centerX = 78;
                     centerY = 78;
 
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, centerX, centerY, 0, LENGTH_HOUR_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH - 180, centerX, centerY, 0, LENGTH_HOUR_HAND_TAIL, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, centerX, centerY, 0, LENGTH_MINUTE_HAND, 1);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM - 180, centerX, centerY, 0, LENGTH_MINUTE_HAND_TAIL, 1);
 
                     _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);

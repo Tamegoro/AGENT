@@ -50,8 +50,11 @@ namespace ZigZag
 
 
         const int LENGTH_HOUR_HAND = 20;
+        const int THICKNESS_HOUR_HAND = 5;
         const int LENGTH_MINUTE_HAND = 20;
+        const int THICKNESS_MINUTE_HAND = 5;
         const int LENGTH_SECOND_HAND = 20;
+        const int THICKNESS_SECOND_HAND = 5;
 
         const int DISPLAY_MODE_WHITE = 0;
         const int DISPLAY_MODE_BLACK = 1;
@@ -120,18 +123,18 @@ namespace ZigZag
 
                 _point.X = screenCenterX;
                 _point.Y = screenCenterY;
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 0);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 0);
+                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, _point.X, _point.Y, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND, 0);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND, 0);
+                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, _point.X, _point.Y, LENGTH_MINUTE_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 3, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND, 1);
-                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND, 1);
+                _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
             }
