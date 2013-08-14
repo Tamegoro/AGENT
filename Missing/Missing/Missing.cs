@@ -150,13 +150,9 @@ namespace Missing
                 {
                     _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY + 1, DISTANCE_HOUR);
                 }
-                else if (hourNum == 10)
+                else if (10 <= hourNum && hourNum <= 11)
                 {
-                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR);
-                }
-                else if (hourNum == 11)
-                {
-                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX, screenCenterY, DISTANCE_HOUR);
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * hourNum, screenCenterX + 1, screenCenterY + 1, DISTANCE_HOUR);
                 }
                 else if (hourNum  == 12)
                 {
@@ -289,8 +285,6 @@ namespace Missing
 
                 degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
-
-                _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, 51);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL);
