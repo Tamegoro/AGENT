@@ -52,10 +52,10 @@ namespace Gaps
 
         const int LENGTH_HOUR_HAND = 40;
         const int LENGTH_HOUR_HAND_TAIL = 10;
-        const int THICKNESS_HOUR_HAND = 4;
+        const int THICKNESS_HOUR_HAND = 5;
         const int LENGTH_MINUTE_HAND = 50;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int THICKNESS_MINUTE_HAND = 4;
+        const int THICKNESS_MINUTE_HAND = 5;
         const int LENGTH_SECOND_HAND = 50;
         const int LENGTH_SECOND_HAND_TAIL = 10;
         const int THICKNESS_SECOND_HAND = 1;
