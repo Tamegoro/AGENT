@@ -52,8 +52,11 @@ namespace Lines
         const int SHOW_DIGITAL_SECOND = 10;
 
         const int LENGTH_HOUR_HAND = 35;
+        const int THICKNESS_HOUR_HAND = 2;
         const int LENGTH_MINUTE_HAND = 50;
+        const int THICKNESS_MINUTE_HAND = 2;
         const int LENGTH_SECOND_HAND = 50;
+        const int THICKNESS_SECOND_HAND = 1;
 
         const int THIKNESS_RIM_OUTER = 2;
 
@@ -135,8 +138,8 @@ namespace Lines
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK, screenCenterY - MARGIN_EDGE_DISK, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM_OUTER, screenCenterY - MARGIN_EDGE_DISK - THIKNESS_RIM_OUTER, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 2, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND);
 
 
                 if (showDial == true)
@@ -151,7 +154,7 @@ namespace Lines
 
                 if (showSecond == true)
                 {
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, degreeS, screenCenterX, screenCenterY, 0, LENGTH_SECOND_HAND);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, 0, LENGTH_SECOND_HAND);
                 }
 
             }
