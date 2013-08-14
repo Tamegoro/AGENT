@@ -21,8 +21,6 @@ namespace TimeGoRound
 
         static DateTime currentTime;
 
-        static Font fontNinaB = Resources.GetFont(Resources.FontResources.NinaB);
-        static Font fontsmall = Resources.GetFont(Resources.FontResources.small);
         static Font font7barPBd24 = Resources.GetFont(Resources.FontResources._7barPBd24);
 
         static Color colorForeground;

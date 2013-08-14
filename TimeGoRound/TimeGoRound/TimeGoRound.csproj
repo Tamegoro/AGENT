@@ -58,8 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\7barPBd24.tinyfnt" />
-    <None Include="Resources\NinaB.tinyfnt" />
-    <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AGENT.Contrib\Agent.Contrib\Agent.Contrib.csproj">

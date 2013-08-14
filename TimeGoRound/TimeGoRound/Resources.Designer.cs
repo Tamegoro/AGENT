@@ -32,8 +32,6 @@ namespace TimeGoRound
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
-            small = 13070,
-            NinaB = 18060,
             _7barPBd24 = 31671,
         }
     }

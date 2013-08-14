@@ -118,12 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\small.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
