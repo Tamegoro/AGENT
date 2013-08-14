@@ -50,13 +50,13 @@ namespace Balls
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int RADISU_HOUR = 4;
-        const int RADISU_MINUTE = 3;
+        const int RADISU_HOUR = 7;
+        const int RADISU_MINUTE = 4;
         const int RADISU_SECOND = 2;
 
         const int MARGIN_NUMBER_EDGE = 7;
         const int MARGIN_DIAL_EDGE = 4;
-        const int MARGIN_BALL_NUMBER = 2;
+        const int MARGIN_BALL_NUMBER = 1;
 
         const int MAX_DISPLAY_MODE = 7;
 
@@ -132,13 +132,13 @@ namespace Balls
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - (RADISU_HOUR / 2));
+                _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - RADISU_HOUR);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADISU_HOUR, RADISU_HOUR, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - (RADISU_MINUTE / 2));
+                _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - RADISU_MINUTE);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADISU_MINUTE, RADISU_MINUTE, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                _point = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - (RADISU_SECOND / 2));
+                _point = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, screenCenterX - MARGIN_NUMBER_EDGE - (fontsmall.Height / 2) - MARGIN_BALL_NUMBER - RADISU_SECOND);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, RADISU_SECOND, RADISU_SECOND, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
                 if (showNumber == true)
