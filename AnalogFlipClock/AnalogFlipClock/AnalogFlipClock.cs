@@ -69,7 +69,7 @@ namespace AnalogFlipClock
 
         const int MARGIN_PANEL_EDGE = 3;
         const int MARGIN_PANEL_PANEL = 2;
-        const int RADIUS_PANEL_CORNER = 6;
+        const int RADIUS_PANEL_CORNER = 5;
 
         const int RADIUS_CENTER_DOT = 7;
 
