@@ -57,7 +57,7 @@ namespace AnalogFlipClock
 
         static int panelCenterX = 0;
 
-        const int MAX_FRAME = 12;
+        const int MAX_FRAME = 10;
 
         static bool showFlip = false;
         static int showFlipCounter = 0;
