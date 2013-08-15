@@ -69,16 +69,18 @@ namespace AnalogFlipClock
 
         const int MARGIN_PANEL_EDGE = 3;
         const int MARGIN_PANEL_PANEL = 2;
-        const int RADIUS_PANEL_CORNER = 5;
+        const int RADIUS_PANEL_CORNER = 6;
+
+        const int RADIUS_CENTER_DOT = 7;
 
         const int MAX_DISPLAY_MODE = 1;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
         const int LENGTH_HOUR_HAND = 35;
-        const int THICKNESS_HOUR_HAND = 4;
+        const int THICKNESS_HOUR_HAND = 3;
         const int LENGTH_MINUTE_HAND = 50;
-        const int THICKNESS_MINUTE_HAND = 4;
+        const int THICKNESS_MINUTE_HAND = 3;
 
         const int DISPLAY_MODE_BLACK = 0;
         const int DISPLAY_MODE_WHITE = 1;
@@ -166,7 +168,7 @@ namespace AnalogFlipClock
                     DrawClock(currentH, currentM, 0);
                     DrawClock(currentH, currentM, 1);
 
-                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, THICKNESS_HOUR_HAND + 3, THICKNESS_HOUR_HAND + 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_CENTER_DOT, RADIUS_CENTER_DOT, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
                     _display.Flush();
 
@@ -326,7 +328,7 @@ namespace AnalogFlipClock
                     DrawClock(currentH, currentM, 1, (showFlipCounter - (MAX_FRAME / 2)));
                 }
 
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, THICKNESS_HOUR_HAND + 3, THICKNESS_HOUR_HAND + 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_CENTER_DOT, RADIUS_CENTER_DOT, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
                 _display.Flush();
 
