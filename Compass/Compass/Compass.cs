@@ -273,7 +273,7 @@ namespace Compass
                             degreeNorth = degreeH + ((360 - degreeH) / 2);
                         }
 
-                        if (degreeNorth < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeNorth)
+                        if (degreeNorth < 360 - MARGIN_SUNPOINTER_NEWS && 0 + MARGIN_SUNPOINTER_NEWS < degreeNorth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeNorth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
                             _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "n");
@@ -281,7 +281,7 @@ namespace Compass
 
                         degreeWest = (degreeNorth + 90) % 360;
 
-                        if (degreeWest < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeWest)
+                        if (degreeWest < 360 - MARGIN_SUNPOINTER_NEWS && 0 + MARGIN_SUNPOINTER_NEWS < degreeWest)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeWest, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
                             _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "e");
@@ -289,7 +289,7 @@ namespace Compass
 
                         degreeSouth = (degreeNorth + 180) % 360;
 
-                        if (degreeSouth < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeSouth)
+                        if (degreeSouth < 360 - MARGIN_SUNPOINTER_NEWS && 0 + MARGIN_SUNPOINTER_NEWS < degreeSouth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeSouth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
                             _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "s");
@@ -297,7 +297,7 @@ namespace Compass
 
                         degreeEast = (degreeNorth + 270) % 360;
 
-                        if (degreeEast < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeEast)
+                        if (degreeEast < 360 - MARGIN_SUNPOINTER_NEWS && 0 + MARGIN_SUNPOINTER_NEWS < degreeEast)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeEast, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
                             _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "w");
