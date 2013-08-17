@@ -217,14 +217,14 @@ namespace Compass
 
                         _azmdrawing.DrawAngledLine(_display, colorBackground, THIKNESS_RIM / 2, degreeH, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + THIKNESS_RIM) + 3, THIKNESS_RIM - 4, 1);
 
-                        if (degreeH <= 180)
-                        {
+                        //if (degreeH <= 180)
+                        //{
                             degreeSouth = degreeH / 2;
-                        }
-                        else
-                        {
-                            degreeSouth = degreeH + ((360 - degreeH) / 2);
-                        }
+                        //}
+                        //else
+                        //{
+                            //degreeSouth = degreeH + ((360 - degreeH) / 2);
+                        //}
 
                         if (degreeSouth < degreeH - MARGIN_SUNPOINTER_NEWS || degreeH + MARGIN_SUNPOINTER_NEWS < degreeSouth)
                         {
@@ -264,14 +264,14 @@ namespace Compass
 
                         _azmdrawing.DrawAngledLine(_display, colorBackground, THIKNESS_RIM / 2, 0, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + THIKNESS_RIM) + 3, THIKNESS_RIM - 4, 1);
 
-                        if (degreeH <= 180)
-                        {
+                        //if (degreeH <= 180)
+                        //{
                             degreeNorth = degreeH / 2;
-                        }
-                        else
-                        {
-                            degreeNorth = degreeH + ((360 - degreeH) / 2);
-                        }
+                        //}
+                        //else
+                        //{
+                            //degreeNorth = degreeH + ((360 - degreeH) / 2);
+                        //}
 
                         if (degreeNorth < 360 - MARGIN_SUNPOINTER_NEWS && 0 + MARGIN_SUNPOINTER_NEWS < degreeNorth)
                         {
