@@ -229,7 +229,7 @@ namespace Compass
                         if (degreeSouth < degreeH - MARGIN_SUNPOINTER_NEWS || degreeH + MARGIN_SUNPOINTER_NEWS < degreeSouth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeSouth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeSouth, _point.X, _point.Y, "s");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeH, _point.X, _point.Y, "s");
                         }
 
                         degreeWest = (degreeSouth + 90) % 360;
@@ -237,7 +237,7 @@ namespace Compass
                         if (degreeWest < degreeH - MARGIN_SUNPOINTER_NEWS || degreeH + MARGIN_SUNPOINTER_NEWS < degreeWest)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeWest, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeSouth, _point.X, _point.Y, "w");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeH, _point.X, _point.Y, "w");
                         }
 
                         degreeNorth = (degreeSouth + 180) % 360;
@@ -245,7 +245,7 @@ namespace Compass
                         if (degreeNorth < degreeH - MARGIN_SUNPOINTER_NEWS || degreeH + MARGIN_SUNPOINTER_NEWS < degreeNorth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeNorth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeSouth, _point.X, _point.Y, "n");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeH, _point.X, _point.Y, "n");
                         }
 
                         degreeEast = (degreeSouth + 270) % 360;
@@ -253,7 +253,7 @@ namespace Compass
                         if (degreeEast < degreeH - MARGIN_SUNPOINTER_NEWS || degreeH + MARGIN_SUNPOINTER_NEWS < degreeEast)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeEast, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeSouth, _point.X, _point.Y, "e");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeH, _point.X, _point.Y, "e");
                         }
                         
                         break;
@@ -276,7 +276,7 @@ namespace Compass
                         if (degreeNorth < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeNorth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeNorth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeNorth, _point.X, _point.Y, "n");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "n");
                         }
 
                         degreeWest = (degreeNorth + 90) % 360;
@@ -284,7 +284,7 @@ namespace Compass
                         if (degreeWest < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeWest)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeWest, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeNorth, _point.X, _point.Y, "e");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "e");
                         }
 
                         degreeSouth = (degreeNorth + 180) % 360;
@@ -292,7 +292,7 @@ namespace Compass
                         if (degreeSouth < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeSouth)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeSouth, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeNorth, _point.X, _point.Y, "s");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "s");
                         }
 
                         degreeEast = (degreeNorth + 270) % 360;
@@ -300,7 +300,7 @@ namespace Compass
                         if (degreeEast < 0 - MARGIN_SUNPOINTER_NEWS || 0 + MARGIN_SUNPOINTER_NEWS < degreeEast)
                         {
                             _point = _azmdrawing.FindPointDegreeDistance(degreeEast, 64, 64, screenCenterX - (MARGIN_RIM_EDGE + (THIKNESS_RIM / 2)));
-                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, degreeNorth, _point.X, _point.Y, "w");
+                            _azmdrawing.DrawStringAngled(_display, colorBackground, fontsmallNEWS, 0, _point.X, _point.Y, "w");
                         }
                         
                         break;
