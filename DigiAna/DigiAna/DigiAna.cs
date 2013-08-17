@@ -165,10 +165,10 @@ namespace DigiAna
                 else if (displayMode == DISPLAY_MODE_ANA_DIGI_BLACK || displayMode == DISPLAY_MODE_ANA_DIGI_WHITE)
                 {
 
-                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, 40);
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeH, screenCenterX, screenCenterY, 35);
                     _azmdrawing.DrawStringAngled(_display, colorForeground, font7barPBdDigiAna48, degreeH, _point.X, _point.Y, "0");
 
-                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, 40);
+                    _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, 35);
                     _azmdrawing.DrawStringAngled(_display, colorForeground, font7barPBdDigiAna48, degreeM, _point.X, _point.Y, "1");
                 }
 
