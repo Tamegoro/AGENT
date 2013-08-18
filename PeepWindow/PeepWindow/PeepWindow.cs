@@ -36,6 +36,7 @@ namespace PeepWindow
 
         static int drawH = 0;
         static int drawM = 0;
+        static int drawS = 0;
 
         static int oldM = 0;
 
@@ -146,17 +147,45 @@ namespace PeepWindow
                     _azmdrawing.FillArea(_display, colorBackground, 90, 90);
                     _display.DrawRectangle(colorForeground, 1, 60, 60, 63, 63, 8, 8, colorForeground, 0, 0, colorForeground, 0, 0, 0);
 
+                    if (showSecond == true)
+                    {
+
+                        _display.DrawRectangle(colorBackground, 1, 12, 71, 35, 35, 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                        _azmdrawing.FillArea(_display, colorBackground, 20, 80);
+                        _display.DrawRectangle(colorForeground, 1, 14, 73, 31, 31, 8, 8, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+
+                    }
+
+                    if (showDate == true)
+                    {
+                        _display.DrawRectangle(colorBackground, 1, 74, 14, 33, 30, 7, 7, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                        _azmdrawing.FillArea(_display, colorBackground, 90, 30);
+                        _display.DrawRectangle(colorForeground, 1, 76, 16, 29, 26, 7, 7, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                        _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, 83, 23);
+                    }
+
                     _display.DrawEllipse(colorForeground, 1, 63, 63, 53, 53, colorForeground, 0, 0, colorForeground, 0, 0, 0);
 
-                    for (int i = 47; i <= 58; i++)
+                    for (int i = 4; i <= 9; i++)
                     {
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 6 * i, 64, 64, 50, 1);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 6 * i, 63, 63, 50, 1);
                     }
 
                     for (int i = 15; i <= 30; i++)
                     {
                         _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 6 * i, 63, 63, 50, 1);
                     }
+
+                    for (int i = 37; i <= 42; i++)
+                    {
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 6 * i, 64, 64, 50, 1);
+                    }
+                    
+                    for (int i = 47; i <= 58; i++)
+                    {
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, 6 * i, 64, 64, 50, 1);
+                    }
+
 
                     for (int i = -8; i <= 8; i++)
                     {
@@ -186,37 +215,58 @@ namespace PeepWindow
 
                     }
 
+
                     for (int i = 0; i < 2; i++)
                     {
                         _display.DrawRectangle(colorBackground, 1, 3 + i, 3 + i, 56 - (i * 2), 56 - (i * 2), 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
                         _display.DrawRectangle(colorBackground, 1, 58 + i, 58 + i, 67 - (i * 2), 67 - (i * 2), 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
                     }
 
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 315, 58, 58, 0, 25, handType);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 135, 59, 59, 0, 39, handType);
+
+                    _display.DrawLine(colorBackground, 1, 58, 53, 63, 58);
+                    _display.DrawLine(colorBackground, 1, 53, 58, 58, 63);
+
                     if (showSecond == true)
                     {
-                        //_display.DrawEllipse(colorBackground, 1, 29, 93, 22, 22, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                        //_display.DrawEllipse(colorForeground, 1, 29, 93, 19, 19, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                        _display.DrawRectangle(colorBackground, 1, 9, 73, 40, 40, 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
-                        _azmdrawing.FillArea(_display, colorBackground, 20, 80);
-                        _display.DrawRectangle(colorForeground, 1, 11, 75, 36, 36, 8, 8, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, _azmdrawing.SecondToAngle(currentTime.Second), 29, 93, 0, 15);
-                        _display.DrawEllipse(colorForeground, 1, 29, 93, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                        _display.DrawEllipse(colorBackground, 1, 29, 93, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        for (int i = -2; i <= 5; i++)
+                        {
+
+                            drawS = (currentTime.Second + i + 60) % 60;
+
+                            if (drawS % 5 == 0)
+                            {
+                                _azmdrawing.DrawStringByDegreeDistance(_display, colorForeground, fontsmall, drawS.ToString("D2"), 180 + 45 + (6 * i), 40);
+                            }
+
+                        }
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            _display.DrawRectangle(colorBackground, 1, 12 + i, 71 + i, 35 - (i * 2), 35 - (i * 2), 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                        }
+
+                        _display.DrawLine(colorBackground, 1, 38, 105, 46, 97);
+                        _display.DrawLine(colorBackground, 1, 39, 105, 46, 98);
+                        _display.DrawLine(colorBackground, 1, 40, 105, 46, 99);
+                        _display.DrawLine(colorBackground, 1, 42, 104, 45, 101);
+
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 225, 41, 76, 0, 7, 1);
+
                     }
 
                     if (showDate == true)
                     {
-                        _display.DrawRectangle(colorBackground, 1, 82, 20, 23, 19, 3, 3, colorBackground, 0, 0, colorBackground, 0, 0, 0);
-                        _azmdrawing.FillArea(_display, colorBackground, 90, 25);
-                        _display.DrawRectangle(colorForeground, 1, 84, 22, 19, 15, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                        _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, 88, 23);
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            _display.DrawRectangle(colorBackground, 1, 74 + i, 14 + i, 33 - (i * 2), 30 - (i * 2), 7, 7, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                        }
+
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 45, 79, 39, 0, 7, 1);
+
                     }
-
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 315, 58, 58, 0, 25, handType);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 135, 59, 59, 0, 40, handType);
-
-                    _display.DrawLine(colorBackground, 1, 58, 53, 63, 58);
-                    _display.DrawLine(colorBackground, 1, 53, 58, 58, 63);
 
                     _display.DrawEllipse(colorBackground, 1, 58, 58, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     _display.DrawEllipse(colorForeground, 1, 58, 58, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
