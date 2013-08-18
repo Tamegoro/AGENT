@@ -222,7 +222,7 @@ namespace PeepWindow
                         _display.DrawRectangle(colorBackground, 1, 58 + i, 58 + i, 67 - (i * 2), 67 - (i * 2), 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
                     }
 
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 315, 58, 58, 0, 25, handType);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 315, 58, 58, 0, 26, handType);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, 4, 135, 59, 59, 0, 39, handType);
 
                     _display.DrawLine(colorBackground, 1, 58, 53, 63, 58);
