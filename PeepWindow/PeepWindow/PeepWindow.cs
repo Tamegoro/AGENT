@@ -199,8 +199,8 @@ namespace PeepWindow
                         _display.DrawRectangle(colorBackground, 1, 9, 73, 40, 40, 8, 8, colorBackground, 0, 0, colorBackground, 0, 0, 0);
                         _azmdrawing.FillArea(_display, colorBackground, 20, 80);
                         _display.DrawRectangle(colorForeground, 1, 11, 75, 36, 36, 8, 8, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, _azmdrawing.SecondToAngle(currentTime.Second), 29, 93, 0, 15);
-                        _display.DrawEllipse(colorForeground, 1, 29, 93, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, 2, _azmdrawing.SecondToAngle(currentTime.Second), 29, 93, 0, 14);
+                        _display.DrawEllipse(colorForeground, 1, 29, 93, 3, 3, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                         _display.DrawEllipse(colorBackground, 1, 29, 93, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     }
 
