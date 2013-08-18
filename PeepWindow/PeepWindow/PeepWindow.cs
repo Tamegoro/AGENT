@@ -233,7 +233,7 @@ namespace PeepWindow
                         for (int i = -2; i <= 5; i++)
                         {
 
-                            drawS = (currentTime.Second + i + 60) % 60;
+                            drawS = (currentTime.Second + i + 60 - 2) % 60;
 
                             if (drawS % 5 == 0)
                             {
