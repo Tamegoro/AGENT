@@ -68,6 +68,7 @@ namespace DontHurry
 
         const int THIKNESS_RIM = 5;
         const int MARGIN_EDGE_DISK = 3;
+        const int MARGIN_CHAR_CHAR = 13;
 
         const int RADIUS_CIRCLE_DAY = 11;
         const int THICKNESS_CIRCLE_DAY = 3;
@@ -189,112 +190,112 @@ namespace DontHurry
                 degreeDay = 0;
 
                 stringDay = "S";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "U";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "N";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 1;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "M";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "O";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "N";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 2;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "T";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "U";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "E";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 3;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "W";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "E";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "D";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 4;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "T";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "H";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "U";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 5;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "F";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "R";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "I";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 
                 numberDay = 6;
                 degreeDay = 27 + ((51 * (numberDay - 1)) + (51 / 2));
 
                 stringDay = "S";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay - MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay - MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 stringDay = "A";
                 _point = _azmdrawing.FindPointDegreeDistance(degreeDay, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
                 _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
 
                 stringDay = "T";
-                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + 13, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
-                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay, _point.X, _point.Y, stringDay);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeDay + MARGIN_CHAR_CHAR, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM - (fontDay.Height / 2) - 2);
+                _azmdrawing.DrawStringAngled(_display, colorForeground, fontDay, degreeDay + MARGIN_CHAR_CHAR, _point.X, _point.Y, stringDay);
 
                 if ((int)currentTime.DayOfWeek == 0)
                 {
