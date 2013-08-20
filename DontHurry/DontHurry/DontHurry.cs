@@ -167,24 +167,24 @@ namespace DontHurry
 
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM, screenCenterY - MARGIN_EDGE_DISK - THIKNESS_RIM, colorForeground, 0, 0, colorForeground, 0, 0, 0);
 
-                
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 0, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM, THIKNESS_RIM);
+
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 0, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM, THIKNESS_RIM + 1);
 
                 for (int i = 0; i < 6; i++)
                 {
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27 + (51 * i) + (51 / 2), screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM, THIKNESS_RIM);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27 + (51 * i) + (51 / 2), screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK - THIKNESS_RIM, THIKNESS_RIM + 1);
                 }
 
-
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 360 - 27, screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27, screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 360 - 27, screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK + 1);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27, screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK + 1);
 
                 for (int i = 1; i < 6; i++)
                 {
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27 + (51 * i), screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, 27 + (51 * i), screenCenterX, screenCenterY, 0, screenCenterX - MARGIN_EDGE_DISK + 1);
                 }
 
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_EDGE_DISK + 1, screenCenterY - MARGIN_EDGE_DISK + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
                 degreeDay = 0;
 
