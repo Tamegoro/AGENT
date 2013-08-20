@@ -59,11 +59,11 @@ namespace DontHurry
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
-        const int MAX_DISPLAY_MODE = 7;
+        const int MAX_DISPLAY_MODE = 15;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_DAY_HAND = 40;
+        const int LENGTH_DAY_HAND = 28;
         const int THICKNESS_DAY_HAND = 4;
 
         const int THIKNESS_RIM = 5;
@@ -75,18 +75,18 @@ namespace DontHurry
         const int HAND_TYPE_SQUARE = 0;
         const int HAND_TYPE_POINT = 1;
 
-        const int DISPLAY_MODE_BLACK_POIHAND_DISK = 0;
-        const int DISPLAY_MODE_BLACK_POIHAND_DISK_DATE = 1;
-        const int DISPLAY_MODE_BLACK_SQUHAND_DISK = 2;
-        const int DISPLAY_MODE_BLACK_SQUHAND_DISK_DATE = 3;
+        const int DISPLAY_MODE_WHITE_POIHAND_DISK = 0;
+        const int DISPLAY_MODE_WHITE_POIHAND_DISK_DATE = 1;
+        const int DISPLAY_MODE_WHITE_SQUHAND_DISK = 2;
+        const int DISPLAY_MODE_WHITE_SQUHAND_DISK_DATE = 3;
         const int DISPLAY_MODE_WHITE_POIHAND = 4;
         const int DISPLAY_MODE_WHITE_POIHAND_DATE = 5;
         const int DISPLAY_MODE_WHITE_SQUHAND = 6;
         const int DISPLAY_MODE_WHITE_SQUHAND_DATE = 7;
-        const int DISPLAY_MODE_WHITE_POIHAND_DISK = 8;
-        const int DISPLAY_MODE_WHITE_POIHAND_DISK_DATE = 9;
-        const int DISPLAY_MODE_WHITE_SQUHAND_DISK = 10;
-        const int DISPLAY_MODE_WHITE_SQUHAND_DISK_DATE = 11;
+        const int DISPLAY_MODE_BLACK_POIHAND_DISK = 8;
+        const int DISPLAY_MODE_BLACK_POIHAND_DISK_DATE = 9;
+        const int DISPLAY_MODE_BLACK_SQUHAND_DISK = 10;
+        const int DISPLAY_MODE_BLACK_SQUHAND_DISK_DATE = 11;
         const int DISPLAY_MODE_BLACK_POIHAND = 12;
         const int DISPLAY_MODE_BLACK_POIHAND_DATE = 13;
         const int DISPLAY_MODE_BLACK_SQUHAND = 14;
@@ -109,7 +109,7 @@ namespace DontHurry
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            displayMode = DISPLAY_MODE_BLACK_POIHAND_DISK;
+            displayMode = DISPLAY_MODE_WHITE_POIHAND_DISK;
             handType = HAND_TYPE_POINT;
             showDate = false;
             colorForeground = Color.Black;
@@ -305,7 +305,7 @@ namespace DontHurry
                     degreeD = (27 + (51 * ((int)currentTime.DayOfWeek - 1))) + 51 * ((currentTime.Hour * 60) + currentTime.Minute) / (60 * 24);
                 }
                 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_DAY_HAND, degreeD, screenCenterX, screenCenterY, 0, LENGTH_DAY_HAND, handType);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_DAY_HAND, degreeD, screenCenterX, screenCenterY, RADIUS_CIRCLE_DAY - 1, LENGTH_DAY_HAND, handType);
 
                 if (displayMode == DISPLAY_MODE_BLACK_POIHAND_DISK || displayMode == DISPLAY_MODE_BLACK_SQUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_POIHAND_DISK || displayMode == DISPLAY_MODE_WHITE_SQUHAND_DISK || displayMode == DISPLAY_MODE_BLACK_POIHAND_DISK_DATE || displayMode == DISPLAY_MODE_BLACK_SQUHAND_DISK_DATE || displayMode == DISPLAY_MODE_WHITE_POIHAND_DISK_DATE || displayMode == DISPLAY_MODE_WHITE_SQUHAND_DISK_DATE)
                 {
@@ -383,57 +383,25 @@ namespace DontHurry
                 switch (displayMode)
                 {
 
-                    case DISPLAY_MODE_BLACK_POIHAND_DISK:
-
-                        handType = HAND_TYPE_POINT;
-                        showDate = false;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.Black;
-                        colorDisk = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_BLACK_SQUHAND_DISK:
-
-                        handType = HAND_TYPE_SQUARE;
-                        showDate = false;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.Black;
-                        colorDisk = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_BLACK_POIHAND:
-
-                        handType = HAND_TYPE_POINT;
-                        showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        colorDisk = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_BLACK_SQUHAND:
-
-                        handType = HAND_TYPE_SQUARE;
-                        showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        colorDisk = Color.Black;
-                        UpdateTime(null);
-
-                        break;
 
                     case DISPLAY_MODE_WHITE_POIHAND_DISK:
 
                         handType = HAND_TYPE_POINT;
                         showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.White;
-                        colorDisk = Color.Black;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.Black;
+                        colorDisk = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_WHITE_POIHAND_DISK_DATE:
+
+                        handType = HAND_TYPE_POINT;
+                        showDate = true;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.Black;
+                        colorDisk = Color.White;
                         UpdateTime(null);
 
                         break;
@@ -442,9 +410,20 @@ namespace DontHurry
 
                         handType = HAND_TYPE_SQUARE;
                         showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.White;
-                        colorDisk = Color.Black;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.Black;
+                        colorDisk = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_WHITE_SQUHAND_DISK_DATE:
+
+                        handType = HAND_TYPE_SQUARE;
+                        showDate = true;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.Black;
+                        colorDisk = Color.White;
                         UpdateTime(null);
 
                         break;
@@ -453,6 +432,17 @@ namespace DontHurry
 
                         handType = HAND_TYPE_POINT;
                         showDate = false;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        colorDisk = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_WHITE_POIHAND_DATE:
+
+                        handType = HAND_TYPE_POINT;
+                        showDate = true;
                         colorForeground = Color.Black;
                         colorBackground = Color.White;
                         colorDisk = Color.White;
@@ -471,13 +461,46 @@ namespace DontHurry
 
                         break;
 
+                    case DISPLAY_MODE_WHITE_SQUHAND_DATE:
+
+                        handType = HAND_TYPE_SQUARE;
+                        showDate = true;
+                        colorForeground = Color.Black;
+                        colorBackground = Color.White;
+                        colorDisk = Color.White;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_BLACK_POIHAND_DISK:
+
+                        handType = HAND_TYPE_POINT;
+                        showDate = false;
+                        colorForeground = Color.White;
+                        colorBackground = Color.White;
+                        colorDisk = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
                     case DISPLAY_MODE_BLACK_POIHAND_DISK_DATE:
 
                         handType = HAND_TYPE_POINT;
                         showDate = true;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.Black;
-                        colorDisk = Color.White;
+                        colorForeground = Color.White;
+                        colorBackground = Color.White;
+                        colorDisk = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_BLACK_SQUHAND_DISK:
+
+                        handType = HAND_TYPE_SQUARE;
+                        showDate = false;
+                        colorForeground = Color.White;
+                        colorBackground = Color.White;
+                        colorDisk = Color.Black;
                         UpdateTime(null);
 
                         break;
@@ -486,9 +509,20 @@ namespace DontHurry
 
                         handType = HAND_TYPE_SQUARE;
                         showDate = true;
-                        colorForeground = Color.Black;
+                        colorForeground = Color.White;
+                        colorBackground = Color.White;
+                        colorDisk = Color.Black;
+                        UpdateTime(null);
+
+                        break;
+
+                    case DISPLAY_MODE_BLACK_POIHAND:
+
+                        handType = HAND_TYPE_POINT;
+                        showDate = false;
+                        colorForeground = Color.White;
                         colorBackground = Color.Black;
-                        colorDisk = Color.White;
+                        colorDisk = Color.Black;
                         UpdateTime(null);
 
                         break;
@@ -504,10 +538,10 @@ namespace DontHurry
 
                         break;
 
-                    case DISPLAY_MODE_BLACK_SQUHAND_DATE:
+                    case DISPLAY_MODE_BLACK_SQUHAND:
 
                         handType = HAND_TYPE_SQUARE;
-                        showDate = true;
+                        showDate = false;
                         colorForeground = Color.White;
                         colorBackground = Color.Black;
                         colorDisk = Color.Black;
@@ -515,46 +549,13 @@ namespace DontHurry
 
                         break;
 
-                    case DISPLAY_MODE_WHITE_POIHAND_DISK_DATE:
-
-                        handType = HAND_TYPE_POINT;
-                        showDate = true;
-                        colorForeground = Color.White;
-                        colorBackground = Color.White;
-                        colorDisk = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE_SQUHAND_DISK_DATE:
+                    case DISPLAY_MODE_BLACK_SQUHAND_DATE:
 
                         handType = HAND_TYPE_SQUARE;
                         showDate = true;
                         colorForeground = Color.White;
-                        colorBackground = Color.White;
+                        colorBackground = Color.Black;
                         colorDisk = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE_POIHAND_DATE:
-
-                        handType = HAND_TYPE_POINT;
-                        showDate = true;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        colorDisk = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE_SQUHAND_DATE:
-
-                        handType = HAND_TYPE_SQUARE;
-                        showDate = true;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        colorDisk = Color.White;
                         UpdateTime(null);
 
                         break;
