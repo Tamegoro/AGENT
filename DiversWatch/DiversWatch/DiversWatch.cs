@@ -256,8 +256,8 @@ namespace DiversWatch
                 {
                     if (showDigital == false)
                     {
-                        degreeBezel += 30;
-                        degreeBezel = degreeBezel % 360;
+                        degreeBezel -= 30;
+                        degreeBezel = (degreeBezel + 360) % 360;
                         degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                         if (degreeBezel == degreeM)
                         {
@@ -293,8 +293,8 @@ namespace DiversWatch
                 {
                     if (showDigital == false)
                     {
-                        degreeBezel += 6;
-                        degreeBezel = degreeBezel % 360;
+                        degreeBezel -= 6;
+                        degreeBezel = (degreeBezel + 360) % 360;
                         degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                         if (degreeBezel == degreeM)
                         {
