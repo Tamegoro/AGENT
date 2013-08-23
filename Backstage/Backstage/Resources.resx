@@ -121,9 +121,6 @@
   <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="smalNumberBold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\smalNumberBold.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>

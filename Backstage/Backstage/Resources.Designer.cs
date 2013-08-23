@@ -32,7 +32,6 @@ namespace Backstage
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
-            smalNumberBold = -28878,
             NinaB = 18060,
             _7barPBd24 = 31671,
         }
