@@ -144,10 +144,6 @@ namespace SimplePart03
 
                     _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, 0, lengthHand);
 
-                    //_azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, screenCenterX - (MARGIN_DISK_EDGE + LENGTH_HOUR_HAND + LENGTH_MINUTE_HAND + LENGTH_SECOND_HAND), LENGTH_SECOND_HAND);
-
-                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-
                 }
 
 
