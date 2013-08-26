@@ -187,14 +187,12 @@ namespace CircleSquareTriangle
                     }
                     else
                     {
-                        _point = _azmdrawing.FindPointDegreeDistance((360 - ((30 * i) + degreeM)) % 360, screenCenterX, screenCenterY, DISTANCE_TRIANGLE + MARGIN_TRIANGLE_SQUARE + (THICKNESS_SQUARE / 2) + 3);
-                        _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, RADIUS_DOT, RADIUS_DOT, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        _point = _azmdrawing.FindPointDegreeDistance((360 - ((30 * i) + degreeM)) % 360, screenCenterX, screenCenterY, DISTANCE_TRIANGLE + MARGIN_TRIANGLE_SQUARE + (THICKNESS_SQUARE / 2) + 4);
+                        //_display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 1, 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        _azmdrawing.DrawAngledLine(_display, colorBackground, 2, 0, _point.X, _point.Y, 0, 1);
                     }
                 
                 }
-
-
-
 
                 _corner0 = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, DISTANCE_TRIANGLE);
                 _corner1 = _azmdrawing.FindPointDegreeDistance((degreeS + 360 + 120) % 360, screenCenterX, screenCenterY, DISTANCE_TRIANGLE);
