@@ -54,23 +54,24 @@ namespace WindowedHands
 
         const int SHOW_DIGITAL_SECOND = 10;
 
-        const int LENGTH_HOUR_HAND_ROU = 38;
+        const int LENGTH_HOUR_HAND_ROU = 36;
         const int LENGTH_HOUR_HAND_TAIL_ROU = 0;
         const int THICKNESS_HOUR_HAND_ROU = 5;
         const int LENGTH_MINUTE_HAND_ROU = 50;
         const int LENGTH_MINUTE_HAND_TAIL_ROU = 0;
         const int THICKNESS_MINUTE_HAND_ROU = 5;
-        const int LENGTH_HOUR_HAND_SQU = 43;
+        const int LENGTH_HOUR_HAND_SQU = 42;
         const int LENGTH_HOUR_HAND_TAIL_SQU = 3;
         const int THICKNESS_HOUR_HAND_SQU = 6;
-        const int LENGTH_MINUTE_HAND_SQU = 55;
+        const int LENGTH_MINUTE_HAND_SQU = 56;
         const int LENGTH_MINUTE_HAND_TAIL_SQU = 3;
         const int THICKNESS_MINUTE_HAND_SQU = 6;
 
         const int RADIUS_PIN = 3;
 
         const int MARGIN_DISK_EDGE = 3;
-        const int MARGIN_CENTER_NUMBER = 35;
+        const int MARGIN_CENTER_HOUR = 34;
+        const int MARGIN_CENTER_MINUTE = 47;
 
         const int MAX_DISPLAY_MODE = 7;
 
@@ -165,9 +166,13 @@ namespace WindowedHands
                         _point1 = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL_ROU);
                         _display.DrawLine(colorForeground, THICKNESS_HOUR_HAND_ROU, _point0.X, _point0.Y, _point1.X, _point1.Y);
 
+                        DrawHourNumber(_display);
+
                         _point0 = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_ROU);
                         _point1 = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL_ROU);
                         _display.DrawLine(colorForeground, THICKNESS_MINUTE_HAND_ROU, _point0.X, _point0.Y, _point1.X, _point1.Y);
+
+                        DrawMinuteNumber(_display);
 
                         break;
 
@@ -176,8 +181,12 @@ namespace WindowedHands
                         _point0 = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL_SQU);
                         _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND_SQU, degreeH, _point0.X, _point0.Y, 0, LENGTH_HOUR_HAND_SQU + LENGTH_HOUR_HAND_TAIL_SQU);
 
+                        DrawHourNumber(_display);
+
                         _point0 = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL_SQU);
                         _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND_SQU, degreeM, _point0.X, _point0.Y, 0, LENGTH_MINUTE_HAND_SQU + LENGTH_MINUTE_HAND_TAIL_SQU);
+
+                        DrawMinuteNumber(_display);
 
                         break;
 
@@ -185,36 +194,67 @@ namespace WindowedHands
 
                 if (displayMode == DISPLAY_MODE_BLACK_ROUHAND_DISK || displayMode == DISPLAY_MODE_BLACK_SQUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_ROUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_SQUHAND_DISK)
                 {
-
                     _display.DrawEllipse(colorDisk, 1, screenCenterX, screenCenterY, RADIUS_PIN, RADIUS_PIN, colorDisk, 0, 0, colorDisk, 0, 0, 0);
-                    
-                    for (int i = 1; i <= 12; i++)
-                    {
-                        _azmdrawing.DrawStringByDegreeDistance(_display, colorDisk, fontsmall, i.ToString(), 30 * i, MARGIN_CENTER_NUMBER);
-                    }
-
                 }
                 else
                 {
-
                     _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_PIN, RADIUS_PIN, colorBackground, 0, 0, colorBackground, 0, 0, 0);
-
-                    for (int i = 1; i <= 12; i++)
-                    {
-                        _azmdrawing.DrawStringByDegreeDistance(_display, colorBackground, fontsmall, i.ToString(), 30 * i, MARGIN_CENTER_NUMBER);
-                    }
-
                 }
-
-
 
                 _display.Flush();
 
             }
 
+        }
+
+        private static void DrawHourNumber(Bitmap screen)
+        {
+
+            if (displayMode == DISPLAY_MODE_BLACK_ROUHAND_DISK || displayMode == DISPLAY_MODE_BLACK_SQUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_ROUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_SQUHAND_DISK)
+            {
+
+                for (int i = 1; i <= 12; i++)
+                {
+                    _azmdrawing.DrawStringByDegreeDistance(_display, colorDisk, fontsmall, i.ToString(), 30 * i, MARGIN_CENTER_HOUR);
+                }
+
+            }
+            else
+            {
+
+                for (int i = 1; i <= 12; i++)
+                {
+                    _azmdrawing.DrawStringByDegreeDistance(_display, colorBackground, fontsmall, i.ToString(), 30 * i, MARGIN_CENTER_HOUR);
+                }
+
+            }
 
         }
 
+        private static void DrawMinuteNumber(Bitmap screen)
+        {
+
+            if (displayMode == DISPLAY_MODE_BLACK_ROUHAND_DISK || displayMode == DISPLAY_MODE_BLACK_SQUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_ROUHAND_DISK || displayMode == DISPLAY_MODE_WHITE_SQUHAND_DISK)
+            {
+
+                for (int i = 0; i < 12; i++)
+                {
+                    _azmdrawing.DrawStringByDegreeDistance(_display, colorDisk, fontsmall, (5 * i).ToString("D2"), 30 * i, MARGIN_CENTER_MINUTE);
+                }
+
+            }
+            else
+            {
+
+                for (int i = 0; i < 12; i++)
+                {
+                    _azmdrawing.DrawStringByDegreeDistance(_display, colorBackground, fontsmall, (5 * i).ToString("D2"), 30 * i, MARGIN_CENTER_MINUTE);
+                }
+
+            }
+
+        }
+        
         private static void Current_OnButtonPress(Buttons button, Microsoft.SPOT.Hardware.InterruptPort port, ButtonDirection direction, DateTime time)
         {
 
