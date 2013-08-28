@@ -62,10 +62,10 @@ namespace WindowedHands
         const int THICKNESS_MINUTE_HAND_ROU = 5;
         const int LENGTH_HOUR_HAND_SQU = 42;
         const int LENGTH_HOUR_HAND_TAIL_SQU = 3;
-        const int THICKNESS_HOUR_HAND_SQU = 6;
+        const int THICKNESS_HOUR_HAND_SQU = 7;
         const int LENGTH_MINUTE_HAND_SQU = 56;
         const int LENGTH_MINUTE_HAND_TAIL_SQU = 3;
-        const int THICKNESS_MINUTE_HAND_SQU = 6;
+        const int THICKNESS_MINUTE_HAND_SQU = 7;
 
         const int RADIUS_PIN = 3;
 
