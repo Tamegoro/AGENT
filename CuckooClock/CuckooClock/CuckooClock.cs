@@ -67,10 +67,10 @@ namespace CuckooClock
         const int SHOW_DIGITAL_SECOND = 10;
 
         const int LENGTH_HOUR_HAND = 20;
-        const int LENGTH_HOUR_HAND_TAIL = 10;
+        const int LENGTH_HOUR_HAND_TAIL = 5;
         const int THICKNESS_HOUR_HAND = 4;
         const int LENGTH_MINUTE_HAND = 27;
-        const int LENGTH_MINUTE_HAND_TAIL = 10;
+        const int LENGTH_MINUTE_HAND_TAIL = 5;
         const int THICKNESS_MINUTE_HAND = 4;
 
         const int DISK_RADIUS = 63;
@@ -285,11 +285,22 @@ namespace CuckooClock
 
             _display.DrawEllipse(colorForeground, 1, diskCenterX, diskCenterY, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER - MARGIN_DISK_RIM - 1, diskRadius - MARGIN_DISK_RIM - MARGIN_DISK_NUMBER - MARGIN_DISK_RIM - 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-            _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_HOUR_HAND, degreeH, diskCenterX, diskCenterY, 0, LENGTH_HOUR_HAND, handType);
-            _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_HOUR_HAND, (degreeH + 180) % 360, diskCenterX, diskCenterY, 0, LENGTH_HOUR_HAND_TAIL, handType);
+            if (handType == HAND_TYPE_RECT)
+            {
+                _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, diskCenterX, diskCenterY, LENGTH_HOUR_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, handType);
 
-            _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_MINUTE_HAND, degreeM, diskCenterX, diskCenterY, 0, LENGTH_MINUTE_HAND, handType);
-            _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_MINUTE_HAND, (degreeM + 180) % 360, diskCenterX, diskCenterY, 0, LENGTH_MINUTE_HAND_TAIL, handType);
+                _point = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, diskCenterX, diskCenterY, LENGTH_MINUTE_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, handType);
+            }
+            else
+            {
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_HOUR_HAND, degreeH, diskCenterX, diskCenterY, 0, LENGTH_HOUR_HAND, handType);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_HOUR_HAND, (degreeH + 180) % 360, diskCenterX, diskCenterY, 0, LENGTH_HOUR_HAND_TAIL, handType);
+
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_MINUTE_HAND, degreeM, diskCenterX, diskCenterY, 0, LENGTH_MINUTE_HAND, handType);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THICKNESS_MINUTE_HAND, (degreeM + 180) % 360, diskCenterX, diskCenterY, 0, LENGTH_MINUTE_HAND_TAIL, handType);
+            }
 
             _display.DrawEllipse(colorForeground, 1, diskCenterX, diskCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
             //_display.DrawEllipse(colorForeground, 1, diskCenterX, diskCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
@@ -484,6 +495,7 @@ namespace CuckooClock
                 }
                 else if (cuckooCounter == 10)
                 {
+                    Agent.Contrib.Hardware.Viberate.ViberateProvider.Current.Viberate(1);
                     cuckooFrame--;
                 }
                 else if (12 < cuckooCounter && 0 <= cuckooFrame)

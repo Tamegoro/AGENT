@@ -374,6 +374,7 @@ namespace SG1
                 {
                     lockCounter = 1;
                     ++hourCounter;
+                    Agent.Contrib.Hardware.Viberate.ViberateProvider.Current.Viberate(1);
                 }
 
                 _display.Flush();
