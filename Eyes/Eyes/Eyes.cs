@@ -17,6 +17,8 @@ namespace Eyes
         static Timer _updateClockTimer;
 
         static DateTime currentTime;
+        static TimeSpan dueTime;
+        static TimeSpan period;
 
         static AZMDrawing _azmdrawing;
         static AGENT.AZMutil.Point _point;
@@ -70,6 +72,8 @@ namespace Eyes
 
             _display = new Bitmap(Bitmap.MaxWidth, Bitmap.MaxHeight);
 
+            currentTime = new DateTime();
+
             _azmdrawing = new AZMDrawing();
             _point = new AGENT.AZMutil.Point();
 
@@ -79,8 +83,11 @@ namespace Eyes
 
             UpdateTime(null);
 
-            TimeSpan dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond); // start timer at beginning of next minute
-            TimeSpan period = new TimeSpan(0, 0, 1, 0, 0); // update time every minute
+            currentTime = DateTime.Now;
+
+            dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond);
+            period = new TimeSpan(0, 0, 1, 0, 0);
+
             _updateClockTimer = new Timer(UpdateTime, null, dueTime, period); // start our update timer
 
             ButtonHelper.Current.OnButtonPress += Current_OnButtonPress;
