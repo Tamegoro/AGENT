@@ -33,8 +33,6 @@ namespace SG1
         static Font fontAncientGModern24 = Resources.GetFont(Resources.FontResources.AncientGModern24);
         static Font font7barPBd24 = Resources.GetFont(Resources.FontResources._7barPBd24);
 
-        static Font fontMinute;
-
         static Color colorForeground;
         static Color colorBackground;
 
@@ -76,10 +74,10 @@ namespace SG1
 
         const int HOLE_RADIUS = 43;
 
-        const int ROUND_INTERVAL = 200;
-        const int ROUND_DEGREE = 30;
-        const int LOCK_INTERVAL_BEFORE = 8;
-        const int LOCK_INTERVAL_AFTER = 4;
+        const int ROUND_INTERVAL = 100;
+        const int ROUND_DEGREE = 20;
+        const int LOCK_INTERVAL_BEFORE = 15;
+        const int LOCK_INTERVAL_AFTER = 7;
 
         public static void Main()
         {
@@ -104,7 +102,6 @@ namespace SG1
             colorBackground = Color.Black;
 
             fontType = FONT_ANCIENT;
-            fontMinute = fontAncientGModern24;
 
             showDigital = false;
             showAnimation = false;
@@ -119,7 +116,7 @@ namespace SG1
             UpdateTime(null);
 
             dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
-            period = new TimeSpan(0, 0, 0, 1, 0);
+            period = new TimeSpan(0, 0, 1, 0, 0);
 
             dueTimeDigital = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
             periodDigital = new TimeSpan(0, 0, 0, 1, 0);
@@ -180,7 +177,14 @@ namespace SG1
 
                 }
 
-                _azmdrawing.DrawStringAligned(_display, colorForeground, fontMinute, currentTime.Minute.ToString("D2"), AZMDrawing.ALIGN_CENTER, 0, AZMDrawing.VALIGN_MIDDLE, 0);
+                if (fontType == FONT_ANCIENT)
+                {
+                    _azmdrawing.DrawStringCentered(_display, colorForeground, fontAncientGModern24, screenCenterX, screenCenterY, currentTime.Minute.ToString("D2"));
+                }
+                else if (fontType == FONT_ARABIC)
+                {
+                    _azmdrawing.DrawStringCentered(_display, colorForeground, font7barPBd24, screenCenterX, screenCenterY + 3, currentTime.Minute.ToString("D2"));
+                }
 
                 _display.Flush();
 
@@ -251,15 +255,24 @@ namespace SG1
                         if (fontType == FONT_ANCIENT)
                         {
                             fontType = FONT_ARABIC;
-                            fontMinute = font7barPBd24;
                         }
                         else
                         {
                             fontType = FONT_ANCIENT;
-                            fontMinute = fontAncientGModern24;
                         }
 
-                        UpdateTime(null);
+                        _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS - 1, HOLE_RADIUS - 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                        if (fontType == FONT_ANCIENT)
+                        {
+                            _azmdrawing.DrawStringCentered(_display, colorForeground, fontAncientGModern24, screenCenterX, screenCenterY, currentTime.Minute.ToString("D2"));
+                        }
+                        else if (fontType == FONT_ARABIC)
+                        {
+                            _azmdrawing.DrawStringCentered(_display, colorForeground, font7barPBd24, screenCenterX, screenCenterY + 3, currentTime.Minute.ToString("D2"));
+                        }
+
+                        _display.Flush();
 
                     }
                 }
