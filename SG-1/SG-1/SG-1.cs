@@ -76,7 +76,8 @@ namespace SG1
         const int CHEVRON_LENGTH = 11;
         const int CHEVRON_THICKNESS = 6;
 
-        const int HOLE_RADIUS = 43;
+        const int HOLE_RADIUS = 40;
+        const int HOLE_RIM_THICKNESS = 2;
 
         const int ROUND_INTERVAL = 100;
         const int ROUND_DEGREE = 20;
@@ -238,8 +239,10 @@ namespace SG1
             }
 
             _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE, screenCenterY - MARGIN_RIM_EDGE, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-
-            _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+            for (int i = 0; i <= HOLE_RIM_THICKNESS; i++)
+            {
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + i, HOLE_RADIUS + i, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+            }
 
         }
 
