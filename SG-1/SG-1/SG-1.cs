@@ -115,8 +115,8 @@ namespace SG1
 
             UpdateTime(null);
 
-            dueTime = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
-            period = new TimeSpan(0, 0, 1, 0, 0);
+            TimeSpan dueTime = new TimeSpan(0, 0, 0, 59 - currentTime.Second, 1000 - currentTime.Millisecond);
+            TimeSpan period = new TimeSpan(0, 0, 1, 0, 0);
 
             dueTimeDigital = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
             periodDigital = new TimeSpan(0, 0, 0, 1, 0);
