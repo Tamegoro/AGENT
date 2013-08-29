@@ -40,6 +40,7 @@ namespace SG1
         static AGENT.AZMutil.Point _point;
 
         static int oldH = 0;
+        static int roundDirection = ROUND_RIGHT;
 
 
         static int screenWidth = 0;
@@ -66,6 +67,9 @@ namespace SG1
 
         const int SHOW_DIGITAL_SECOND = 10;
 
+        const int ROUND_RIGHT = 0;
+        const int ROUND_LEFT = 1;
+
         const int MARGIN_RIM_EDGE = 3;
         const int RIM_THICKNESS = 4;
 
@@ -78,6 +82,7 @@ namespace SG1
         const int ROUND_DEGREE = 20;
         const int LOCK_INTERVAL_BEFORE = 15;
         const int LOCK_INTERVAL_AFTER = 7;
+
 
         public static void Main()
         {
@@ -107,6 +112,7 @@ namespace SG1
             showAnimation = false;
 
             degreeGateRing = 0;
+            roundDirection = ROUND_RIGHT;
 
             currentTime = new DateTime();
             currentTime = DateTime.Now;
@@ -145,13 +151,13 @@ namespace SG1
             if (oldH != currentTime.Hour)
             {
 
+                oldH = currentTime.Hour;
+
                 showAnimation = true;
                 hourCounter = -1;
                 lockCounter = 0;
                 UpdateTimeAnimation(null);
                 _updateClockTimerAnimation = new Timer(UpdateTimeAnimation, null, dueTimeAnimation, periodAnimation);
-
-                oldH = currentTime.Hour;
 
             }
             else if (showDigital == false && showAnimation == false)
@@ -341,7 +347,7 @@ namespace SG1
             if (lockCounter == 0)
             {
 
-                if (hourCounter % 2 != 0)
+                if (roundDirection == ROUND_RIGHT)
                 {
                     degreeGateRing += ROUND_DEGREE;
                 }
@@ -400,6 +406,16 @@ namespace SG1
             }
             else if (LOCK_INTERVAL_BEFORE + LOCK_INTERVAL_AFTER <= lockCounter)
             {
+
+                if (roundDirection == ROUND_RIGHT)
+                {
+                    roundDirection = ROUND_LEFT;
+                }
+                else
+                {
+                    roundDirection = ROUND_RIGHT;
+                }
+
                 lockCounter = 0;
 
                 if (currentTime.Hour % 12 <= hourCounter)
