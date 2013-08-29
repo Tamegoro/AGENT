@@ -350,6 +350,8 @@ namespace SG1
                     degreeGateRing -= ROUND_DEGREE;
                 }
 
+                degreeGateRing = (degreeGateRing + 360) % 360;
+
                 DrawStarGate();
 
                 for (int i = 0; i <= hourCounter % 12; i++)
@@ -370,7 +372,7 @@ namespace SG1
 
                 }
 
-                if (degreeGateRing == 0 || degreeGateRing == 180)
+                if (degreeGateRing <= 0 || 180 <= degreeGateRing)
                 {
                     lockCounter = 1;
                     ++hourCounter;
