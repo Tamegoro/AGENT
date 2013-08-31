@@ -505,7 +505,15 @@ namespace SG1
                 else
                 {
                     _bmpwork.DrawRectangle(colorForeground, 1, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    _bmpwork.RotateImage((360 - (IRIS_DEGREE * irisCounter)) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+
+                    if (closeIris == false)
+                    {
+                        _bmpwork.RotateImage((360 - (IRIS_DEGREE * irisCounter) + 360) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+                    }
+                    else
+                    {
+                        _bmpwork.RotateImage((IRIS_DEGREE * irisCounter) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+                    }
                     _azmdrawing.DrawImageTransparently(_bmpwork, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
                 }
 
