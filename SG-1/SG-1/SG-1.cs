@@ -72,6 +72,9 @@ namespace SG1
         static int irisCounter = 0;
         static int irisWaitCounter = 0;
 
+        static int irisWidth = 0;
+        static int irisHeight = 0;
+
         static int irisCenterX = 0;
         static int irisCenterY = 0;
 
@@ -102,16 +105,13 @@ namespace SG1
         const int LOCK_INTERVAL_BEFORE = 40;
         const int LOCK_INTERVAL_AFTER = 20;
 
-        const int IRIS_WIDTH = 93;
-        const int IRIS_HEIGHT = 93;
-
         const int IRIS_INTERVAL = 150;
         const int IRIS_WAIT = 10;
         const int IRIS_WAIT2 = 10;
         const int IRIS_DEGREE = 5;
         const int MAX_IRIS_COUNTER = 15;
         const int RADIUS_IRIS_ANIMATION = 3;
-        const int MARGIN_IRIS_WAIT = 3;
+        const int MARGIN_IRIS_WAIT = 4;
 
 
         public static void Main()
@@ -134,10 +134,13 @@ namespace SG1
             gateRingWidth = _innerRing.Width;
             gateRingHeight = _innerRing.Height;
 
-            irisCenterX = IRIS_WIDTH / 2;
-            irisCenterY = IRIS_HEIGHT / 2;
+            irisWidth = _iris.Width;
+            irisHeight = _iris.Height;
 
-            _bmpwork = new Bitmap(IRIS_WIDTH, IRIS_HEIGHT);
+            irisCenterX = irisWidth / 2;
+            irisCenterY = irisHeight / 2;
+
+            _bmpwork = new Bitmap(irisWidth, irisHeight);
 
             colorForeground = Color.White;
             colorBackground = Color.Black;
@@ -273,7 +276,7 @@ namespace SG1
             if (closeIris == true)
             {
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+                _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, irisWidth, irisHeight, colorBackground);
             }
             else
             {
@@ -500,21 +503,23 @@ namespace SG1
 
                 if ((IRIS_DEGREE * irisCounter) % 360 == 0)
                 {
-                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, irisWidth, irisHeight, colorBackground);
                 }
                 else
                 {
-                    _bmpwork.DrawRectangle(colorForeground, 1, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                    _bmpwork.DrawRectangle(colorForeground, 1, 0, 0, irisWidth, irisHeight, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
                     if (closeIris == false)
                     {
-                        _bmpwork.RotateImage((360 - (IRIS_DEGREE * irisCounter) + 360) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+                        _bmpwork.RotateImage((360 - (IRIS_DEGREE * irisCounter) + 360) % 360, 0, 0, _iris, 0, 0, irisWidth, irisHeight, 255);
                     }
                     else
                     {
-                        _bmpwork.RotateImage((IRIS_DEGREE * irisCounter) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+                        _bmpwork.RotateImage((IRIS_DEGREE * irisCounter) % 360, 0, 0, _iris, 0, 0, irisWidth, irisHeight, 255);
                     }
-                    _azmdrawing.DrawImageTransparently(_bmpwork, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+
+                    _azmdrawing.DrawImageTransparently(_bmpwork, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, irisWidth, irisHeight, colorBackground);
+
                 }
 
 
@@ -544,7 +549,7 @@ namespace SG1
                 {
 
                     _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, irisWidth, irisHeight, colorBackground);
 
                     if (closeIris == true)
                     {
@@ -570,9 +575,6 @@ namespace SG1
                         _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + 1, HOLE_RADIUS + 1, colorForeground, 0, 0, colorForeground, 0, 0, 0);
                         _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                         _display.Flush();
-                    }
-                    else
-                    {
                     }
 
                 }
