@@ -66,6 +66,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GateRing.gif" />
+    <None Include="Resources\InnerRing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iris.gif" />
   </ItemGroup>
 </Project>

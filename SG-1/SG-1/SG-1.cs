@@ -14,8 +14,12 @@ namespace SG1
     {
 
         static Bitmap _display;
-        static Bitmap _gateRing;
+        static Bitmap _innerRing;
+        static Bitmap _iris;
 
+        static Bitmap _bmpwork;
+
+        
         static Timer _updateClockTimer;
         static TimeSpan dueTime;
         static TimeSpan period;
@@ -24,9 +28,13 @@ namespace SG1
         static TimeSpan dueTimeDigital;
         static TimeSpan periodDigital;
 
-        static Timer _updateClockTimerAnimation;
-        static TimeSpan dueTimeAnimation;
-        static TimeSpan periodAnimation;
+        static Timer _updateClockTimerDial;
+        static TimeSpan dueTimeDial;
+        static TimeSpan periodDial;
+
+        static Timer _updateClockTimerIris;
+        static TimeSpan dueTimeIris;
+        static TimeSpan periodIris;
 
         static DateTime currentTime;
 
@@ -41,7 +49,6 @@ namespace SG1
 
         static int oldH = 0;
         static int roundDirection = ROUND_RIGHT;
-
 
         static int screenWidth = 0;
         static int screenHeight = 0;
@@ -59,11 +66,16 @@ namespace SG1
         static int hourCounter = 0;
         static int degreeGateRing = 0;
         static int lockCounter = 0;
+        static int dialWaitCounter = 0;
 
-        static int fontType = FONT_ANCIENT;
+        static bool closeIris = false;
+        static int irisCounter = 0;
+        static int irisWaitCounter = 0;
 
-        const int FONT_ANCIENT = 0;
-        const int FONT_ARABIC = 1;
+        static int irisCenterX = 0;
+        static int irisCenterY = 0;
+
+        static bool incomingWormhole = false;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
@@ -71,18 +83,35 @@ namespace SG1
         const int ROUND_LEFT = 1;
 
         const int MARGIN_RIM_EDGE = 3;
-        const int RIM_THICKNESS = 4;
+        const int RIM_THICKNESS = 3;
 
-        const int CHEVRON_LENGTH = 11;
+        const int CHEVRON_LENGTH = 10;
         const int CHEVRON_THICKNESS = 6;
+        const int INNER_CHEVRON_LENGTH = 9;
+        const int INNER_CHEVRON_THICKNESS = 5;
+        const int LOCKED_CHEVRON_LENGTH = 7;
+        const int LOCKED_CHEVRON_THICKNESS = 4;
 
-        const int HOLE_RADIUS = 41;
+        const int HOLE_RADIUS = 46;
         const int HOLE_RIM_THICKNESS = 2;
+        const int MARGIN_HOLE_RIM = 1;
 
-        const int ROUND_INTERVAL = 100;
-        const int ROUND_DEGREE = 20;
-        const int LOCK_INTERVAL_BEFORE = 15;
-        const int LOCK_INTERVAL_AFTER = 7;
+        const int DIAL_INTERVAL = 50;
+        const int DIAL_DEGREE = 20;
+        const int DIAL_WAIT = 30;
+        const int LOCK_INTERVAL_BEFORE = 40;
+        const int LOCK_INTERVAL_AFTER = 20;
+
+        const int IRIS_WIDTH = 93;
+        const int IRIS_HEIGHT = 93;
+
+        const int IRIS_INTERVAL = 150;
+        const int IRIS_WAIT = 10;
+        const int IRIS_WAIT2 = 10;
+        const int IRIS_DEGREE = 5;
+        const int MAX_IRIS_COUNTER = 15;
+        const int RADIUS_IRIS_ANIMATION = 3;
+        const int MARGIN_IRIS_WAIT = 3;
 
 
         public static void Main()
@@ -90,7 +119,8 @@ namespace SG1
 
             _display = new Bitmap(Bitmap.MaxWidth, Bitmap.MaxHeight);
 
-            _gateRing = new Bitmap(Resources.GetBytes(Resources.BinaryResources.GateRing), Bitmap.BitmapImageType.Gif);
+            _innerRing = new Bitmap(Resources.GetBytes(Resources.BinaryResources.InnerRing), Bitmap.BitmapImageType.Gif);
+            _iris = new Bitmap(Resources.GetBytes(Resources.BinaryResources.Iris), Bitmap.BitmapImageType.Gif);
 
             _azmdrawing = new AZMDrawing();
             _point = new AGENT.AZMutil.Point();
@@ -101,19 +131,26 @@ namespace SG1
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            gateRingWidth = _gateRing.Width;
-            gateRingHeight = _gateRing.Height;
+            gateRingWidth = _innerRing.Width;
+            gateRingHeight = _innerRing.Height;
+
+            irisCenterX = IRIS_WIDTH / 2;
+            irisCenterY = IRIS_HEIGHT / 2;
+
+            _bmpwork = new Bitmap(IRIS_WIDTH, IRIS_HEIGHT);
 
             colorForeground = Color.White;
             colorBackground = Color.Black;
-
-            fontType = FONT_ANCIENT;
 
             showDigital = false;
             showAnimation = false;
 
             degreeGateRing = 0;
             roundDirection = ROUND_RIGHT;
+
+            closeIris = false;
+            
+            incomingWormhole = false;
 
             currentTime = new DateTime();
             currentTime = DateTime.Now;
@@ -128,8 +165,11 @@ namespace SG1
             dueTimeDigital = new TimeSpan(0, 0, 0, 0, 1000 - currentTime.Millisecond);
             periodDigital = new TimeSpan(0, 0, 0, 1, 0);
 
-            dueTimeAnimation = new TimeSpan(0, 0, 0, 0, 0);
-            periodAnimation = new TimeSpan(0, 0, 0, 0, ROUND_INTERVAL);
+            dueTimeDial = new TimeSpan(0, 0, 0, 0, 0);
+            periodDial = new TimeSpan(0, 0, 0, 0, DIAL_INTERVAL);
+
+            dueTimeIris = new TimeSpan(0, 0, 0, 0, 0);
+            periodIris = new TimeSpan(0, 0, 0, 0, IRIS_INTERVAL);
 
             _updateClockTimer = new Timer(UpdateTime, null, dueTime, period);
 
@@ -154,11 +194,16 @@ namespace SG1
 
                 oldH = currentTime.Hour;
 
-                showAnimation = true;
-                hourCounter = -1;
-                lockCounter = 0;
-                UpdateTimeAnimation(null);
-                _updateClockTimerAnimation = new Timer(UpdateTimeAnimation, null, dueTimeAnimation, periodAnimation);
+                if (showAnimation == false)
+                {
+                    showAnimation = true;
+                    hourCounter = -1;
+                    lockCounter = 0;
+                    dialWaitCounter = 0;
+                    incomingWormhole = true;
+                    UpdateTimeDial(null);
+                    _updateClockTimerDial = new Timer(UpdateTimeDial, null, dueTimeDial, periodDial);
+                }
 
             }
             else if (showDigital == false && showAnimation == false)
@@ -171,7 +216,7 @@ namespace SG1
 
                     _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS - 1, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, CHEVRON_LENGTH - 2, 5);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, LOCKED_CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, LOCKED_CHEVRON_LENGTH, 5);
 
                 }
 
@@ -180,17 +225,13 @@ namespace SG1
 
                     _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
-                    _azmdrawing.DrawAngledLine(_display, colorBackground, CHEVRON_THICKNESS - 1, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, CHEVRON_LENGTH - 2, 5);
+                    _azmdrawing.DrawAngledLine(_display, colorBackground, INNER_CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, INNER_CHEVRON_LENGTH, 5);
 
                 }
 
-                if (fontType == FONT_ANCIENT)
+                if (closeIris != true)
                 {
                     _azmdrawing.DrawStringCentered(_display, colorForeground, fontAncientGModern24, screenCenterX, screenCenterY, currentTime.Minute.ToString("D2"));
-                }
-                else if (fontType == FONT_ARABIC)
-                {
-                    _azmdrawing.DrawStringCentered(_display, colorForeground, font7barPBd24, screenCenterX, screenCenterY + 3, currentTime.Minute.ToString("D2"));
                 }
 
                 _display.Flush();
@@ -207,42 +248,39 @@ namespace SG1
 
             if (degreeGateRing == 0)
             {
-                _display.DrawImage((screenWidth - gateRingWidth) / 2 + 1, (screenHeight - gateRingHeight) / 2 + 1, _gateRing, 0, 0, gateRingWidth, gateRingHeight);
+                _display.DrawImage((screenWidth - gateRingWidth) / 2 + 1, (screenHeight - gateRingHeight) / 2 + 1, _innerRing, 0, 0, gateRingWidth, gateRingHeight);
             }
             else
             {
-                _display.RotateImage(degreeGateRing, (screenWidth - gateRingWidth) / 2 + 1, (screenHeight - gateRingHeight) / 2 + 1, _gateRing, 0, 0, gateRingWidth, gateRingHeight, 255);
+                _display.RotateImage(degreeGateRing, (screenWidth - gateRingWidth) / 2 + 1, (screenHeight - gateRingHeight) / 2 + 1, _innerRing, 0, 0, gateRingWidth, gateRingHeight, 255);
             }
 
             _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE, screenCenterY - MARGIN_RIM_EDGE, colorForeground, 0, 0, colorForeground, 0, 0, 0);
             _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + RIM_THICKNESS), screenCenterY - (MARGIN_RIM_EDGE + RIM_THICKNESS), colorForeground, 0, 0, colorForeground, 0, 0, 0);
+            _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + 1, HOLE_RADIUS + 1, colorForeground, 0, 0, colorForeground, 0, 0, 0);
 
             for (int i = 0; i < 360; i++)
             {
                 if (i % 3 == 0)
                 {
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, i, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + RIM_THICKNESS + 1), RIM_THICKNESS + 2);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, 1, i, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + RIM_THICKNESS + 1), RIM_THICKNESS + 1);
                 }
             }
 
+            _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1, screenCenterY - MARGIN_RIM_EDGE + 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
             _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_RIM_EDGE + RIM_THICKNESS) - 1, screenCenterY - (MARGIN_RIM_EDGE + RIM_THICKNESS) - 1, colorBackground, 0, 0, colorBackground, 0, 0, 0);
 
-            _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1, screenCenterY - MARGIN_RIM_EDGE + 1, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-            //_display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 2, screenCenterY - MARGIN_RIM_EDGE + 2, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-
-
-            for (int i = 0; i < 12; i++)
+            if (closeIris == true)
             {
-
-                _azmdrawing.DrawAngledLine(_display, colorBackground, 6, (30 * i) + 15, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1, 5);
-
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+            }
+            else
+            {
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorBackground, 0, 0, colorBackground, 0, 0, 255);
             }
 
             _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE, screenCenterY - MARGIN_RIM_EDGE, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-            for (int i = 0; i < HOLE_RIM_THICKNESS; i++)
-            {
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + i, HOLE_RADIUS + i, colorForeground, 0, 0, colorForeground, 0, 0, 0);
-            }
 
         }
 
@@ -261,27 +299,11 @@ namespace SG1
                     else if (showAnimation == false)
                     {
 
-                        if (fontType == FONT_ANCIENT)
-                        {
-                            fontType = FONT_ARABIC;
-                        }
-                        else
-                        {
-                            fontType = FONT_ANCIENT;
-                        }
-
-                        _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS - 1, HOLE_RADIUS - 1, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-
-                        if (fontType == FONT_ANCIENT)
-                        {
-                            _azmdrawing.DrawStringCentered(_display, colorForeground, fontAncientGModern24, screenCenterX, screenCenterY, currentTime.Minute.ToString("D2"));
-                        }
-                        else if (fontType == FONT_ARABIC)
-                        {
-                            _azmdrawing.DrawStringCentered(_display, colorForeground, font7barPBd24, screenCenterX, screenCenterY + 3, currentTime.Minute.ToString("D2"));
-                        }
-
-                        _display.Flush();
+                        showAnimation = true;
+                        irisCounter = 0;
+                        irisWaitCounter = 0;
+                        UpdateTimeIris(null);
+                        _updateClockTimerIris = new Timer(UpdateTimeIris, null, dueTimeIris, periodIris);
 
                     }
                 }
@@ -312,8 +334,10 @@ namespace SG1
                         showAnimation = true;
                         hourCounter = -1;
                         lockCounter = 0;
-                        UpdateTimeAnimation(null);
-                        _updateClockTimerAnimation = new Timer(UpdateTimeAnimation, null, dueTimeAnimation, periodAnimation);
+                        dialWaitCounter = 0;
+                        incomingWormhole = false;
+                        UpdateTimeDial(null);
+                        _updateClockTimerDial = new Timer(UpdateTimeDial, null, dueTimeDial, periodDial);
                     }
                 }
 
@@ -342,21 +366,43 @@ namespace SG1
 
         }
 
-        static void UpdateTimeAnimation(object state)
+        static void UpdateTimeDial(object state)
         {
 
             currentTime = DateTime.Now;
 
-            if (lockCounter == 0)
+            if (dialWaitCounter <= DIAL_WAIT)
+            {
+
+                if (dialWaitCounter == 0)
+                {
+
+                    DrawStarGate();
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
+                        _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
+                        _azmdrawing.DrawAngledLine(_display, colorBackground, INNER_CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, INNER_CHEVRON_LENGTH, 5);
+                    }
+
+                    _display.Flush();
+
+                }
+                
+                ++ dialWaitCounter;
+
+            }
+            else if (lockCounter == 0)
             {
 
                 if (roundDirection == ROUND_RIGHT)
                 {
-                    degreeGateRing += ROUND_DEGREE;
+                    degreeGateRing += DIAL_DEGREE;
                 }
                 else
                 {
-                    degreeGateRing -= ROUND_DEGREE;
+                    degreeGateRing -= DIAL_DEGREE;
                 }
 
                 degreeGateRing = (degreeGateRing + 360) % 360;
@@ -368,7 +414,7 @@ namespace SG1
 
                     _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorBackground, CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
-                    _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS - 1, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, CHEVRON_LENGTH - 2, 5);
+                    _azmdrawing.DrawAngledLine(_display, colorForeground, LOCKED_CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, LOCKED_CHEVRON_LENGTH, 5);
 
                 }
 
@@ -377,7 +423,7 @@ namespace SG1
 
                     _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
-                    _azmdrawing.DrawAngledLine(_display, colorBackground, CHEVRON_THICKNESS - 1, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, CHEVRON_LENGTH - 2, 5);
+                    _azmdrawing.DrawAngledLine(_display, colorBackground, INNER_CHEVRON_THICKNESS, ((30 * i) + 180) % 360, _point.X, _point.Y, 1, INNER_CHEVRON_LENGTH, 5);
 
                 }
 
@@ -399,7 +445,7 @@ namespace SG1
             {
                 _point = _azmdrawing.FindPointDegreeDistance(30 * hourCounter, screenCenterX, screenCenterY, screenCenterX - MARGIN_RIM_EDGE + 1);
                 _azmdrawing.DrawAngledLine(_display, colorBackground, CHEVRON_THICKNESS, ((30 * hourCounter) + 180) % 360, _point.X, _point.Y, 0, CHEVRON_LENGTH, 5);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, CHEVRON_THICKNESS - 1, ((30 * hourCounter) + 180) % 360, _point.X, _point.Y, 1, CHEVRON_LENGTH - 2, 5);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, LOCKED_CHEVRON_THICKNESS, ((30 * hourCounter) + 180) % 360, _point.X, _point.Y, 1, LOCKED_CHEVRON_LENGTH, 5);
                 _display.Flush();
                 ++lockCounter;
             }
@@ -423,10 +469,124 @@ namespace SG1
 
                 if (currentTime.Hour % 12 <= hourCounter)
                 {
+
+                    if (incomingWormhole == true && closeIris == true)
+                    {
+                        irisCounter = 0;
+                        irisWaitCounter = 0;
+                        UpdateTimeIris(null);
+                        _updateClockTimerIris = new Timer(UpdateTimeIris, null, dueTimeIris, periodIris);
+                        _updateClockTimerDial.Dispose();
+                    }
+                    else
+                    {
+                        showAnimation = false;
+                        UpdateTime(null);
+                        _updateClockTimerDial.Dispose();
+                    }
+
+                }
+
+            }
+
+        }
+
+        static void UpdateTimeIris(object state)
+        {
+
+            if (irisCounter < MAX_IRIS_COUNTER)
+            {
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS - 1, HOLE_RADIUS - 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+
+                if ((IRIS_DEGREE * irisCounter) % 360 == 0)
+                {
+                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+                }
+                else
+                {
+                    _bmpwork.DrawRectangle(colorForeground, 1, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 0, 0, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                    _bmpwork.RotateImage((360 - (IRIS_DEGREE * irisCounter)) % 360, 0, 0, _iris, 0, 0, IRIS_WIDTH, IRIS_HEIGHT, 255);
+                    _azmdrawing.DrawImageTransparently(_bmpwork, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+                }
+
+
+                if (closeIris == false)
+                {
+                    _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, (RADIUS_IRIS_ANIMATION * (MAX_IRIS_COUNTER - irisCounter)), (RADIUS_IRIS_ANIMATION * (MAX_IRIS_COUNTER - irisCounter)), colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, (RADIUS_IRIS_ANIMATION * (MAX_IRIS_COUNTER - irisCounter)) , (RADIUS_IRIS_ANIMATION * (MAX_IRIS_COUNTER - irisCounter)), colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                }
+                else
+                {
+                    _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_IRIS_ANIMATION * irisCounter, RADIUS_IRIS_ANIMATION * irisCounter, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_IRIS_ANIMATION * irisCounter , RADIUS_IRIS_ANIMATION * irisCounter, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                }
+
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorBackground, 0, 0, colorBackground, 0, 0, 0);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + 1, HOLE_RADIUS + 1, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+
+                _display.Flush();
+
+                ++irisCounter;
+
+            }
+            else if (MAX_IRIS_COUNTER <= irisCounter)
+            {
+
+                if (irisWaitCounter == 0)
+                {
+
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                    _azmdrawing.DrawImageTransparently(_iris, 0, 0, _display, screenCenterX - irisCenterX, screenCenterY - irisCenterY, IRIS_WIDTH, IRIS_HEIGHT, colorBackground);
+
+                    if (closeIris == true)
+                    {
+                        _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, irisCenterX - MARGIN_IRIS_WAIT, irisCenterX - MARGIN_IRIS_WAIT, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, irisCenterX - MARGIN_IRIS_WAIT, irisCenterX - MARGIN_IRIS_WAIT, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                    }
+                    else
+                    {
+                        closeIris = true;
+                        showAnimation = false;
+                        UpdateTime(null);
+                        _updateClockTimerIris.Dispose();
+                    }
+
+                    _display.Flush();
+
+                }
+                else if (irisWaitCounter == IRIS_WAIT)
+                {
+ 
+                    if (closeIris == true)
+                    {
+                        _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, HOLE_RADIUS + 1, HOLE_RADIUS + 1, colorForeground, 0, 0, colorForeground, 0, 0, 0);
+                        _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, HOLE_RADIUS, HOLE_RADIUS, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        _display.Flush();
+                    }
+                    else
+                    {
+                    }
+
+                }
+                else if (IRIS_WAIT + IRIS_WAIT2 <= irisWaitCounter)
+                {
+
+                    if (closeIris == true)
+                    {
+                        closeIris = false;
+                    }
+                    else
+                    {
+                        closeIris = true;
+                    }
+
                     showAnimation = false;
                     UpdateTime(null);
-                    _updateClockTimerAnimation.Dispose();
+                    _updateClockTimerIris.Dispose();
+
                 }
+
+                ++irisWaitCounter;
 
             }
 

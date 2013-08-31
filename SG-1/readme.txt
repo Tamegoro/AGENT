@@ -1,5 +1,5 @@
 right-up button:
-change font.
+open/close the iris.
  or
 back to watch face from digital mode.
 

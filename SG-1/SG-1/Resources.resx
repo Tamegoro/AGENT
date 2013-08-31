@@ -121,8 +121,11 @@
   <data name="AncientGModern24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AncientGModern24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="GateRing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\GateRing.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="InnerRing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\InnerRing.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="Iris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Iris.gif;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="_7barPBd24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\7barPBd24.tinyfnt;System.Byte[], mscorlib, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null</value>

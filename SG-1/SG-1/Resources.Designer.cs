@@ -36,7 +36,8 @@ namespace SG1
         [System.SerializableAttribute()]
         internal enum BinaryResources : short
         {
-            GateRing = 17224,
+            InnerRing = -27254,
+            Iris = 9698,
         }
         [System.SerializableAttribute()]
         internal enum FontResources : short
