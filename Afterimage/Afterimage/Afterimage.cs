@@ -57,7 +57,7 @@ namespace Afterimage
         const int LENGTH_HOUR_HAND = 45;
         const int THIKNESS_HOUR_HAND = 4;
 
-        const int LENGTH_MINUTE_HAND = 60;
+        const int LENGTH_MINUTE_HAND = 61;
         const int THIKNESS_MINUTE_HAND = 4;
 
         const int LENGTH_SECOND_HAND = 60;
