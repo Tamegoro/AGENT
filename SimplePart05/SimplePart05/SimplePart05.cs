@@ -126,16 +126,16 @@ namespace SimplePart05
                 //_point = _azmdrawing.FindPointDegreeDistance(degreeS, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND));
                 //_azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeS, _point.X, _point.Y, 0, LENGTH_HOUR_HAND, 1);
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeS, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND), LENGTH_HOUR_HAND, 1);
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND) + MOD_HAND_RING, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND), LENGTH_SECOND_HAND, 1);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND) + MOD_HAND_RING, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                _azmdrawing.DrawAngledLine(_display, colorBackground, THIKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING), LENGTH_MINUTE_HAND, 1);
-                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING) + MOD_HAND_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorBackground, THIKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING), LENGTH_MINUTE_HAND, 1);
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING) + MOD_HAND_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_MINUTE_HAND, degreeH, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING + THIKNESS_MINUTE_RING), LENGTH_MINUTE_HAND, 1);
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING + THIKNESS_MINUTE_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING + THIKNESS_MINUTE_RING) + MOD_HAND_RING, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING + THIKNESS_MINUTE_RING), LENGTH_MINUTE_HAND, 1);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING + THIKNESS_MINUTE_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_SECOND_HAND + THIKNESS_SECOND_RING + THIKNESS_MINUTE_RING) + MOD_HAND_RING, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING + THIKNESS_MINUTE_RING + THIKNESS_SECOND_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING + THIKNESS_MINUTE_RING + THIKNESS_SECOND_RING) + MOD_HAND_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_CIRCLE_EDGE + THIKNESS_SECOND_RING + THIKNESS_MINUTE_RING + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING) + MOD_HAND_RING, screenCenterY - (MARGIN_CIRCLE_EDGE + THIKNESS_SECOND_RING + THIKNESS_MINUTE_RING + LENGTH_HOUR_HAND + THIKNESS_HOUR_RING) + MOD_HAND_RING, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
             }
             else
