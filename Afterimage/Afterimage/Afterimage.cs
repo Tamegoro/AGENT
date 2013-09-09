@@ -41,8 +41,10 @@ namespace Afterimage
 
         static int lengthDecrease = 0;
 
-        static int displayMode = DISPLAY_MODE_BLACK;
+        static int displayMode = DISPLAY_MODE_BLACK_FILHAND;
 
+        static int handType = HAND_TYPE_FRAME;
+        
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
@@ -52,13 +54,13 @@ namespace Afterimage
 
         const int SHOW_DECREASE_SECOND = 3;
 
-        const int MAX_DISPLAY_MODE = 1;
+        const int MAX_DISPLAY_MODE = 3;
 
         const int LENGTH_HOUR_HAND = 45;
-        const int THIKNESS_HOUR_HAND = 4;
+        const int THIKNESS_HOUR_HAND = 5;
 
-        const int LENGTH_MINUTE_HAND = 61;
-        const int THIKNESS_MINUTE_HAND = 4;
+        const int LENGTH_MINUTE_HAND = 60;
+        const int THIKNESS_MINUTE_HAND = 5;
 
         const int LENGTH_SECOND_HAND = 60;
         const int THIKNESS_SECOND_HAND = 1;
@@ -71,8 +73,13 @@ namespace Afterimage
         const int MARGIN_DECREASE_X = 10;
         const int MARGIN_DECREASE_Y = 9;
 
-        const int DISPLAY_MODE_BLACK = 0;
-        const int DISPLAY_MODE_WHITE = 1;
+        const int DISPLAY_MODE_BLACK_FILHAND = 0;
+        const int DISPLAY_MODE_BLACK_FRAHAND = 1;
+        const int DISPLAY_MODE_WHITE_FILHAND = 2;
+        const int DISPLAY_MODE_WHITE_FRAHAND = 3;
+
+        const int HAND_TYPE_FILL = 0;
+        const int HAND_TYPE_FRAME = 6;
 
 
         public static void Main()
@@ -88,7 +95,7 @@ namespace Afterimage
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            displayMode = DISPLAY_MODE_BLACK;
+            displayMode = DISPLAY_MODE_BLACK_FILHAND;
             SetDisplayMode();
 
             showDigital = false;
@@ -133,11 +140,14 @@ namespace Afterimage
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, 0, LENGTH_SECOND_HAND);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, 0, LENGTH_SECOND_HAND, handType);
 
                 DrawAfterimage();
+
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, 0, LENGTH_HOUR_HAND, handType);
+
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND, handType);
+
 
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorBackground, 0, 0, colorBackground, 0, 0, 255);
@@ -247,17 +257,36 @@ namespace Afterimage
             {
 
 
-                case DISPLAY_MODE_BLACK:
+                case DISPLAY_MODE_BLACK_FRAHAND:
 
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
+                    handType = HAND_TYPE_FRAME;
 
                     break;
 
-                case DISPLAY_MODE_WHITE:
+                case DISPLAY_MODE_BLACK_FILHAND:
+
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FRAHAND:
 
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FILHAND:
+
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FILL;
+
                     break;
 
 

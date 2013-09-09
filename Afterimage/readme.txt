@@ -10,7 +10,7 @@ back to watch face from digital mode.
 (back to watch face automatically after 10 seconds.)
 
 right-bottom button:
-toggle color.
+next face/color.
  or
 back to watch face from digital mode.
 
