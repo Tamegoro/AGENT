@@ -41,6 +41,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AGENT.AZMutil, Version=1.0.28.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Native" />
@@ -58,10 +62,6 @@
     <None Include="Resources\smallReverse.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AGENT.AZMutil\AGENT.AZMutil\AGENT.AZMutil.csproj">
-      <Project>{56ABB1CF-007B-4531-8157-DBF408ECBBD9}</Project>
-      <Name>AGENT.AZMutil</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\AGENT.Contrib\Agent.Contrib\Agent.Contrib.csproj">
       <Project>{C13C6D79-545D-40EB-9F3C-8746C99C259C}</Project>
       <Name>Agent.Contrib</Name>
