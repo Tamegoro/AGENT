@@ -40,7 +40,9 @@ namespace Gaps
         static int screenCenterX = 0;
         static int screenCenterY = 0;
 
-        static int displayMode = DISPLAY_MODE_BLACK;
+        static int displayMode = DISPLAY_MODE_BLACK_FILHAND;
+
+        static int handType = HAND_TYPE_FILL;
 
         static bool showDial = false;
         static bool showDate = false;
@@ -52,10 +54,10 @@ namespace Gaps
 
         const int LENGTH_HOUR_HAND = 40;
         const int LENGTH_HOUR_HAND_TAIL = 10;
-        const int THICKNESS_HOUR_HAND = 5;
+        const int THICKNESS_HOUR_HAND = 4;
         const int LENGTH_MINUTE_HAND = 50;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int THICKNESS_MINUTE_HAND = 5;
+        const int THICKNESS_MINUTE_HAND = 4;
         const int LENGTH_SECOND_HAND = 50;
         const int LENGTH_SECOND_HAND_TAIL = 10;
         const int THICKNESS_SECOND_HAND = 1;
@@ -69,14 +71,25 @@ namespace Gaps
         const int DATE_HEIGHT = 13;
         const int DATE_MARGIN = 11;
 
-        const int MAX_DISPLAY_MODE = 5;
+        const int MAX_DISPLAY_MODE = 11;
 
-        const int DISPLAY_MODE_BLACK = 0;
-        const int DISPLAY_MODE_BLACK_DIAL = 1;
-        const int DISPLAY_MODE_BLACK_DIAL_DATE = 2;
-        const int DISPLAY_MODE_WHITE = 3;
-        const int DISPLAY_MODE_WHITE_DIAL = 4;
-        const int DISPLAY_MODE_WHITE_DIAL_DATE = 5;
+        const int RADIUS_UPDATE = 50;
+
+        const int HAND_TYPE_FILL = 0;
+        const int HAND_TYPE_FRAME = 6;
+
+        const int DISPLAY_MODE_BLACK_FILHAND = 0;
+        const int DISPLAY_MODE_BLACK_FILHAND_DIAL = 1;
+        const int DISPLAY_MODE_BLACK_FILHAND_DIAL_DATE = 2;
+        const int DISPLAY_MODE_BLACK_FRAHAND = 3;
+        const int DISPLAY_MODE_BLACK_FRAHAND_DIAL = 4;
+        const int DISPLAY_MODE_BLACK_FRAHAND_DIAL_DATE = 5;
+        const int DISPLAY_MODE_WHITE_FILHAND = 6;
+        const int DISPLAY_MODE_WHITE_FILHAND_DIAL = 7;
+        const int DISPLAY_MODE_WHITE_FILHAND_DIAL_DATE = 8;
+        const int DISPLAY_MODE_WHITE_FRAHAND = 9;
+        const int DISPLAY_MODE_WHITE_FRAHAND_DIAL = 10;
+        const int DISPLAY_MODE_WHITE_FRAHAND_DIAL_DATE = 11;
 
 
         public static void Main()
@@ -93,11 +106,8 @@ namespace Gaps
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            displayMode = DISPLAY_MODE_BLACK;
-            showDial = false;
-            showDate = false;
-            colorForeground = Color.White;
-            colorBackground = Color.Black;
+            displayMode = DISPLAY_MODE_BLACK_FILHAND;
+            SetDisplayMode();
 
             showDigital = false;
 
@@ -129,8 +139,6 @@ namespace Gaps
 
             currentTime = DateTime.Now;
 
-            _display.Clear();
-
 
             if (showDigital == false)
             {
@@ -139,33 +147,26 @@ namespace Gaps
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                 degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
-                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_UPDATE, RADIUS_UPDATE, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_HOUR_HAND_TAIL - (LENGTH_GAP / 2));
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_HOUR_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP));
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_HOUR_HAND_TAIL - (LENGTH_GAP / 2), handType);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_HOUR_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP), handType);
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM + 180, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_MINUTE_HAND_TAIL - (LENGTH_GAP / 2));
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_MINUTE_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP));
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_MINUTE_HAND_TAIL - (LENGTH_GAP / 2), handType);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_MINUTE_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP), handType);
                 _point = _azmdrawing.FindPointDegreeDistance(degreeS + 180, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_SECOND_HAND_TAIL - (LENGTH_GAP / 2));
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_SECOND_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP));
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, MARGIN_CENTER_NUMBER + LENGTH_SECOND_HAND_TAIL - (LENGTH_GAP / 2), handType);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, screenCenterX, screenCenterY, MARGIN_CENTER_NUMBER + LENGTH_GAP, LENGTH_SECOND_HAND - (MARGIN_CENTER_NUMBER + LENGTH_GAP), handType);
 
                 _azmdrawing.DrawHourNumbers(_display, colorForeground, fontsmall, MARGIN_CENTER_NUMBER, 5);
 
                 _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
 
-
-                if (showDial == true)
-                {
-                    _azmdrawing.DrawDial(_display, colorForeground, 0, MARGIN_DIAL_EDGE);
-                }
-
-
                 if (showDate == true)
                 {
+                    _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN - DATE_WIDTH - 1, screenCenterY - (DATE_HEIGHT / 2) - 1, DATE_WIDTH + 2, DATE_HEIGHT + 2, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 0);
                     _display.DrawRectangle(colorForeground, 1, screenWidth - DATE_MARGIN - DATE_WIDTH, screenCenterY - (DATE_HEIGHT / 2), DATE_WIDTH, DATE_HEIGHT, 2, 2, colorForeground, 0, 0, colorForeground, 0, 0, 0);
                     _display.DrawText(currentTime.Day.ToString("D2"), fontsmall, colorForeground, screenWidth - DATE_MARGIN - DATE_WIDTH + 4, screenCenterY - (DATE_HEIGHT / 2));
                 }
@@ -209,6 +210,17 @@ namespace Gaps
                     {
                         showDigital = false;
                     }
+
+                    SetDisplayMode();
+
+                    _display.Clear();
+                    _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                    if (showDial == true)
+                    {
+                        _azmdrawing.DrawDial(_display, colorForeground, 0, MARGIN_DIAL_EDGE);
+                    }
+
                 }
                 else if (button == Buttons.MiddleRight)
                 {
@@ -220,6 +232,17 @@ namespace Gaps
                     else
                     {
                         showDigital = false;
+
+                        SetDisplayMode();
+
+                        _display.Clear();
+                        _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+                        if (showDial == true)
+                        {
+                            _azmdrawing.DrawDial(_display, colorForeground, 0, MARGIN_DIAL_EDGE);
+                        }
+
                     }
                 }
                 else if (button == Buttons.BottomRight)
@@ -236,75 +259,153 @@ namespace Gaps
                     {
                         showDigital = false;
                     }
-                }
 
-                switch (displayMode)
-                {
+                    SetDisplayMode();
 
-                    case DISPLAY_MODE_BLACK:
+                    _display.Clear();
+                    _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-                        showDial = false;
-                        showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_BLACK_DIAL:
-
-                        showDial = true;
-                        showDate = false;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_BLACK_DIAL_DATE:
-
-                        showDial = true;
-                        showDate = true;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE:
-
-                        showDial = false;
-                        showDate = false;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE_DIAL:
-
-                        showDial = true;
-                        showDate = false;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_WHITE_DIAL_DATE:
-
-                        showDial = true;
-                        showDate = true;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
+                    if (showDial == true)
+                    {
+                        _azmdrawing.DrawDial(_display, colorForeground, 0, MARGIN_DIAL_EDGE);
+                    }
 
                 }
 
             }
 
+        }
+
+        private static void SetDisplayMode()
+        {
+
+            switch (displayMode)
+            {
+
+                case DISPLAY_MODE_BLACK_FILHAND:
+
+                    showDial = false;
+                    showDate = false;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_BLACK_FILHAND_DIAL:
+
+                    showDial = true;
+                    showDate = false;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_BLACK_FILHAND_DIAL_DATE:
+
+                    showDial = true;
+                    showDate = true;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FILHAND:
+
+                    showDial = false;
+                    showDate = false;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FILHAND_DIAL:
+
+                    showDial = true;
+                    showDate = false;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FILHAND_DIAL_DATE:
+
+                    showDial = true;
+                    showDate = true;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FILL;
+
+                    break;
+
+
+                case DISPLAY_MODE_BLACK_FRAHAND:
+
+                    showDial = false;
+                    showDate = false;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_BLACK_FRAHAND_DIAL:
+
+                    showDial = true;
+                    showDate = false;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_BLACK_FRAHAND_DIAL_DATE:
+
+                    showDial = true;
+                    showDate = true;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FRAHAND:
+
+                    showDial = false;
+                    showDate = false;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FRAHAND_DIAL:
+
+                    showDial = true;
+                    showDate = false;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+                case DISPLAY_MODE_WHITE_FRAHAND_DIAL_DATE:
+
+                    showDial = true;
+                    showDate = true;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+                    handType = HAND_TYPE_FRAME;
+
+                    break;
+
+            }
+
+        
         }
 
 
