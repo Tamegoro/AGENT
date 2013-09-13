@@ -334,7 +334,6 @@ namespace BarbersWallClock
             if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
             {
                 showDigital = false;
-                UpdateTime(null);
                 _updateClockTimerDigital.Dispose();
             }
             else
@@ -360,7 +359,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -371,7 +369,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -382,7 +379,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_SQU;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -393,8 +389,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_SQU;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
-
                     break;
 
                 case DISPLAY_MODE_SQUFACE_POIHAND_BLACK:
@@ -404,7 +398,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -415,7 +408,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -426,7 +418,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_SQU;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -437,7 +428,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_SQU;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -448,7 +438,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -459,7 +448,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -470,7 +458,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_ROU;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -481,7 +468,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_ROU;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -492,7 +478,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -503,7 +488,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_HIDE;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 
@@ -514,7 +498,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_ROU;
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
-                    UpdateTime(null);
 
                     break;
 
@@ -525,7 +508,6 @@ namespace BarbersWallClock
                     dateType = DATE_TYPE_ROU;
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
-                    UpdateTime(null);
 
                     break;
 

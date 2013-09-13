@@ -83,6 +83,8 @@ namespace Ordinaries
         const int DATE_MARGIN_SQU = 24;
         const int DATE_MARGIN_ROU = 21;
 
+        const int RADIUS_UPDATE = 42;
+
         const int FACE_TYPE_SQUARE = 1;
         const int FACE_TYPE_ROUND = 4;
         const int HAND_TYPE_SQUARE = 0;
@@ -143,15 +145,12 @@ namespace Ordinaries
             screenCenterY = screenHeight / 2;
 
             displayMode = DISPLAY_MODE_SQUFACE_SQUHAND_BLACK;
-            faceType = FACE_TYPE_SQUARE;
-            handType = HAND_TYPE_SQUARE;
-            dateType = DATE_TYPE_HIDE;
-            colorForeground = Color.White;
-            colorBackground = Color.Black;
-
+            SetDisplayMode();
+            
             currentTime = new DateTime();
             currentTime = DateTime.Now;
 
+            DrawHourDial();
             UpdateTime(null);
 
             currentTime = DateTime.Now;
@@ -187,11 +186,7 @@ namespace Ordinaries
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                 degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
-                _display.Clear();
-
-                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-
-                _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontNinaB, faceType);
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_UPDATE, RADIUS_UPDATE, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 switch (handType)
                 {
@@ -243,6 +238,17 @@ namespace Ordinaries
             }
         }
 
+        private static void DrawHourDial()
+        {
+
+            _display.Clear();
+
+            _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+            _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontNinaB, faceType);
+        
+        }
+
         private static void Current_OnButtonPress(Buttons button, Microsoft.SPOT.Hardware.InterruptPort port, ButtonDirection direction, DateTime time)
         {
 
@@ -257,11 +263,17 @@ namespace Ordinaries
                         {
                             displayMode = MAX_DISPLAY_MODE;
                         }
+
                     }
                     else
                     {
                         showDigital = false;
                     }
+
+                    SetDisplayMode();
+                    DrawHourDial();
+                    UpdateTime(null);
+
                 }
                 else if (button == Buttons.MiddleRight)
                 {
@@ -274,7 +286,13 @@ namespace Ordinaries
                     }
                     else
                     {
+
                         showDigital = false;
+
+                        SetDisplayMode();
+                        DrawHourDial();
+                        UpdateTime(null);
+
                     }
                 }
                 else if (button == Buttons.BottomRight)
@@ -291,187 +309,10 @@ namespace Ordinaries
                     {
                         showDigital = false;
                     }
-                }
 
-                switch (displayMode)
-                {
-
-                    case DISPLAY_MODE_SQUFACE_SQUHAND_BLACK:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_SQUHAND_WHITE:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_SQUHAND_DATE_BLACK:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_SQU;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_SQUHAND_DATE_WHITE:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_SQU;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_POIHAND_BLACK:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_POIHAND_WHITE:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_POIHAND_DATE_BLACK:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_SQU;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_SQUFACE_POIHAND_DATE_WHITE:
-
-                        faceType = FACE_TYPE_SQUARE;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_SQU;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_SQUHAND_BLACK:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_SQUHAND_WHITE:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_SQUHAND_DATE_BLACK:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_ROU;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_SQUHAND_DATE_WHITE:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_SQUARE;
-                        dateType = DATE_TYPE_ROU;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_POIHAND_BLACK:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_POIHAND_WHITE:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_HIDE;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_POIHAND_DATE_BLACK:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_ROU;
-                        colorForeground = Color.White;
-                        colorBackground = Color.Black;
-                        UpdateTime(null);
-
-                        break;
-
-                    case DISPLAY_MODE_ROUFACE_POIHAND_DATE_WHITE:
-
-                        faceType = FACE_TYPE_ROUND;
-                        handType = HAND_TYPE_POINT;
-                        dateType = DATE_TYPE_ROU;
-                        colorForeground = Color.Black;
-                        colorBackground = Color.White;
-                        UpdateTime(null);
-
-                        break;
-
+                    SetDisplayMode();
+                    DrawHourDial();
+                    UpdateTime(null);
 
                 }
 
@@ -489,7 +330,6 @@ namespace Ordinaries
             if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
             {
                 showDigital = false;
-                UpdateTime(null);
                 _updateClockTimerDigital.Dispose();
             }
             else
@@ -502,6 +342,175 @@ namespace Ordinaries
 
         }
 
+        private static void SetDisplayMode()
+        {
+
+            switch (displayMode)
+            {
+
+                case DISPLAY_MODE_SQUFACE_SQUHAND_BLACK:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_SQUHAND_WHITE:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_SQUHAND_DATE_BLACK:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_SQU;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_SQUHAND_DATE_WHITE:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_SQU;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_POIHAND_BLACK:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_POIHAND_WHITE:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_POIHAND_DATE_BLACK:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_SQU;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_SQUFACE_POIHAND_DATE_WHITE:
+
+                    faceType = FACE_TYPE_SQUARE;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_SQU;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_SQUHAND_BLACK:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_SQUHAND_WHITE:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_SQUHAND_DATE_BLACK:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_ROU;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_SQUHAND_DATE_WHITE:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_SQUARE;
+                    dateType = DATE_TYPE_ROU;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_POIHAND_BLACK:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_POIHAND_WHITE:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_HIDE;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_POIHAND_DATE_BLACK:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_ROU;
+                    colorForeground = Color.White;
+                    colorBackground = Color.Black;
+
+                    break;
+
+                case DISPLAY_MODE_ROUFACE_POIHAND_DATE_WHITE:
+
+                    faceType = FACE_TYPE_ROUND;
+                    handType = HAND_TYPE_POINT;
+                    dateType = DATE_TYPE_ROU;
+                    colorForeground = Color.Black;
+                    colorBackground = Color.White;
+
+                    break;
+
+            }
+        
+        }
 
     }
 }
