@@ -44,7 +44,10 @@ namespace Afterimage
         static int displayMode = DISPLAY_MODE_BLACK_FILHAND;
 
         static int handType = HAND_TYPE_FRAME;
-        
+
+        static int radiusPinOuter = RADIUS_PIN_FILOUTER;
+        static int radiusPinInner = RADIUS_PIN_FILINNER;
+
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
@@ -59,24 +62,26 @@ namespace Afterimage
         const int LENGTH_HOUR_HAND = 45;
         const int THIKNESS_HOUR_HAND = 5;
 
-        const int LENGTH_MINUTE_HAND = 60;
+        const int LENGTH_MINUTE_HAND = 61;
         const int THIKNESS_MINUTE_HAND = 5;
 
         const int LENGTH_SECOND_HAND = 60;
         const int THIKNESS_SECOND_HAND = 1;
 
-        const int RADIUS_PIN_OUTER = 3;
-        const int RADIUS_PIN_INNER = 1;
+        const int RADIUS_PIN_FILOUTER = 3;
+        const int RADIUS_PIN_FRAOUTER = 3;
+        const int RADIUS_PIN_FILINNER = 1;
+        const int RADIUS_PIN_FRAINNER = 2;
 
         const int LENGTH_MAX_DECREASE = 10;
         
         const int MARGIN_DECREASE_X = 10;
         const int MARGIN_DECREASE_Y = 9;
 
-        const int DISPLAY_MODE_BLACK_FILHAND = 0;
-        const int DISPLAY_MODE_BLACK_FRAHAND = 1;
-        const int DISPLAY_MODE_WHITE_FILHAND = 2;
-        const int DISPLAY_MODE_WHITE_FRAHAND = 3;
+        const int DISPLAY_MODE_BLACK_FRAHAND = 0;
+        const int DISPLAY_MODE_BLACK_FILHAND = 1;
+        const int DISPLAY_MODE_WHITE_FRAHAND = 2;
+        const int DISPLAY_MODE_WHITE_FILHAND = 3;
 
         const int HAND_TYPE_FILL = 0;
         const int HAND_TYPE_FRAME = 6;
@@ -95,7 +100,7 @@ namespace Afterimage
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            displayMode = DISPLAY_MODE_BLACK_FILHAND;
+            displayMode = DISPLAY_MODE_BLACK_FRAHAND;
             SetDisplayMode();
 
             showDigital = false;
@@ -149,8 +154,8 @@ namespace Afterimage
                 _azmdrawing.DrawAngledLine(_display, colorForeground, THIKNESS_MINUTE_HAND, degreeM, screenCenterX, screenCenterY, 0, LENGTH_MINUTE_HAND, handType);
 
 
-                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, radiusPinOuter, radiusPinOuter, colorForeground, 0, 0, colorForeground, 0, 0, 255);
+                _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, radiusPinInner, radiusPinInner, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
                 if (0 < showDecreaseCounter)
                 {
@@ -262,6 +267,8 @@ namespace Afterimage
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
                     handType = HAND_TYPE_FRAME;
+                    radiusPinOuter = RADIUS_PIN_FRAOUTER;
+                    radiusPinInner = RADIUS_PIN_FRAINNER;
 
                     break;
 
@@ -270,6 +277,8 @@ namespace Afterimage
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
                     handType = HAND_TYPE_FILL;
+                    radiusPinOuter = RADIUS_PIN_FILOUTER;
+                    radiusPinInner = RADIUS_PIN_FILINNER;
 
                     break;
 
@@ -278,6 +287,8 @@ namespace Afterimage
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
                     handType = HAND_TYPE_FRAME;
+                    radiusPinOuter = RADIUS_PIN_FRAOUTER;
+                    radiusPinInner = RADIUS_PIN_FRAINNER;
 
                     break;
 
@@ -286,6 +297,8 @@ namespace Afterimage
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
                     handType = HAND_TYPE_FILL;
+                    radiusPinOuter = RADIUS_PIN_FILOUTER;
+                    radiusPinInner = RADIUS_PIN_FILINNER;
 
                     break;
 
