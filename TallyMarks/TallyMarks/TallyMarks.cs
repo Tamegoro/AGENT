@@ -102,7 +102,7 @@ namespace TallyMarks
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            topH = (screenHeight - ((HEIGHT_MARK * 5) + (MARGIN_MARK_MARK * 2) + (MARGIN_MARK_LINE * 4) + (THICKNESS_LINE * 2))) / 2 + MOD_TOP;
+            topH = ((screenHeight - ((HEIGHT_MARK * 5) + (MARGIN_MARK_MARK * 2) + (MARGIN_MARK_LINE * 4) + (THICKNESS_LINE * 2))) / 2) - (((screenHeight - ((HEIGHT_MARK * 5) + (MARGIN_MARK_MARK * 2) + (MARGIN_MARK_LINE * 4) + (THICKNESS_LINE * 2))) / 2) % 2);
 
             topLine1 = topH + ((HEIGHT_MARK * 1) + (MARGIN_MARK_MARK * 0) + (MARGIN_MARK_LINE * 1) + (THICKNESS_LINE * 0));
             
