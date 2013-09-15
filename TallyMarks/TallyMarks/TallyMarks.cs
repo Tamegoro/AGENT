@@ -306,9 +306,9 @@ namespace TallyMarks
                     if (showDigital == false)
                     {
                         --displayMode;
-                        if (displayMode > MAX_DISPLAY_MODE)
+                        if (displayMode < 0)
                         {
-                            displayMode = 0;
+                            displayMode = MAX_DISPLAY_MODE;
                         }
                     }
                     else
