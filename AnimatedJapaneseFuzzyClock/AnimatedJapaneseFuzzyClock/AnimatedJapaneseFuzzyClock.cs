@@ -38,6 +38,10 @@ namespace AnimatedJapaneseFuzzyClock
 
         static AZMDrawing _azmdrawing;
 
+        static Random _random;
+
+        static int fluctuation = 0;
+
         static int screenWidth = 0;
         static int screenHeight = 0;
 
@@ -60,6 +64,8 @@ namespace AnimatedJapaneseFuzzyClock
 
         static bool showDigital = false;
         static int showDigitalCounter = 0;
+
+        const int MAX_FLUCTUATION = 2;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
@@ -114,16 +120,12 @@ namespace AnimatedJapaneseFuzzyClock
         const string MESSAGE_06_02 = "ちょい";
         const string MESSAGE_06_03 = "過ぎ";
 
-        const string MESSAGE_07_01 = "そろそろ";
-        const string MESSAGE_07_02 = "時";
-        const string MESSAGE_07_03 = "四十五分";
+        const string MESSAGE_07_01 = "時";
+        const string MESSAGE_07_02 = "四十五分";
+        const string MESSAGE_07_03 = "くらい";
 
-        const string MESSAGE_08_01 = "時";
-        const string MESSAGE_08_02 = "四十五分";
-        const string MESSAGE_08_03 = "くらい";
-
-        const string MESSAGE_09_01 = "そろそろ";
-        const string MESSAGE_09_02 = "時";
+        const string MESSAGE_08_01 = "そろそろ";
+        const string MESSAGE_08_02 = "時";
 
 
         public static void Main()
@@ -154,6 +156,11 @@ namespace AnimatedJapaneseFuzzyClock
             dueTimeAnimation = new TimeSpan(0, 0, 0, 0, 0);
             periodAnimation = new TimeSpan(0, 0, 0, 0, ANIMATION_INTERVAL);
 
+            _random = new Random(currentTime.Millisecond);
+
+            fluctuation = _random.Next(MAX_FLUCTUATION * 2);
+            fluctuation = fluctuation - MAX_FLUCTUATION;
+
             oldMessageNumber = 0;
             UpdateTime(null);
 
@@ -174,6 +181,7 @@ namespace AnimatedJapaneseFuzzyClock
         {
 
             currentTime = DateTime.Now;
+            currentTime = currentTime.AddMinutes(fluctuation);
 
             //if (showAnimation == false && showDigital == false)
             //{
@@ -201,7 +209,7 @@ namespace AnimatedJapaneseFuzzyClock
             {
                 messageNumber = 14;
             }
-            else if (hour == 0 && minute < 5)
+            else if (hour == 0 && minute <= 5)
             {
                 messageNumber = 15;
             }
@@ -209,53 +217,52 @@ namespace AnimatedJapaneseFuzzyClock
             {
                 messageNumber = 15;
             }
-            else if (minute < 5)
+            else if (minute <= 5)
             {
                 messageNumber = 1;
             }
-            else if (minute >= 5 && minute < 13)
+            else if (6 <= minute && minute <= 9)
             {
                 messageNumber = 2;
             }
-            else if (minute >= 13 && minute < 18)
+            else if (10 <= minute && minute <= 20)
             {
                 messageNumber = 3;
             }
-            else if (minute >= 18 && minute < 23)
+            else if (21 <= minute && minute <= 24)
             {
                 messageNumber = 4;
             }
-            else if (minute >= 23 && minute < 33)
+            else if (25 <= minute && minute <= 35)
             {
                 messageNumber = 5;
             }
-            else if (minute >= 33 && minute < 38)
+            else if (36 <= minute && minute <= 39)
             {
                 messageNumber = 6;
             }
-            else if (minute >= 38 && minute < 43)
+            else if (40 <= minute && minute <= 50)
             {
                 messageNumber = 7;
             }
-            else if (minute >= 43 && minute < 48)
+            else if (51 <= minute && minute <= 54)
             {
                 messageNumber = 8;
-            }
-            else if (minute >= 48 && minute < 55)
-            {
-                messageNumber = 9;
                 hourString = HourToString((hour + 1) % 12);
             }
             else if (minute >= 55)
             {
-                messageNumber = 10;
+                messageNumber = 9;
                 hourString = HourToString((hour + 1) % 12);
             }
 
-            if (messageNumber != oldMessageNumber)
+            if (oldMessageNumber == 0 || oldMessageNumber != messageNumber && ((oldMessageNumber <= 9 && oldMessageNumber < messageNumber) || (9 != oldMessageNumber && messageNumber != 1) || (11 <= oldMessageNumber && messageNumber == 1) || (oldMessageNumber == 13 && messageNumber == 11) || (oldMessageNumber == 15 && messageNumber == 2)))
             {
 
                 oldMessageNumber = messageNumber;
+
+                fluctuation = _random.Next(MAX_FLUCTUATION * 2);
+                fluctuation = fluctuation - MAX_FLUCTUATION;
 
                 switch (messageNumber)
                 {
@@ -317,32 +324,23 @@ namespace AnimatedJapaneseFuzzyClock
                     case 7:
 
                         lineNumbers = 3;
-                        line1String = MESSAGE_07_01;
-                        line2String = hourString + MESSAGE_07_02;
+                        line1String = hourString + MESSAGE_07_01;
+                        line2String = MESSAGE_07_02;
                         line3String = MESSAGE_07_03;
 
                         break;
 
                     case 8:
 
-                        lineNumbers = 3;
-                        line1String = hourString + MESSAGE_08_01;
-                        line2String = MESSAGE_08_02;
-                        line3String = MESSAGE_08_03;
-
-                        break;
-
-                    case 9:
-
                         lineNumbers = 2;
                         hourString = HourToString((hour + 1) % 12);
-                        line1String = MESSAGE_09_01;
-                        line2String = hourString + MESSAGE_09_02;
+                        line1String = MESSAGE_08_01;
+                        line2String = hourString + MESSAGE_08_02;
                         line3String = "";
 
                         break;
 
-                    case 10:
+                    case 9:
 
                         lineNumbers = 2;
                         hourString = HourToString((hour + 1) % 12);
@@ -432,7 +430,7 @@ namespace AnimatedJapaneseFuzzyClock
 
         }
 
-        private static void DrawMessage()
+        private static void UpdateTimeAnimation(object state)
         {
 
             int marginLeftLine1 = 0;
@@ -599,11 +597,6 @@ namespace AnimatedJapaneseFuzzyClock
 
             _display.Flush();
 
-        }
-
-        private static void UpdateTimeAnimation(object state)
-        {
-            DrawMessage();
         }
 
         private static string HourToString(int hour)
