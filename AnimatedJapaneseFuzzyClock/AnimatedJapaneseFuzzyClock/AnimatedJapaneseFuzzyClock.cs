@@ -186,9 +186,6 @@ namespace AnimatedJapaneseFuzzyClock
             currentTime = DateTime.Now;
             currentTime = currentTime.AddMinutes(fluctuation);
 
-            //if (showAnimation == false && showDigital == false)
-            //{
-
             int month = currentTime.Month;
             int day = currentTime.Day;
             int hour = currentTime.Hour;
@@ -198,69 +195,84 @@ namespace AnimatedJapaneseFuzzyClock
 
             bool drawFlag = false;
 
-            if (month == 1 && day <= 3)
+            if (oldMessageNumber != 0 && messageNumber == 0)
             {
-                messageNumber = 11;
-            }
-            else if (month == 6 && day == 20)
-            {
-                messageNumber = 12;
-            }
-            else if (month == 12 && day == 31 && hour == 23)
-            {
-                messageNumber = 13;
-            }
-            else if (hour == 15)
-            {
-                messageNumber = 14;
-            }
-            else if (hour == 0 && minute <= 4)
-            {
-                messageNumber = 15;
-            }
-            else if (hour == 23 && 56 <= minute)
-            {
-                messageNumber = 15;
-            }
-            else if (0 <= minute && minute <= 4)
-            {
-                messageNumber = 1;
-            }
-            else if (5 <= minute && minute <= 10)
-            {
-                messageNumber = 2;
-            }
-            else if (11 <= minute && minute <= 19)
-            {
-                messageNumber = 3;
-            }
-            else if (20 <= minute && minute <= 25)
-            {
-                messageNumber = 4;
-            }
-            else if (26 <= minute && minute <= 34)
-            {
-                messageNumber = 5;
-            }
-            else if (35 <= minute && minute <= 40)
-            {
-                messageNumber = 6;
-            }
-            else if (41 <= minute && minute <= 49)
-            {
-                messageNumber = 7;
-            }
-            else if (50 <= minute && minute <= 55)
-            {
-                messageNumber = 8;
-                hourString = HourToString((hour + 1) % 12);
-            }
-            else if (56 <= minute)
-            {
-                messageNumber = 9;
-                hourString = HourToString((hour + 1) % 12);
-            }
 
+                messageNumber = oldMessageNumber;
+                oldMessageNumber = 0;
+
+            }
+            else
+            {
+
+                //if (showAnimation == false && showDigital == false)
+                //{
+
+
+                if (month == 1 && day <= 3)
+                {
+                    messageNumber = 11;
+                }
+                else if (month == 6 && day == 20)
+                {
+                    messageNumber = 12;
+                }
+                else if (month == 12 && day == 31 && hour == 23)
+                {
+                    messageNumber = 13;
+                }
+                else if (hour == 15)
+                {
+                    messageNumber = 14;
+                }
+                else if (hour == 0 && minute <= 4)
+                {
+                    messageNumber = 15;
+                }
+                else if (hour == 23 && 56 <= minute)
+                {
+                    messageNumber = 15;
+                }
+                else if (0 <= minute && minute <= 4)
+                {
+                    messageNumber = 1;
+                }
+                else if (5 <= minute && minute <= 10)
+                {
+                    messageNumber = 2;
+                }
+                else if (11 <= minute && minute <= 19)
+                {
+                    messageNumber = 3;
+                }
+                else if (20 <= minute && minute <= 25)
+                {
+                    messageNumber = 4;
+                }
+                else if (26 <= minute && minute <= 34)
+                {
+                    messageNumber = 5;
+                }
+                else if (35 <= minute && minute <= 40)
+                {
+                    messageNumber = 6;
+                }
+                else if (41 <= minute && minute <= 49)
+                {
+                    messageNumber = 7;
+                }
+                else if (50 <= minute && minute <= 55)
+                {
+                    messageNumber = 8;
+                    hourString = HourToString((hour + 1) % 12);
+                }
+                else if (56 <= minute)
+                {
+                    messageNumber = 9;
+                    hourString = HourToString((hour + 1) % 12);
+                }
+
+            }
 
             if (oldMessageNumber != messageNumber)
             {
@@ -740,7 +752,7 @@ namespace AnimatedJapaneseFuzzyClock
                         showDigital = false;
                     }
 
-                    oldMessageNumber = 0;
+                    messageNumber = 0;
                     UpdateTime(null);
 
                 }
@@ -765,7 +777,7 @@ namespace AnimatedJapaneseFuzzyClock
                     {
 
                         showDigital = false;
-                        oldMessageNumber = 0;
+                        messageNumber = 0;
                         UpdateTime(null);
 
                     }
@@ -788,7 +800,7 @@ namespace AnimatedJapaneseFuzzyClock
                         showDigital = false;
                     }
 
-                    oldMessageNumber = 0;
+                    messageNumber = 0;
                     UpdateTime(null);
                 }
 
