@@ -214,48 +214,48 @@ namespace AnimatedJapaneseFuzzyClock
             {
                 messageNumber = 14;
             }
-            else if (hour == 0 && minute <= 5)
+            else if (hour == 0 && minute <= 4)
             {
                 messageNumber = 15;
             }
-            else if (hour == 23 && 55 <= minute)
+            else if (hour == 23 && 56 <= minute)
             {
                 messageNumber = 15;
             }
-            else if (0 <= minute && minute <= 5)
+            else if (0 <= minute && minute <= 4)
             {
                 messageNumber = 1;
             }
-            else if (6 <= minute && minute <= 9)
+            else if (5 <= minute && minute <= 10)
             {
                 messageNumber = 2;
             }
-            else if (10 <= minute && minute <= 20)
+            else if (11 <= minute && minute <= 19)
             {
                 messageNumber = 3;
             }
-            else if (21 <= minute && minute <= 24)
+            else if (20 <= minute && minute <= 25)
             {
                 messageNumber = 4;
             }
-            else if (25 <= minute && minute <= 35)
+            else if (26 <= minute && minute <= 34)
             {
                 messageNumber = 5;
             }
-            else if (36 <= minute && minute <= 39)
+            else if (35 <= minute && minute <= 40)
             {
                 messageNumber = 6;
             }
-            else if (40 <= minute && minute <= 50)
+            else if (41 <= minute && minute <= 49)
             {
                 messageNumber = 7;
             }
-            else if (51 <= minute && minute <= 54)
+            else if (50 <= minute && minute <= 55)
             {
                 messageNumber = 8;
                 hourString = HourToString((hour + 1) % 12);
             }
-            else if (minute >= 55)
+            else if (56 <= minute)
             {
                 messageNumber = 9;
                 hourString = HourToString((hour + 1) % 12);
