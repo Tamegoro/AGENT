@@ -93,8 +93,11 @@ namespace AnimatedJapaneseFuzzyClock
         const string MESSAGE_DBN_02 = "蕎麦";
         const string MESSAGE_DBN_03 = "食べた?";
 
-        const string MESSAGE_AMN_01 = "真夜中";
-        const string MESSAGE_AMN_02 = "前後";
+        //const string MESSAGE_AMN_01 = "真夜中";
+        //const string MESSAGE_AMN_02 = "前後";
+        const string MESSAGE_AMN_01 = "そろそろ";
+        const string MESSAGE_AMN_02 = "寝ないと";
+        const string MESSAGE_AMN_03 = "マズイよ";
 
         const string MESSAGE_ANT_01 = "おやつの";
         const string MESSAGE_ANT_02 = "時間";
@@ -193,6 +196,8 @@ namespace AnimatedJapaneseFuzzyClock
 
             string hourString = HourToString(hour % 12);
 
+            bool drawFlag = false;
+
             if (month == 1 && day <= 3)
             {
                 messageNumber = 11;
@@ -213,7 +218,7 @@ namespace AnimatedJapaneseFuzzyClock
             {
                 messageNumber = 15;
             }
-            else if (hour == 23 && minute >= 55)
+            else if (hour == 23 && 55 <= minute)
             {
                 messageNumber = 15;
             }
@@ -256,7 +261,47 @@ namespace AnimatedJapaneseFuzzyClock
                 hourString = HourToString((hour + 1) % 12);
             }
 
-            if (oldMessageNumber == 0 || oldMessageNumber != messageNumber && ((oldMessageNumber <= 9 && oldMessageNumber < messageNumber) || (9 != oldMessageNumber && messageNumber != 1) || (11 <= oldMessageNumber && messageNumber == 1) || (oldMessageNumber == 13 && messageNumber == 11) || (oldMessageNumber == 15 && messageNumber == 2 || (oldMessageNumber == 9 && messageNumber == 2))))
+
+            if (oldMessageNumber != messageNumber)
+            {
+
+                if (oldMessageNumber == 9 && messageNumber == 1)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber <= 9 && messageNumber < oldMessageNumber)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 11 && messageNumber == 15)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 12 && messageNumber == 15)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 13 && messageNumber == 9)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 11 && messageNumber == 13)
+                {
+                    drawFlag = false;
+                }
+                else
+                {
+                    drawFlag = true;
+                }
+
+            }
+            else
+            {
+                drawFlag = false;
+            }
+
+
+            if (drawFlag == true)
             {
 
                 oldMessageNumber = messageNumber;
@@ -388,10 +433,10 @@ namespace AnimatedJapaneseFuzzyClock
 
                     case 15:
 
-                        lineNumbers = 2;
+                        lineNumbers = 3;
                         line1String = MESSAGE_AMN_01;
                         line2String = MESSAGE_AMN_02;
-                        line3String = "";
+                        line3String = MESSAGE_AMN_03;
 
                         break;
 
