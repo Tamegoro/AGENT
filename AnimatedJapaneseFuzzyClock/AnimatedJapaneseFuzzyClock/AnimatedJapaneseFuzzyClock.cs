@@ -217,7 +217,7 @@ namespace AnimatedJapaneseFuzzyClock
             {
                 messageNumber = 15;
             }
-            else if (minute <= 5)
+            else if (0 <= minute && minute <= 5)
             {
                 messageNumber = 1;
             }
@@ -256,7 +256,7 @@ namespace AnimatedJapaneseFuzzyClock
                 hourString = HourToString((hour + 1) % 12);
             }
 
-            if (oldMessageNumber == 0 || oldMessageNumber != messageNumber && ((oldMessageNumber <= 9 && oldMessageNumber < messageNumber) || (9 != oldMessageNumber && messageNumber != 1) || (11 <= oldMessageNumber && messageNumber == 1) || (oldMessageNumber == 13 && messageNumber == 11) || (oldMessageNumber == 15 && messageNumber == 2)))
+            if (oldMessageNumber == 0 || oldMessageNumber != messageNumber && ((oldMessageNumber <= 9 && oldMessageNumber < messageNumber) || (9 != oldMessageNumber && messageNumber != 1) || (11 <= oldMessageNumber && messageNumber == 1) || (oldMessageNumber == 13 && messageNumber == 11) || (oldMessageNumber == 15 && messageNumber == 2 || (oldMessageNumber == 9 && messageNumber == 2))))
             {
 
                 oldMessageNumber = messageNumber;
