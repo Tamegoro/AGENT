@@ -65,6 +65,8 @@ namespace AnimatedJapaneseFuzzyClock
         static bool showDigital = false;
         static int showDigitalCounter = 0;
 
+        static bool buttonFlag = false;
+
         const int MAX_FLUCTUATION = 2;
 
         const int SHOW_DIGITAL_SECOND = 10;
@@ -182,6 +184,8 @@ namespace AnimatedJapaneseFuzzyClock
             fluctuation = _random.Next(MAX_FLUCTUATION * 2);
             fluctuation = fluctuation - MAX_FLUCTUATION;
 
+            buttonFlag = false;
+
             oldMessageNumber = 0;
             UpdateTime(null);
 
@@ -213,7 +217,7 @@ namespace AnimatedJapaneseFuzzyClock
 
             bool drawFlag = false;
 
-            if (oldMessageNumber != 0 && messageNumber == 0)
+            if (buttonFlag == true && 1 <= oldMessageNumber )
             {
 
                 messageNumber = oldMessageNumber;
@@ -363,10 +367,17 @@ namespace AnimatedJapaneseFuzzyClock
             if (drawFlag == true)
             {
 
-                oldMessageNumber = messageNumber;
+                if (buttonFlag != true)
+                {
+                    fluctuation = _random.Next(MAX_FLUCTUATION * 2);
+                    fluctuation = fluctuation - MAX_FLUCTUATION;
+                }
+                else
+                {
+                    buttonFlag = false;
+                }
 
-                fluctuation = _random.Next(MAX_FLUCTUATION * 2);
-                fluctuation = fluctuation - MAX_FLUCTUATION;
+                oldMessageNumber = messageNumber;
 
                 switch (messageNumber)
                 {
@@ -836,7 +847,7 @@ namespace AnimatedJapaneseFuzzyClock
                         showDigital = false;
                     }
 
-                    messageNumber = 0;
+                    buttonFlag = true;
                     UpdateTime(null);
 
                 }
@@ -861,7 +872,7 @@ namespace AnimatedJapaneseFuzzyClock
                     {
 
                         showDigital = false;
-                        messageNumber = 0;
+                        buttonFlag = true;
                         UpdateTime(null);
 
                     }
@@ -884,7 +895,7 @@ namespace AnimatedJapaneseFuzzyClock
                         showDigital = false;
                     }
 
-                    messageNumber = 0;
+                    buttonFlag = true;
                     UpdateTime(null);
                 }
 
@@ -901,7 +912,7 @@ namespace AnimatedJapaneseFuzzyClock
             if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
             {
                 showDigital = false;
-                oldMessageNumber = 0;
+                buttonFlag = true;
                 UpdateTime(null);
                 _updateDigitalTimer.Dispose();
             }
