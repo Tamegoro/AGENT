@@ -484,9 +484,10 @@ namespace AnimatedJapaneseFuzzyClock
 
                         lineNumbers = 2;
                         hourString = HourToString((hour + 1) % 12);
-                        line1String = hourString + MESSAGE_01_01;
-                        line2String = MESSAGE_01_02;
-                        line3String = "";
+                        lineNumbers = 3;
+                        line1String = MESSAGE_01_01;
+                        line2String = hourString + MESSAGE_01_02;
+                        line3String = MESSAGE_01_03;
 
                         break;
 
