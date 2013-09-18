@@ -81,54 +81,72 @@ namespace AnimatedJapaneseFuzzyClock
         const int DISPLAY_MODE_WHITE = 1;
 
 
-        const string MESSAGE_HNY_01 = "あけまして";
-        const string MESSAGE_HNY_02 = "おめでとう";
-        const string MESSAGE_HNY_03 = "ございます";
+        const string MESSAGE_101_01 = "あけまして";
+        const string MESSAGE_101_02 = "おめでとう";
+        const string MESSAGE_101_03 = "ございます";
 
-        const string MESSAGE_HBA_01 = "Happy";
-        const string MESSAGE_HBA_02 = "Birthday";
-        const string MESSAGE_HBA_03 = "AGENT!";
+        const string MESSAGE_102_01 = "Happy";
+        const string MESSAGE_102_02 = "Birthday";
+        const string MESSAGE_102_03 = "AGENT!";
 
-        const string MESSAGE_DBN_01 = "年越し";
-        const string MESSAGE_DBN_02 = "蕎麦";
-        const string MESSAGE_DBN_03 = "食べた?";
+        const string MESSAGE_103_01 = "年越し";
+        const string MESSAGE_103_02 = "蕎麦";
+        const string MESSAGE_103_03 = "食べた?";
 
-        //const string MESSAGE_AMN_01 = "真夜中";
-        //const string MESSAGE_AMN_02 = "前後";
-        const string MESSAGE_AMN_01 = "そろそろ";
-        const string MESSAGE_AMN_02 = "寝ないと";
-        const string MESSAGE_AMN_03 = "マズイよ";
+        const string MESSAGE_104_01 = "おやつの";
+        const string MESSAGE_104_02 = "時間";
 
-        const string MESSAGE_ANT_01 = "おやつの";
-        const string MESSAGE_ANT_02 = "時間";
+        //const string MESSAGE_105_01 = "真夜中";
+        //const string MESSAGE_105_02 = "前後";
+        const string MESSAGE_105_01 = "そろそろ";
+        const string MESSAGE_105_02 = "寝ないと";
+        const string MESSAGE_105_03 = "マズイよ";
 
-        const string MESSAGE_01_01 = "時";
-        const string MESSAGE_01_02 = "前後";
+        const string MESSAGE_01_01 = "だいたい";
+        const string MESSAGE_01_02 = "時";
+        const string MESSAGE_01_03 = "くらい";
 
         const string MESSAGE_02_01 = "時";
         const string MESSAGE_02_02 = "ちょい";
         const string MESSAGE_02_03 = "過ぎ";
 
-        const string MESSAGE_03_01 = "時";
-        const string MESSAGE_03_02 = "十五分";
-        const string MESSAGE_03_03 = "くらい";
+        const string MESSAGE_03_01 = "そろそろ";
+        const string MESSAGE_03_02 = "時";
+        const string MESSAGE_03_03 = "十五分";
 
-        const string MESSAGE_04_01 = "そろそろ";
-        const string MESSAGE_04_02 = "時半";
+        const string MESSAGE_04_01 = "時";
+        const string MESSAGE_04_02 = "十五分";
+        const string MESSAGE_04_03 = "前後";
 
-        const string MESSAGE_05_01 = "時半";
-        const string MESSAGE_05_02 = "くらい";
+        const string MESSAGE_05_01 = "時";
+        const string MESSAGE_05_02 = "十五分";
+        const string MESSAGE_05_03 = "過ぎ";
 
-        const string MESSAGE_06_01 = "時半";
-        const string MESSAGE_06_02 = "ちょい";
-        const string MESSAGE_06_03 = "過ぎ";
+        const string MESSAGE_06_01 = "そろそろ";
+        const string MESSAGE_06_02 = "時半";
 
-        const string MESSAGE_07_01 = "時";
-        const string MESSAGE_07_02 = "四十五分";
+        const string MESSAGE_07_01 = "だいたい";
+        const string MESSAGE_07_02 = "時半";
         const string MESSAGE_07_03 = "くらい";
 
-        const string MESSAGE_08_01 = "そろそろ";
-        const string MESSAGE_08_02 = "時";
+        const string MESSAGE_08_01 = "時半";
+        const string MESSAGE_08_02 = "ちょい";
+        const string MESSAGE_08_03 = "過ぎ";
+
+        const string MESSAGE_09_01 = "そろそろ";
+        const string MESSAGE_09_02 = "時";
+        const string MESSAGE_09_03 = "四十五分";
+
+        const string MESSAGE_10_01 = "時";
+        const string MESSAGE_10_02 = "四十五分";
+        const string MESSAGE_10_03 = "前後";
+
+        const string MESSAGE_11_01 = "時";
+        const string MESSAGE_11_02 = "四十五分";
+        const string MESSAGE_11_03 = "過ぎ";
+
+        const string MESSAGE_12_01 = "そろそろ";
+        const string MESSAGE_12_02 = "時";
 
 
         public static void Main()
@@ -211,64 +229,80 @@ namespace AnimatedJapaneseFuzzyClock
 
                 if (month == 1 && day <= 3)
                 {
-                    messageNumber = 11;
+                    messageNumber = 101;
                 }
                 else if (month == 6 && day == 20)
                 {
-                    messageNumber = 12;
+                    messageNumber = 102;
                 }
                 else if (month == 12 && day == 31 && hour == 23)
                 {
-                    messageNumber = 13;
+                    messageNumber = 103;
                 }
                 else if (hour == 15)
                 {
-                    messageNumber = 14;
+                    messageNumber = 104;
                 }
                 else if (hour == 0 && minute <= 4)
                 {
-                    messageNumber = 15;
+                    messageNumber = 105;
                 }
                 else if (hour == 23 && 56 <= minute)
                 {
-                    messageNumber = 15;
+                    messageNumber = 105;
                 }
-                else if (0 <= minute && minute <= 4)
+                else if (0 <= minute && minute <= 3)
                 {
                     messageNumber = 1;
                 }
-                else if (5 <= minute && minute <= 10)
+                else if (4 <= minute && minute <= 7)
                 {
                     messageNumber = 2;
                 }
-                else if (11 <= minute && minute <= 19)
+                else if (8 <= minute && minute <= 11)
                 {
                     messageNumber = 3;
                 }
-                else if (20 <= minute && minute <= 25)
+                else if (12 <= minute && minute <= 18)
                 {
                     messageNumber = 4;
                 }
-                else if (26 <= minute && minute <= 34)
+                else if (19 <= minute && minute <= 22)
                 {
                     messageNumber = 5;
                 }
-                else if (35 <= minute && minute <= 40)
+                else if (23 <= minute && minute <= 26)
                 {
                     messageNumber = 6;
                 }
-                else if (41 <= minute && minute <= 49)
+                else if (27 <= minute && minute <= 33)
                 {
                     messageNumber = 7;
                 }
-                else if (50 <= minute && minute <= 55)
+                else if (34 <= minute && minute <= 37)
                 {
                     messageNumber = 8;
-                    hourString = HourToString((hour + 1) % 12);
                 }
-                else if (56 <= minute)
+                else if (38 <= minute && minute <= 41)
                 {
                     messageNumber = 9;
+                }
+                else if (42 <= minute && minute <= 48)
+                {
+                    messageNumber = 10;
+                }
+                else if (49 <= minute && minute <= 52)
+                {
+                    messageNumber = 11;
+                }
+                else if (53 <= minute && minute <= 56)
+                {
+                    messageNumber = 12;
+                    hourString = HourToString((hour + 1) % 12);
+                }
+                else if (57 <= minute)
+                {
+                    messageNumber = 99;
                     hourString = HourToString((hour + 1) % 12);
                 }
 
@@ -277,27 +311,40 @@ namespace AnimatedJapaneseFuzzyClock
             if (oldMessageNumber != messageNumber)
             {
 
-                if (oldMessageNumber == 9 && messageNumber == 1)
+                if (oldMessageNumber == 99 && messageNumber == 1)
+                {
+                    drawFlag = false;
+                    oldMessageNumber = 1;
+                }
+                else if (oldMessageNumber <= 99 && messageNumber < oldMessageNumber)
                 {
                     drawFlag = false;
                 }
-                else if (oldMessageNumber <= 9 && messageNumber < oldMessageNumber)
+                else if (oldMessageNumber == 1 && messageNumber == 99)
                 {
                     drawFlag = false;
                 }
-                else if (oldMessageNumber == 11 && messageNumber == 15)
+                else if (oldMessageNumber == 101 && messageNumber == 103)
                 {
                     drawFlag = false;
                 }
-                else if (oldMessageNumber == 12 && messageNumber == 15)
+                else if (oldMessageNumber == 105 && messageNumber == 101)
                 {
                     drawFlag = false;
                 }
-                else if (oldMessageNumber == 13 && messageNumber == 9)
+                else if (oldMessageNumber == 102 && messageNumber == 105)
                 {
                     drawFlag = false;
                 }
-                else if (oldMessageNumber == 11 && messageNumber == 13)
+                else if (oldMessageNumber == 105 && messageNumber == 102)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 103 && messageNumber == 99)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 101 && messageNumber == 103)
                 {
                     drawFlag = false;
                 }
@@ -326,10 +373,10 @@ namespace AnimatedJapaneseFuzzyClock
 
                     case 1:
 
-                        lineNumbers = 2;
-                        line1String = hourString + MESSAGE_01_01;
-                        line2String = MESSAGE_01_02;
-                        line3String = "";
+                        lineNumbers = 3;
+                        line1String = MESSAGE_01_01;
+                        line2String = hourString + MESSAGE_01_02;
+                        line3String = MESSAGE_01_03;
 
                         break;
 
@@ -345,59 +392,95 @@ namespace AnimatedJapaneseFuzzyClock
                     case 3:
 
                         lineNumbers = 3;
-                        line1String = hourString + MESSAGE_03_01;
-                        line2String = MESSAGE_03_02;
+                        line1String = MESSAGE_03_01;
+                        line2String = hourString + MESSAGE_03_02;
                         line3String = MESSAGE_03_03;
 
                         break;
 
                     case 4:
 
-                        lineNumbers = 2;
-                        line1String = MESSAGE_04_01;
-                        line2String = hourString + MESSAGE_04_02;
-                        line3String = "";
+                        lineNumbers = 3;
+                        line1String = hourString + MESSAGE_04_01;
+                        line2String = MESSAGE_04_02;
+                        line3String = MESSAGE_04_03;
 
                         break;
 
                     case 5:
 
-                        lineNumbers = 2;
+                        lineNumbers = 3;
                         line1String = hourString + MESSAGE_05_01;
                         line2String = MESSAGE_05_02;
-                        line3String = "";
+                        line3String = MESSAGE_05_03;
 
                         break;
 
                     case 6:
 
-                        lineNumbers = 3;
-                        line1String = hourString + MESSAGE_06_01;
-                        line2String = MESSAGE_06_02;
-                        line3String = MESSAGE_06_03;
+                        lineNumbers = 2;
+                        line1String = MESSAGE_06_01;
+                        line2String = hourString + MESSAGE_06_02;
+                        line3String = "";
 
                         break;
 
                     case 7:
 
                         lineNumbers = 3;
-                        line1String = hourString + MESSAGE_07_01;
-                        line2String = MESSAGE_07_02;
+                        line1String = MESSAGE_07_01;
+                        line2String = hourString + MESSAGE_07_02;
                         line3String = MESSAGE_07_03;
 
                         break;
 
                     case 8:
 
-                        lineNumbers = 2;
-                        hourString = HourToString((hour + 1) % 12);
-                        line1String = MESSAGE_08_01;
-                        line2String = hourString + MESSAGE_08_02;
-                        line3String = "";
+                        lineNumbers = 3;
+                        line1String = hourString + MESSAGE_08_01;
+                        line2String = MESSAGE_08_02;
+                        line3String = MESSAGE_08_03;
 
                         break;
 
                     case 9:
+
+                        lineNumbers = 3;
+                        line1String = MESSAGE_09_01;
+                        line2String = hourString + MESSAGE_09_02;
+                        line3String = MESSAGE_09_03;
+
+                        break;
+
+                    case 10:
+
+                        lineNumbers = 3;
+                        line1String = hourString + MESSAGE_10_01;
+                        line2String = MESSAGE_10_02;
+                        line3String = MESSAGE_10_03;
+
+                        break;
+
+                    case 11:
+
+                        lineNumbers = 3;
+                        line1String = hourString + MESSAGE_11_01;
+                        line2String = MESSAGE_11_02;
+                        line3String = MESSAGE_11_03;
+
+                        break;
+
+                    case 12:
+
+                        lineNumbers = 2;
+                        hourString = HourToString((hour + 1) % 12);
+                        line1String = MESSAGE_12_01;
+                        line2String = hourString + MESSAGE_12_02;
+                        line3String = "";
+
+                        break;
+
+                    case 99:
 
                         lineNumbers = 2;
                         hourString = HourToString((hour + 1) % 12);
@@ -407,48 +490,48 @@ namespace AnimatedJapaneseFuzzyClock
 
                         break;
 
-                    case 11:
+                    case 101:
 
                         lineNumbers = 3;
-                        line1String = MESSAGE_HNY_01;
-                        line2String = MESSAGE_HNY_02;
-                        line3String = MESSAGE_HNY_03;
+                        line1String = MESSAGE_101_01;
+                        line2String = MESSAGE_101_02;
+                        line3String = MESSAGE_101_03;
 
                         break;
 
-                    case 12:
+                    case 102:
 
                         lineNumbers = 3;
-                        line1String = MESSAGE_HBA_01;
-                        line2String = MESSAGE_HBA_02;
-                        line3String = MESSAGE_HBA_03;
+                        line1String = MESSAGE_102_01;
+                        line2String = MESSAGE_102_02;
+                        line3String = MESSAGE_102_03;
 
                         break;
 
-                    case 13:
+                    case 103:
 
                         lineNumbers = 3;
-                        line1String = MESSAGE_DBN_01;
-                        line2String = MESSAGE_DBN_02;
-                        line3String = MESSAGE_DBN_03;
+                        line1String = MESSAGE_103_01;
+                        line2String = MESSAGE_103_02;
+                        line3String = MESSAGE_103_03;
 
                         break;
 
-                    case 14:
+                    case 104:
 
                         lineNumbers = 2;
-                        line1String = MESSAGE_ANT_01;
-                        line2String = MESSAGE_ANT_02;
+                        line1String = MESSAGE_104_01;
+                        line2String = MESSAGE_104_02;
                         line3String = "";
 
                         break;
 
-                    case 15:
+                    case 105:
 
                         lineNumbers = 3;
-                        line1String = MESSAGE_AMN_01;
-                        line2String = MESSAGE_AMN_02;
-                        line3String = MESSAGE_AMN_03;
+                        line1String = MESSAGE_105_01;
+                        line2String = MESSAGE_105_02;
+                        line3String = MESSAGE_105_03;
 
                         break;
 
@@ -456,7 +539,7 @@ namespace AnimatedJapaneseFuzzyClock
 
                 line1Left = screenWidth;
 
-                if (messageNumber == 11 || messageNumber == 12)
+                if (messageNumber == 101 || messageNumber == 102)
                 {
                     line2Left = 0 - _azmdrawing.GetStringWidth(line2String, fontSetoAJFC14);
                 }
@@ -498,7 +581,7 @@ namespace AnimatedJapaneseFuzzyClock
 
             _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
 
-            if (messageNumber == 11 || messageNumber == 12)
+            if (messageNumber == 101 || messageNumber == 102)
             {
 
                 marginLeftLine1 = (screenWidth - _azmdrawing.GetStringWidth(line1String, fontSetoAJFC14)) / 2;
