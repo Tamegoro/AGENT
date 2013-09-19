@@ -328,6 +328,14 @@ namespace AnimatedJapaneseFuzzyClock
                 {
                     drawFlag = false;
                 }
+                else if (oldMessageNumber == 1 && messageNumber == 104)
+                {
+                    drawFlag = false;
+                }
+                else if (oldMessageNumber == 2 && messageNumber == 105)
+                {
+                    drawFlag = false;
+                }
                 else if (oldMessageNumber == 101 && messageNumber == 103)
                 {
                     drawFlag = false;
@@ -845,10 +853,10 @@ namespace AnimatedJapaneseFuzzyClock
                     else
                     {
                         showDigital = false;
+                        buttonFlag = true;
+                        UpdateTime(null);
                     }
 
-                    buttonFlag = true;
-                    UpdateTime(null);
 
                 }
                 else if (button == Buttons.MiddleRight)
@@ -893,10 +901,10 @@ namespace AnimatedJapaneseFuzzyClock
                     else
                     {
                         showDigital = false;
+                        buttonFlag = true;
+                        UpdateTime(null);
                     }
 
-                    buttonFlag = true;
-                    UpdateTime(null);
                 }
 
             }
