@@ -158,13 +158,6 @@ namespace InvisibleWriting
                     _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), screenCenterY - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), colorForeground, 0, 0, colorForeground, 0, 0, 0);
                 }
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM - (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM + (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
-                _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + 2));
-                _azmdrawing.FillArea(_display, colorForeground, _point.X, _point.Y);
-
-                DrawMinuteNumber(_display);
-
                 if (colorForeground != Color.Black)
                 {
                     _azmdrawing.DrawImageTransparently(_backgroundBlack, 0, 0, _display, drawX, drawY, backgroundWidth, backgroundHeight, colorForeground);
@@ -175,6 +168,12 @@ namespace InvisibleWriting
                 }
 
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 6, degreeH, screenCenterX, screenCenterY, 0, 50, 7);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM - (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM + (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
+                _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + 2));
+                _azmdrawing.FillArea(_display, colorForeground, _point.X, _point.Y);
+
+                DrawMinuteNumber(_display);
 
                 if (displayMode == DISPLAY_MODE_BLACK_DISK || displayMode == DISPLAY_MODE_WHITE_DISK)
                 {
