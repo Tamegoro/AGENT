@@ -168,6 +168,7 @@ namespace InvisibleWriting
                 }
 
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 6, degreeH, screenCenterX, screenCenterY, 0, 50, 7);
+
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM - (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, 1, (degreeM + (WIDTH_MINUTE / 2) + 360) % 360, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + MARGIN_INNER_CIRCLE_OUTER_CIRCLE), MARGIN_INNER_CIRCLE_OUTER_CIRCLE);
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, screenCenterX, screenCenterY, screenCenterX - (MARGIN_OUTER_CIRCLE_EDGE + 2));
