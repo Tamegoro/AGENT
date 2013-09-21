@@ -174,7 +174,7 @@ namespace InvisibleWriting
                     _azmdrawing.DrawImageTransparently(_backgroundWhite, 0, 0, _display, drawX, drawY, backgroundWidth, backgroundHeight, colorForeground);
                 }
 
-                _azmdrawing.DrawAngledLine(_display, colorForeground, 6, 6 * degreeH, screenCenterX, screenCenterY, 0, 50, 7);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, 6, degreeH, screenCenterX, screenCenterY, 0, 50, 7);
 
                 if (displayMode == DISPLAY_MODE_BLACK_DISK || displayMode == DISPLAY_MODE_WHITE_DISK)
                 {
