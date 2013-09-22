@@ -153,7 +153,10 @@ namespace SemiTransparent
                 _display.DrawEllipse(colorBackground, 1, _point.X, _point.Y, 9, 9, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 _display.DrawEllipse(colorForeground, 1, _point.X, _point.Y, 9, 9, colorForeground, 0, 0, colorForeground, 0, 0, 0);
 
-                for (int i = 0; i < 12; i++)
+                _point = _azmdrawing.FindPointDegreeDistance(0, screenCenterX, screenCenterY, DISTANCE_MINUTE);
+                _azmdrawing.DrawStringCentered(_display, colorForeground, fontSmall, _point.X + 1, _point.Y, "00");
+
+                for (int i = 1; i < 12; i++)
                 {
                     _point = _azmdrawing.FindPointDegreeDistance(30 * i, screenCenterX, screenCenterY, DISTANCE_MINUTE);
                     _azmdrawing.DrawStringCentered(_display, colorForeground, fontSmall, _point.X, _point.Y, (i * 5).ToString("D2"));
