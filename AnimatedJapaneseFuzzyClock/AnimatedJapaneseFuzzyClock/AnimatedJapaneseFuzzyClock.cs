@@ -853,10 +853,10 @@ namespace AnimatedJapaneseFuzzyClock
                     else
                     {
                         showDigital = false;
-                        buttonFlag = true;
-                        UpdateTime(null);
                     }
 
+                    buttonFlag = true;
+                    UpdateTime(null);
 
                 }
                 else if (button == Buttons.MiddleRight)
@@ -901,9 +901,10 @@ namespace AnimatedJapaneseFuzzyClock
                     else
                     {
                         showDigital = false;
-                        buttonFlag = true;
-                        UpdateTime(null);
                     }
+
+                    buttonFlag = true;
+                    UpdateTime(null);
 
                 }
 
