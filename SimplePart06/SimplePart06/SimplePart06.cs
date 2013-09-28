@@ -64,8 +64,7 @@ namespace SimplePart06
         const int LENGTH_SECOND_HAND_TAIL = 9;
         const int THICKNESS_SECOND_HAND = 1;
 
-        const int RADIUS_PIN_OUTER = 2;
-        const int RADIUS_PIN_INNER = 1;
+        const int RADIUS_PIN = 1;
 
         const int MARGIN_DISK_EDGE = 3;
         const int THICKNESS_CIRCLE = 2;
@@ -180,28 +179,22 @@ namespace SimplePart06
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                 degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
+                _point = _azmdrawing.FindPointDegreeDistance((degreeS + 180) % 360, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL);
+
                 _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 6);
 
                 _point = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 6);
 
-                _point = _azmdrawing.FindPointDegreeDistance((degreeS + 180) % 360, screenCenterX, screenCenterY, LENGTH_SECOND_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_SECOND_HAND, degreeS, _point.X, _point.Y, 0, LENGTH_SECOND_HAND + LENGTH_SECOND_HAND_TAIL);
-
                 if (showDisk == true)
                 {
-                    _display.DrawEllipse(colorDisk, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorDisk, 0, 0, colorDisk, 0, 0, 255);
-                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    //_display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    //_display.DrawEllipse(colorDisk, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorDisk, 0, 0, colorDisk, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN, RADIUS_PIN, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 }
                 else
                 {
-                    _display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    //_display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN_OUTER, RADIUS_PIN_OUTER, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-                    //_display.DrawEllipse(colorBackground, 1, screenCenterX, screenCenterY, RADIUS_PIN_INNER, RADIUS_PIN_INNER, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _display.DrawEllipse(colorForeground, 1, screenCenterX, screenCenterY, RADIUS_PIN, RADIUS_PIN, colorForeground, 0, 0, colorForeground, 0, 0, 255);
                 }
 
 
