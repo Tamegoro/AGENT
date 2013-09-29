@@ -43,7 +43,7 @@ namespace SimplePart06
         static int screenCenterX = 0;
         static int screenCenterY = 0;
 
-        static int displayMode = DISPLAY_MODE_BLACK_FRAHAND;
+        static int displayMode = DISPLAY_MODE_BLACK;
 
         static bool showDisk = false;
 
@@ -56,11 +56,11 @@ namespace SimplePart06
         const int LENGTH_HOUR_HAND_TAIL = 10;
         const int THICKNESS_HOUR_HAND = 5;
 
-        const int LENGTH_MINUTE_HAND = 50;
+        const int LENGTH_MINUTE_HAND = 55;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
         const int THICKNESS_MINUTE_HAND = 5;
 
-        const int LENGTH_SECOND_HAND = 49;
+        const int LENGTH_SECOND_HAND = 54;
         const int LENGTH_SECOND_HAND_TAIL = 9;
         const int THICKNESS_SECOND_HAND = 1;
 
@@ -74,10 +74,10 @@ namespace SimplePart06
 
         const int MAX_DISPLAY_MODE = 3;
 
-        const int DISPLAY_MODE_BLACK_FRAHAND = 0;
-        const int DISPLAY_MODE_BLACK_FRAHAND_DISK = 1;
-        const int DISPLAY_MODE_WHITE_FRAHAND = 2;
-        const int DISPLAY_MODE_WHITE_FRAHAND_DISK = 3;
+        const int DISPLAY_MODE_BLACK = 0;
+        const int DISPLAY_MODE_BLACK_DISK = 1;
+        const int DISPLAY_MODE_WHITE = 2;
+        const int DISPLAY_MODE_WHITE_DISK = 3;
 
 
         public static void Main()
@@ -94,7 +94,7 @@ namespace SimplePart06
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            displayMode = DISPLAY_MODE_BLACK_FRAHAND;
+            displayMode = DISPLAY_MODE_BLACK;
             SetDisplayMode(displayMode);
 
             showDigital = false;
@@ -288,7 +288,7 @@ namespace SimplePart06
             switch (displayMode)
             {
 
-                case DISPLAY_MODE_BLACK_FRAHAND:
+                case DISPLAY_MODE_BLACK:
 
                     colorForeground = Color.White;
                     colorBackground = Color.Black;
@@ -297,7 +297,7 @@ namespace SimplePart06
 
                     break;
 
-                case DISPLAY_MODE_BLACK_FRAHAND_DISK:
+                case DISPLAY_MODE_BLACK_DISK:
 
                     colorForeground = Color.White;
                     colorBackground = Color.White;
@@ -306,7 +306,7 @@ namespace SimplePart06
 
                     break;
 
-                case DISPLAY_MODE_WHITE_FRAHAND:
+                case DISPLAY_MODE_WHITE:
 
                     colorForeground = Color.Black;
                     colorBackground = Color.White;
@@ -315,7 +315,7 @@ namespace SimplePart06
 
                     break;
 
-                case DISPLAY_MODE_WHITE_FRAHAND_DISK:
+                case DISPLAY_MODE_WHITE_DISK:
 
                     colorForeground = Color.Black;
                     colorBackground = Color.Black;

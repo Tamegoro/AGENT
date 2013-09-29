@@ -58,11 +58,11 @@ namespace RomanNumerals
         const int LENGTH_HOUR_HAND_TAIL = 10;
         const int THICKNESS_HOUR_HAND = 5;
 
-        const int LENGTH_MINUTE_HAND = 50;
+        const int LENGTH_MINUTE_HAND = 55;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
         const int THICKNESS_MINUTE_HAND = 5;
 
-        const int LENGTH_SECOND_HAND = 49;
+        const int LENGTH_SECOND_HAND = 54;
         const int LENGTH_SECOND_HAND_TAIL = 9;
         const int THICKNESS_SECOND_HAND = 1;
 
@@ -224,7 +224,7 @@ namespace RomanNumerals
 
                     _point = _azmdrawing.FindPointDegreeDistance(30 * 12 - 15, screenCenterX, screenCenterY, distanceInnerCircle - 1);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_NUMERALS, 30 * 12 + 14, _point.X, _point.Y, 0, distanceOuterCircle - distanceInnerCircle + 1);
-                    _point = _azmdrawing.FindPointDegreeDistance(30 * 12 - 3, screenCenterX, screenCenterY, distanceInnerCircle - 1);
+                    _point = _azmdrawing.FindPointDegreeDistance(30 * 12 - 4, screenCenterX, screenCenterY, distanceInnerCircle - 1);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_NUMERALS, 30 * 12 - 14, _point.X, _point.Y, 0, distanceOuterCircle - distanceInnerCircle + 1);
                     _point = _azmdrawing.FindPointDegreeDistance(30 * 12 + 4, screenCenterX, screenCenterY, distanceInnerCircle - 1);
                     _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_NUMERALS, 30 * 12, _point.X, _point.Y, 0, distanceOuterCircle - distanceInnerCircle + 1);
