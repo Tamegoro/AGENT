@@ -61,7 +61,7 @@ namespace Tachometer
         const int MIN_RED = 9;
         const int DIAL_UNIT = 4;
 
-        const int LENGTH_HOUR_HAND = 35;
+        const int LENGTH_HOUR_HAND = 38;
         const int LENGTH_HOUR_HAND_TAIL = 5;
         const int THICKNESS_HOUR_HAND = 5;
 
