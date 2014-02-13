@@ -32,7 +32,7 @@ namespace KanjiNumerals
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
-            IPAexMinchoKansuji05 = 4516,
+            IPAexGothicKansuji05 = -16910,
             _7barPBd24 = 31671,
         }
     }

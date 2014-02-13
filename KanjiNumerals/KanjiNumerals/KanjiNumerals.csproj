@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\7barPBd24.tinyfnt" />
+    <None Include="Resources\IPAexGothicKansuji05.tinyfnt" />
     <None Include="Resources\IPAexMinchoKansuji05.tinyfnt" />
   </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@ namespace KanjiNumerals
         static DateTime currentTime;
 
         static Font font7barPBd24 = Resources.GetFont(Resources.FontResources._7barPBd24);
-        static Font fontIPAexMinchoKansuji05 = Resources.GetFont(Resources.FontResources.IPAexMinchoKansuji05);
+        static Font fontIPAexGothicKansuji05 = Resources.GetFont(Resources.FontResources.IPAexGothicKansuji05);
 
         static Color colorForeground;
         static Color colorBackground;
@@ -84,8 +84,8 @@ namespace KanjiNumerals
             screenCenterX = screenWidth / 2;
             screenCenterY = screenHeight / 2;
 
-            fontWidth = fontIPAexMinchoKansuji05.CharWidth('零');
-            fontHeight = fontIPAexMinchoKansuji05.Height;
+            fontWidth = fontIPAexGothicKansuji05.CharWidth('零');
+            fontHeight = fontIPAexGothicKansuji05.Height;
 
             marginX = (screenWidth - (fontWidth * 13) - (MARGIN_NUMBER_NUMBER_X * 4)) / 2;
             marginY = (screenHeight - (fontHeight * 5)) / 2;
@@ -207,110 +207,110 @@ namespace KanjiNumerals
                 
                 case 0:
 
-                    _display.DrawText("〇〇〇", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("〇　〇", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("〇　〇", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("〇　〇", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("〇〇〇", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("〇〇〇", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("〇　〇", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("〇　〇", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("〇　〇", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("〇〇〇", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 1:
 
-                    _display.DrawText("　一　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("一一　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("　一　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　一　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("一一一", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("　一　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("一一　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("　一　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　一　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("一一一", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 2:
 
-                    _display.DrawText("二二二", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("　　二", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("二二二", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("二　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("二二二", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("二二二", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("　　二", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("二二二", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("二　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("二二二", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 3:
 
-                    _display.DrawText("三三三", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("　　三", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("三三三", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　　三", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("三三三", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("三三三", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("　　三", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("三三三", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　　三", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("三三三", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 4:
 
-                    _display.DrawText("四　四", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("四　四", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("四四四", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　　四", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("　　四", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("四　四", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("四　四", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("四四四", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　　四", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("　　四", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 5:
 
-                    _display.DrawText("五五五", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("五　　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("五五五", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　　五", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("五五五", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("五五五", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("五　　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("五五五", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　　五", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("五五五", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 6:
 
-                    _display.DrawText("六六六", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("六　　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("六六六", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("六　六", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("六六六", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("六六六", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("六　　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("六六六", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("六　六", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("六六六", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 7:
 
-                    _display.DrawText("七七七", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("　　七", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("　　七", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　　七", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("　　七", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("七七七", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("　　七", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("　　七", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　　七", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("　　七", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 8:
 
-                    _display.DrawText("八八八", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("八　八", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("八八八", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("八　八", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("八八八", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("八八八", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("八　八", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("八八八", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("八　八", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("八八八", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
 
                 case 9:
 
-                    _display.DrawText("九九九", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-                    _display.DrawText("九　九", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-                    _display.DrawText("九九九", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-                    _display.DrawText("　　九", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-                    _display.DrawText("九九九", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+                    _display.DrawText("九九九", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+                    _display.DrawText("九　九", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+                    _display.DrawText("九九九", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+                    _display.DrawText("　　九", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+                    _display.DrawText("九九九", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
                     break;
 
@@ -323,11 +323,11 @@ namespace KanjiNumerals
         private static void DrawColon(int x, int y)
         {
 
-            _display.DrawText("　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 0));
-            _display.DrawText("点", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 1));
-            _display.DrawText("　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 2));
-            _display.DrawText("点", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 3));
-            _display.DrawText("　", fontIPAexMinchoKansuji05, colorForeground, x, y + (fontIPAexMinchoKansuji05.Height * 4));
+            _display.DrawText("　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 0));
+            _display.DrawText("点", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 1));
+            _display.DrawText("　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 2));
+            _display.DrawText("点", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 3));
+            _display.DrawText("　", fontIPAexGothicKansuji05, colorForeground, x, y + (fontIPAexGothicKansuji05.Height * 4));
 
         }
 
