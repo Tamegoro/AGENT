@@ -62,6 +62,7 @@ namespace DontBeLate
         const int LENGTH_SECOND_HAND_TAIL = 10;
         const int THICKNESS_SECOND_HAND = 1;
 
+        const int RADIUS_CLEAR = 41;
 
         const int MARGIN_DIAL_EDGE = 3;
         const int MARGIN_NUMBER_DIAL = -3;
@@ -89,6 +90,7 @@ namespace DontBeLate
             currentTime = new DateTime();
             currentTime = DateTime.Now;
 
+            DrawHourDial();
             UpdateTime(null);
 
             currentTime = DateTime.Now;
@@ -114,7 +116,7 @@ namespace DontBeLate
 
             currentTime = DateTime.Now;
 
-            _display.Clear();
+            //_display.Clear();
 
             if (showDigital == false)
             {
@@ -125,10 +127,7 @@ namespace DontBeLate
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
                 degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
-                _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-
-                _azmdrawing.DrawDial(_display, colorForeground, colorBackground, 3, MARGIN_DIAL_EDGE);
-                _azmdrawing.DrawHourNumbers(_display, colorForeground, fontNinaB, screenCenterX - (MARGIN_DIAL_EDGE + fontNinaB.Height + MARGIN_NUMBER_DIAL), 0);
+                _display.DrawEllipse(colorBackground, screenCenterX, screenCenterY, RADIUS_CLEAR, RADIUS_CLEAR);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH + 180, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorForeground, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL);
@@ -168,11 +167,23 @@ namespace DontBeLate
                 {
                     showDigital = false;
                     showDigitalCounter = 0;
+                    DrawHourDial();
+                    UpdateTime(null);
                 }
 
             }
 
             _display.Flush();
+
+        }
+
+        private static void DrawHourDial()
+        {
+
+            _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+
+            _azmdrawing.DrawDial(_display, colorForeground, colorBackground, 3, MARGIN_DIAL_EDGE);
+            _azmdrawing.DrawHourNumbers(_display, colorForeground, fontNinaB, screenCenterX - (MARGIN_DIAL_EDGE + fontNinaB.Height + MARGIN_NUMBER_DIAL), 0);
 
         }
 

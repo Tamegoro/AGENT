@@ -73,7 +73,7 @@ namespace Gaps
 
         const int MAX_DISPLAY_MODE = 11;
 
-        const int RADIUS_UPDATE = 50;
+        const int RADIUS_UPDATE = 52;
 
         const int HAND_TYPE_FILL = 0;
         const int HAND_TYPE_FRAME = 6;
@@ -139,7 +139,6 @@ namespace Gaps
 
             currentTime = DateTime.Now;
 
-
             if (showDigital == false)
             {
 
@@ -183,6 +182,12 @@ namespace Gaps
                 {
                     showDigital = false;
                     showDigitalCounter = 0;
+                    _display.Clear();
+                    if (showDial == true)
+                    {
+                        _azmdrawing.DrawDial(_display, colorForeground, 0, MARGIN_DIAL_EDGE);
+                    }
+                    UpdateTime(null);
                 }
 
             }

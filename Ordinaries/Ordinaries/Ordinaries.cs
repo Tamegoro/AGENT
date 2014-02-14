@@ -330,6 +330,8 @@ namespace Ordinaries
             if (showDigital == false || showDigitalCounter > SHOW_DIGITAL_SECOND)
             {
                 showDigital = false;
+                DrawHourDial();
+                UpdateTime(null);
                 _updateClockTimerDigital.Dispose();
             }
             else

@@ -210,7 +210,11 @@ namespace ForYourFriends
                 {
                     if (showDigital == false)
                     {
-                        degreeRotate = (degreeRotate + 90) % 360;
+                        ++displayMode;
+                        if (displayMode > MAX_DISPLAY_MODE)
+                        {
+                            displayMode = 0;
+                        }
                     }
                     else
                     {
@@ -233,11 +237,7 @@ namespace ForYourFriends
                 {
                     if (showDigital == false)
                     {
-                        ++displayMode;
-                        if (displayMode > MAX_DISPLAY_MODE)
-                        {
-                            displayMode = 0;
-                        }
+                        degreeRotate = (degreeRotate + 90) % 360;
                     }
                     else
                     {
