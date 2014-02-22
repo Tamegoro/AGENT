@@ -79,12 +79,17 @@ namespace Graffiti
         static int pinX = 0;
         static int pinY = 0;
 
+        static bool blackOrWhite = WHITE;
+
         static int displayMode = DISPLAY_MODE_BLACK;
 
         static bool showSecondHand = false;
 
         static bool showDigital = false;
         static int showDigitalCounter = 0;
+
+        const bool WHITE = true;
+        const bool BLACK = false;
 
         const int SHOW_DIGITAL_SECOND = 10;
 
@@ -143,9 +148,8 @@ namespace Graffiti
             _bmpRotateSecondHand = new Bitmap(secondHandWidth, secondHandHeight);
 
             displayMode = DISPLAY_MODE_BLACK_SECOND;
-            colorForeground = Color.White;
-            colorBackground = Color.Black;
-            showSecondHand = true;
+            blackOrWhite = WHITE;
+            SetDisplayMode(displayMode);
 
             showDigital = false;
 
@@ -321,12 +325,6 @@ namespace Graffiti
                     colorBackground = Color.Black;
                     showSecondHand = true;
 
-                    _azmdrawing.DrawImageReverseBW(_bmpFace, 0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpHourHand, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpMinuteHand, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpSecondHand, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpPin, 0, 0, _bmpPin, 0, 0, pinWidth, pinHeight);
-
                     break;
 
                 case DISPLAY_MODE_BLACK:
@@ -343,12 +341,6 @@ namespace Graffiti
                     colorBackground = Color.White;
                     showSecondHand = true;
 
-                    _azmdrawing.DrawImageReverseBW(_bmpFace, 0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpHourHand, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpMinuteHand, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpSecondHand, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight);
-                    _azmdrawing.DrawImageReverseBW(_bmpPin, 0, 0, _bmpPin, 0, 0, pinWidth, pinHeight);
-
                     break;
 
                 case DISPLAY_MODE_WHITE:
@@ -358,6 +350,38 @@ namespace Graffiti
                     showSecondHand = false;
 
                     break;
+
+            }
+
+            ReverseBW();
+
+        }
+
+        private static void ReverseBW()
+        {
+
+            if (colorForeground == Color.White && blackOrWhite == BLACK)
+            {
+
+                _azmdrawing.DrawImageReverseBW(_bmpFace, 0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpHourHand, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpMinuteHand, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpSecondHand, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpPin, 0, 0, _bmpPin, 0, 0, pinWidth, pinHeight);
+
+                blackOrWhite = WHITE;
+
+            }
+            else if (colorForeground != Color.White && blackOrWhite == WHITE)
+            {
+
+                _azmdrawing.DrawImageReverseBW(_bmpFace, 0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpHourHand, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpMinuteHand, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpSecondHand, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight);
+                _azmdrawing.DrawImageReverseBW(_bmpPin, 0, 0, _bmpPin, 0, 0, pinWidth, pinHeight);
+
+                blackOrWhite = BLACK;
 
             }
 
