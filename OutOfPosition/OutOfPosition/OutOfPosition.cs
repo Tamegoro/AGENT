@@ -8,9 +8,9 @@ using AGENT.AZMutil.AZMDrawing;
 using Agent.Contrib.Hardware;
 
 
-namespace Shearing
+namespace OutOfPosition
 {
-    public class Shearing
+    public class OutOfPosition
     {
         static Bitmap _display;
 
@@ -108,7 +108,7 @@ namespace Shearing
             {
                 Buttons.BottomRight, Buttons.MiddleRight, Buttons.TopRight
             };
-            
+
             ButtonHelper.Current.OnButtonPress += Current_OnButtonPress;
 
             Thread.Sleep(Timeout.Infinite);
@@ -120,7 +120,7 @@ namespace Shearing
 
             if (showDigital == false)
             {
-            
+
                 currentTime = DateTime.Now;
 
                 degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
@@ -132,7 +132,7 @@ namespace Shearing
 
                 if (displayMode == DISPLAY_MODE_SQUARED_BLACK || displayMode == DISPLAY_MODE_SQUARED_WHITE)
                 {
-                
+
                     _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 1);
 
                     centerX = 78;
@@ -145,7 +145,7 @@ namespace Shearing
 
                     _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-           
+
                 }
                 else if (displayMode == DISPLAY_MODE_ROUNDED_BLACK || displayMode == DISPLAY_MODE_ROUNDED_WHITE || displayMode == DISPLAY_MODE_ROUNDED_BLACK_DISK || displayMode == DISPLAY_MODE_ROUNDED_WHITE_DISK)
                 {
@@ -158,8 +158,8 @@ namespace Shearing
                     {
                         _azmdrawing.DrawWatchfaceBase(_display, colorForeground, colorBackground, fontsmall, 8);
                     }
-                    
-                    
+
+
                     centerX = 78;
                     centerY = 78;
 
@@ -170,7 +170,7 @@ namespace Shearing
 
                     _display.DrawEllipse(colorBackground, 1, centerX, centerY, 2, 2, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                     _display.DrawEllipse(colorForeground, 1, centerX, centerY, 1, 1, colorForeground, 0, 0, colorForeground, 0, 0, 255);
-            
+
                 }
 
                 _display.Flush();

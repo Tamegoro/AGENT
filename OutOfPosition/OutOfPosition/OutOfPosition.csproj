@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AssemblyName>Shearing</AssemblyName>
+    <AssemblyName>OutOfPosition</AssemblyName>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Shearing</RootNamespace>
+    <RootNamespace>OutOfPosition</RootNamespace>
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BB5FF6B1-5F45-492F-80F1-EE2DDDDABD3B}</ProjectGuid>
+    <ProjectGuid>{D8AB03D3-D488-4D4A-9418-6C51CB8765F8}</ProjectGuid>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <DeployDevice>AGENT Emulator</DeployDevice>
@@ -33,7 +33,7 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shearing.cs" />
+    <Compile Include="OutOfPosition.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -41,10 +41,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AGENT.AZMutil">
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>
+    <Reference Include="Agent.Core" />
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Native" />
@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\7barPBd24.tinyfnt" />
-    <None Include="Resources\7barPBd32.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
