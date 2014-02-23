@@ -63,7 +63,7 @@ namespace OutOfPosition2
         const int THICKNESS_HOUR_HAND = 5;
         const int LENGTH_MINUTE_HAND = 35;
         const int LENGTH_MINUTE_HAND_TAIL = 10;
-        const int THICKNESS_MINUTE_HAND = 4;
+        const int THICKNESS_MINUTE_HAND = 5;
 
         const int RADIUS_PIN = 1;
 
