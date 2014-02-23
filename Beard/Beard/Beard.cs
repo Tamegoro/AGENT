@@ -158,10 +158,6 @@ namespace Beard
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 _display.DrawImage(0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
 
-                _bmpRotateHourHand.Clear();
-                _bmpRotateHourHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _bmpRotateHourHand.RotateImage(degreeH, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight, 255);
-
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, 0, 0, (hourHandHeight / 2));
                 modHourHandX = _point.X;
                 modHourHandY = _point.Y;
@@ -169,12 +165,23 @@ namespace Beard
                 rotateHourHandX = (screenCenterX - (hourHandWidth / 2)) + _point.X;
                 rotateHourHandY = (screenCenterY - (hourHandHeight / 2)) + _point.Y;
 
-                _azmdrawing.DrawImageTransparently(_bmpRotateHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY + MOD_HAND_Y, hourHandHeight, hourHandHeight, colorForeground);
+                if (degreeH == 0)
+                {
 
+                    _azmdrawing.DrawImageTransparently(_bmpHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY, hourHandHeight, hourHandHeight, colorForeground);
 
-                _bmpRotateMinuteHand.Clear();
-                _bmpRotateMinuteHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _bmpRotateMinuteHand.RotateImage(degreeM, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight, 255);
+                }
+                else
+                {
+
+                    _bmpRotateHourHand.Clear();
+                    _bmpRotateHourHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _bmpRotateHourHand.RotateImage(degreeH, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight, 255);
+
+                    _azmdrawing.DrawImageTransparently(_bmpRotateHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY, hourHandHeight, hourHandHeight, colorForeground);
+
+                }
+
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, 0, 0, (minuteHandHeight / 2));
                 modMinuteHandX = _point.X;
@@ -183,7 +190,24 @@ namespace Beard
                 rotateMinuteHandX = (screenCenterX - (minuteHandWidth / 2)) + _point.X;
                 rotateMinuteHandY = (screenCenterY - (minuteHandHeight / 2)) + _point.Y;
 
-                _azmdrawing.DrawImageTransparently(_bmpRotateMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY + MOD_HAND_Y, minuteHandHeight, minuteHandHeight, colorForeground);
+                if (degreeM == 0)
+                {
+
+                    _azmdrawing.DrawImageTransparently(_bmpMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY, minuteHandHeight, minuteHandHeight, colorForeground);
+
+                }
+                else
+                {
+
+                    _bmpRotateMinuteHand.Clear();
+                    _bmpRotateMinuteHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _bmpRotateMinuteHand.RotateImage(degreeM, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight, 255);
+
+                    _azmdrawing.DrawImageTransparently(_bmpRotateMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY, minuteHandHeight, minuteHandHeight, colorForeground);
+
+                }
+
+
 
                 _display.Flush();
 

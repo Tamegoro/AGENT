@@ -187,32 +187,40 @@ namespace Graffiti
 
                 currentTime = DateTime.Now;
 
-                degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute) % 360;
-                degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute) % 360;
-                degreeS = _azmdrawing.SecondToAngle(currentTime.Second) % 360;
+                degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
+                degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
+                degreeS = _azmdrawing.SecondToAngle(currentTime.Second);
 
                 _display.Clear();
 
                 _display.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
                 _display.DrawImage(0, 0, _bmpFace, 0, 0, screenWidth, screenHeight);
 
-                _bmpRotateHourHand.Clear();
-                _bmpRotateHourHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _bmpRotateHourHand.RotateImage(degreeH, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight, 255);
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeH, 0, 0, (hourHandHeight / 2));
                 modHourHandX = _point.X;
                 modHourHandY = _point.Y;
 
                 rotateHourHandX = (screenCenterX - (hourHandWidth / 2)) + _point.X;
-                rotateHourHandY = (screenCenterY - (hourHandHeight / 2)) + _point.Y;
+                rotateHourHandY = (screenCenterY - (hourHandHeight / 2)) + _point.Y; 
                 
-                _azmdrawing.DrawImageTransparently(_bmpRotateHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY, hourHandHeight, hourHandHeight, colorForeground);
+                if (degreeH == 0)
+                {
 
+                    _azmdrawing.DrawImageTransparently(_bmpHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY, hourHandHeight, hourHandHeight, colorForeground);
+                
+                }
+                else
+                {
 
-                _bmpRotateMinuteHand.Clear();
-                _bmpRotateMinuteHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                _bmpRotateMinuteHand.RotateImage(degreeM, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight, 255);
+                    _bmpRotateHourHand.Clear();
+                    _bmpRotateHourHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _bmpRotateHourHand.RotateImage(degreeH, 0, 0, _bmpHourHand, 0, 0, hourHandWidth, hourHandHeight, 255);
+
+                    _azmdrawing.DrawImageTransparently(_bmpRotateHourHand, 0, 0, _display, rotateHourHandX, rotateHourHandY, hourHandHeight, hourHandHeight, colorForeground);
+
+                }
+
 
                 _point = _azmdrawing.FindPointDegreeDistance(degreeM, 0, 0, (minuteHandHeight / 2));
                 modMinuteHandX = _point.X;
@@ -220,15 +228,27 @@ namespace Graffiti
 
                 rotateMinuteHandX = (screenCenterX - (minuteHandWidth / 2)) + _point.X;
                 rotateMinuteHandY = (screenCenterY - (minuteHandHeight / 2)) + _point.Y;
-                                
-                _azmdrawing.DrawImageTransparently(_bmpRotateMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY, minuteHandHeight, minuteHandHeight, colorForeground);
+
+                if (degreeM == 0)
+                {
+
+                    _azmdrawing.DrawImageTransparently(_bmpMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY, minuteHandHeight, minuteHandHeight, colorForeground);
+
+                }
+                else
+                {
+
+                    _bmpRotateMinuteHand.Clear();
+                    _bmpRotateMinuteHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                    _bmpRotateMinuteHand.RotateImage(degreeM, 0, 0, _bmpMinuteHand, 0, 0, minuteHandWidth, minuteHandHeight, 255);
+
+                    _azmdrawing.DrawImageTransparently(_bmpRotateMinuteHand, 0, 0, _display, rotateMinuteHandX, rotateMinuteHandY, minuteHandHeight, minuteHandHeight, colorForeground);
+
+                }
+
 
                 if (showSecondHand == true)
                 {
-
-                    _bmpRotateSecondHand.Clear();
-                    _bmpRotateSecondHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
-                    _bmpRotateSecondHand.RotateImage(degreeS, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight, 255);
 
                     _point = _azmdrawing.FindPointDegreeDistance(degreeS, 0, 0, (secondHandHeight / 2));
                     modSecondHandX = _point.X;
@@ -237,7 +257,22 @@ namespace Graffiti
                     rotateSecondHandX = (screenCenterX - (secondHandWidth / 2)) + _point.X;
                     rotateSecondHandY = (screenCenterY - (secondHandHeight / 2)) + _point.Y;
 
-                    _azmdrawing.DrawImageTransparently(_bmpRotateSecondHand, 0, 0, _display, rotateSecondHandX, rotateSecondHandY, secondHandWidth, secondHandHeight, colorForeground);
+                    if (degreeS == 0)
+                    {
+
+                        _azmdrawing.DrawImageTransparently(_bmpSecondHand, 0, 0, _display, rotateSecondHandX, rotateSecondHandY, secondHandWidth, secondHandHeight, colorForeground);
+
+                    }
+                    else
+                    {
+
+                        _bmpRotateSecondHand.Clear();
+                        _bmpRotateSecondHand.DrawRectangle(colorBackground, 1, 0, 0, screenWidth, screenHeight, 0, 0, colorBackground, 0, 0, colorBackground, 0, 0, 255);
+                        _bmpRotateSecondHand.RotateImage(degreeS, 0, 0, _bmpSecondHand, 0, 0, secondHandWidth, secondHandHeight, 255);
+
+                        _azmdrawing.DrawImageTransparently(_bmpRotateSecondHand, 0, 0, _display, rotateSecondHandX, rotateSecondHandY, secondHandWidth, secondHandHeight, colorForeground);
+
+                    }
 
                 }
 
