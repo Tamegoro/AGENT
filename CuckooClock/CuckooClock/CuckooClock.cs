@@ -66,6 +66,8 @@ namespace CuckooClock
 
         const int SHOW_DIGITAL_SECOND = 10;
 
+        const int MILLISECOND_VIBRATE_CUCKOO = 500;
+
         const int LENGTH_HOUR_HAND = 20;
         const int LENGTH_HOUR_HAND_TAIL = 5;
         const int THICKNESS_HOUR_HAND = 4;
@@ -495,7 +497,7 @@ namespace CuckooClock
                 }
                 else if (cuckooCounter == 10)
                 {
-                    Agent.Contrib.Hardware.Viberate.ViberateProvider.Current.Viberate(1);
+                    Agent.Contrib.Hardware.Viberate.ViberateProvider.Current.Viberate(MILLISECOND_VIBRATE_CUCKOO);
                     cuckooFrame--;
                 }
                 else if (12 < cuckooCounter && 0 <= cuckooFrame)
