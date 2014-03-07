@@ -69,9 +69,6 @@
     <None Include="Resources\GraffitiPin.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GraffitiMinuteHand.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\GraffitiSecondHand.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -79,5 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\GraffitiHourHand.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GraffitiMinuteHand.gif" />
   </ItemGroup>
 </Project>
