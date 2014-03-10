@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AssemblyName>Graffiti</AssemblyName>
+    <AssemblyName>Running</AssemblyName>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Graffiti</RootNamespace>
+    <RootNamespace>Running</RootNamespace>
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1F92520F-8CD8-43BF-8A19-74E918F4BCF7}</ProjectGuid>
+    <ProjectGuid>{F8F88C1E-ACB1-4763-9E6F-C8C21601BFD9}</ProjectGuid>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <DeployDevice>AGENT Emulator</DeployDevice>
@@ -33,7 +33,7 @@
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Graffiti.cs" />
+    <Compile Include="Running.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,26 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\7barPBd24.tinyfnt" />
+    <None Include="Resources\Running.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AGENT.Contrib\Agent.Contrib\Agent.Contrib.csproj">
       <Project>{C13C6D79-545D-40EB-9F3C-8746C99C259C}</Project>
       <Name>Agent.Contrib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GraffitiPin.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GraffitiSecondHand.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GraffitiHourHand.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GraffitiMinuteHand.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\GraffitiFace.gif" />
   </ItemGroup>
 </Project>
