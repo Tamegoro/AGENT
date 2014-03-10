@@ -28,7 +28,6 @@ namespace Running
         static Color colorBackground;
 
         static AZMDrawing _azmdrawing;
-        static AGENT.AZMutil.Point _point;
 
         static int degreeH = 0;
         static int degreeM = 0;
