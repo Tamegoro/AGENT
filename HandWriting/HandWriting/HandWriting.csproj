@@ -41,7 +41,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AGENT.AZMutil">
+    <Reference Include="AGENT.AZMutil, Version=1.0.37.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\AGENT.AZMutil.dll</HintPath>
     </Reference>
     <Reference Include="Agent.Core" />
@@ -65,5 +66,8 @@
       <Project>{C13C6D79-545D-40EB-9F3C-8746C99C259C}</Project>
       <Name>Agent.Contrib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eraser.gif" />
   </ItemGroup>
 </Project>
