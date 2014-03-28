@@ -201,22 +201,22 @@ namespace TinCanTelephone
                 FlushDisplay();
 
             }
-            else
-            {
+            //else
+            //{
 
-                _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
-                ++showDigitalCounter;
+            //    _azmdrawing.DrawDigitalClock(_display, Color.White, Color.Black, font7barPBd24, currentTime, true);
+            //    ++showDigitalCounter;
 
-                if (showDigitalCounter > SECOND_SHOW_DIGITAL)
-                {
-                    showDigital = false;
-                    showDigitalCounter = 0;
-                    DrawWatchFace();
-                }
+            //    if (showDigitalCounter > SECOND_SHOW_DIGITAL)
+            //    {
+            //        showDigital = false;
+            //        showDigitalCounter = 0;
+            //        DrawWatchFace();
+            //    }
 
-                _display.Flush();
+            //    _display.Flush();
 
-            }
+            //}
 
         }
 
