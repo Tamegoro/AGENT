@@ -131,11 +131,11 @@ namespace Football
                 degreeH = _azmdrawing.HourToAngle(currentTime.Hour, currentTime.Minute);
                 degreeM = _azmdrawing.MinuteToAngle(currentTime.Minute);
 
-                _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
-                _azmdrawing.DrawAngledLine(_display, colorHand, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 6);
-
                 _point = _azmdrawing.FindPointDegreeDistance((degreeM + 180) % 360, screenCenterX, screenCenterY, LENGTH_MINUTE_HAND_TAIL);
                 _azmdrawing.DrawAngledLine(_display, colorHand, THICKNESS_MINUTE_HAND, degreeM, _point.X, _point.Y, 0, LENGTH_MINUTE_HAND + LENGTH_MINUTE_HAND_TAIL, 6);
+
+                _point = _azmdrawing.FindPointDegreeDistance((degreeH + 180) % 360, screenCenterX, screenCenterY, LENGTH_HOUR_HAND_TAIL);
+                _azmdrawing.DrawAngledLine(_display, colorHand, THICKNESS_HOUR_HAND, degreeH, _point.X, _point.Y, 0, LENGTH_HOUR_HAND + LENGTH_HOUR_HAND_TAIL, 6);
 
                 _display.DrawEllipse(colorPin, 1, screenCenterX, screenCenterY, RADIUS_PIN, RADIUS_PIN, colorPin, 0, 0, colorPin, 0, 0, 255);
 
